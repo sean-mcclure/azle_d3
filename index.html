@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
+<script src='http://worldofdatascience.com/kedion.min.js'></script>
+</head>
+
+<body>
+</body>
+</html>
+
+<script>
+
+// ******* prepare page ********
+load_fonts({
+    "font": "Ubuntu"
+})
+
+style_body({
+    "background": "rgb(85, 85, 85)",
+    "font-family": "Ubuntu",
+    "min-width": "1300px"
+})
+
+add_navigation_bar({
+    "this_class": "my_nav"
+})
+
+style_navigation_bar('my_nav', 1, {
+    "background-color": "rgba(91, 95, 100, 0.95)",
+    "border-radius" : "4px",
+    "margin-bottom" : "20px"
+})
+
+add_top_button({
+    "this_class": "to_top_button",
+    "text": "TOP",
+    "side": "right"
+})
+
+add_layout('my_nav', 1, {
+    "this_class": "nav_layout",
+    "cell_class": "nav_layout_cells",
+    "row_class": "nav_layout_rows",
+    "number_of_rows": 1,
+    "number_of_columns": 3
+})
+
+style_layout('nav_layout', 1, {
+    "height": "90px",
+    "column_widths": ['20%', '50%', '30%'],
+    "border": 1
+})
+
+add_spa({
+    "this_class" : "sections",
+    "sections" : 3
+})
+
+all_style_spa('sections', {
+    "background" : "rgba(91, 95, 100, 0.95)",
+    "width" : "90%",
+    "height" : "auto"
+})
+
+// ******* setting up layouts and styling that apply to all sections ********
+call_multiple({
+"iterations" : $('.sections').length,
+"function" : `
+	add_layout('sections', index + 1, {
+    	"this_class": "section_1_layout",
+    	"cell_class": "section_1_layout_cells",
+    	"row_class": "section_1_layout_rows",
+    	"number_of_rows": 1,
+    	"number_of_columns": 2
+	})
+	all_style_layout('section_1_layout', {
+    	"height": "auto",
+    	"column_widths": ['20%', '80%'],
+    	"border": 1
+	})
+	add_text('section_1_layout_cells', (index*2) + 1, {
+   		"this_class" : "options_text",
+    	"text" : "OPTIONS"
+	})
+
+	add_layout('section_1_layout_cells', (index*2) + 1, {
+    	"this_class": "options_layout",
+    	"cell_class": "options_layout_cells",
+    	"row_class": "options_layout_rows",
+    	"number_of_rows": 6,
+    	"number_of_columns": 1
+	})
+
+`
+})
+
+// ******* adding all inputs ********
+button_titles = ["hover orange", "hover limegreen"]
+call_wrapper_functions = ["add_hover()", "add_hover('limegreen')"]
+call_multiple({
+	"iterations" : $('.options_layout_cells').length,
+	"function" : `
+	    add_button('options_layout_cells', index + 1, {
+	        'this_class'  : 'option_button', 
+	        'text' : button_titles[index]
+	    })
+	    all_style_button('option_button', {
+	        "width" : "90%",
+	        "background" : "rgb(16, 168, 180)"
+	    })
+	    add_event('option_button', index+1, {
+	        "type" : "click", 
+	        "function" : call_wrapper_functions[index]
+	    })	    
+`
+})
+
+// ******* adding section 1 D3 visual (see wrapped functions at bottom)********
+
+add_visual('section_1_layout_cells', 2, {
+    "this_class" : "my_d3",
+    "html_path" : "visuals/barchart.html",
+    "data_path" : "../data/bar_data.tsv",
+    "functions_for_d3" : `
+	     
+	    all_apply_id('bar')
+	    
+	    all_style_d3('.bar', {
+	    "fill" : "pink",
+	    "cursor" : "pointer"
+	    })
+	    
+	    all_style_d3('text', {
+	    "fill" : "white",
+	    "font-size" : "17px"
+	    })
+	    
+	    style_d3('svg', 1, {
+	    "padding-left" : "20px"
+	    })
+	    
+	    all_add_event('bar', {
+	    "type" : "hover",
+	    "function" : "style_d3('.bar', get_target_instance(this.id), {'fill' : 'limegreen'})"
+	    })
+	    
+	    all_add_event('bar', {
+	    "type" : "unhover",
+	    "function" : "style_d3('.bar', get_target_instance(this.id), {'fill' : 'pink'})"
+	    })
+	 
+    `
+})
+ 
+style_visual('my_d3', 1, {
+    "width" : "100%", 
+    "height" : "600px",
+    "align" : "center"
+})
+
+
+// ******* adding section 2 D3 visual ********
+add_visual('section_1_layout_cells', 4, {
+    "this_class" : "my_d3_scatter",
+    "html_path" : "visuals/scatter.html",
+    "data_path" : "../data/scatter_data.tsv",
+    "functions_for_d3" : `
+        add_tooltip("dot", 1, {
+    		"text" : "this is a tooltip",
+    		"margin-top" : "-40px",
+    		"margin-left" : "-100px",
+    		"background" : "darkslategrey"
+    		})
+`
+})
+    
+style_visual('my_d3_scatter', 1, {
+    "width" : "100%", 
+    "height" : "600px",
+    "align" : "center"
+    })
+
+// _all styles
+all_style_text('options_text', {
+    "color" : "white",
+    "align" : "center",
+    "font-size" : "20px"
+})
+all_style_layout('section_1_layout_cells', {
+    "valign" : "top"
+})
+all_style_layout('options_layout_cells', {
+    "halign" : "center"
+})
+all_style_layout('options_layout', {
+    "border" : 0
+})
+
+// ************************************************************************ kedion functions 
+function add_visual(target_class, target_instance, content) {
+    add_iframe(target_class, target_instance, {
+        "this_class" : content['this_class'],
+        "source" : content['html_path']
+    })
+    $('.' + content['this_class']).eq(last_class_instance(content['this_class'])-1)[0].setAttribute("scrolling", "no");
+    if(content.hasOwnProperty('functions_for_d3')) {
+    setTimeout(function(){
+    $('.' + content['this_class']).eq(1-1)[0].contentWindow.kedion_d3(content['functions_for_d3'])
+    },1000)
+    }
+    if(content.hasOwnProperty('data_path')) {
+    setTimeout(function(){
+    $('.' + content['this_class']).eq(1-1)[0].contentWindow.kedion_d3("draw_visual('" + content['data_path'] + "')")
+    },400)
+    }
+    }
+
+function style_visual(target_class, target_instance, styles) {
+     style_iframe(target_class, target_instance, {
+         "width" : styles['width'],
+         "height" : styles['height']
+     })
+     if(styles.hasOwnProperty('align')) {
+         align_element(target_class, target_instance, styles['align'])
+     }
+     }
+
+function all_style_visual(target_class, styles) {
+	$('.' + target_class).each(function(index) {
+	style_visual(target_class, index, styles)
+	});
+	}
+
+
+
+
+    
+
+
+</script>
+
+
+
