@@ -100,10 +100,10 @@ call_multiple({
 })
 
 // ******* adding all buttons ********
-button_titles = ["bar_color", "text_color", "text_size", "padding-left", "cutoff", "height"]
-call_wrapper_functions = ["style_options_a()", "style_options_b()", "style_options_c()", "style_options_d()", "style_options_e()", "style_options_f()"]
+button_titles = ["bar_color", "text_color", "text_size", "padding-left", "bottom"]
+call_wrapper_functions = ["bar_color()", "text_color()", "text_size()", "padding_left()", "bottom()"]
 call_multiple({
-	"iterations" : $('.options_layout_cells').length,
+	"iterations" : button_titles.length,
 	"function" : `
 	    add_button('options_layout_cells', index + 1, {
 	        'this_class'  : 'option_button', 
@@ -122,12 +122,12 @@ call_multiple({
 
 // ******* adding section 1 D3 visual (see wrapped functions at bottom)********
 
-add_visual('section_1_layout_cells', 2, {
+add_d3_visual('section_1_layout_cells', 2, {
     "this_class" : "my_d3",
     "html_path" : "visuals/barchart.html",
-    "wrapper_arguments" : ["../data/bar_data.tsv", "hello there"],
+    "wrapper_arguments" : ["../data/bar_data.tsv", "hello there", 30],
     "styles" : `
-        style_visual('my_d3', 1, {
+        style_d3_visual('my_d3', 1, {
             "width" : "100%",
             "height" : "500px",
             "bar_color" : "rgb(48, 229, 255)",
@@ -157,8 +157,8 @@ all_style_layout('options_layout', {
 
 
 
-// ************************************************************************ kedion functions 
-function add_visual(target_class, target_instance, content) {
+// ************************************************************************ kedion functions
+function add_d3_visual(target_class, target_instance, content) {
     add_iframe(target_class, target_instance, {
         "this_class" : content['this_class'],
         "source" : content['html_path']
@@ -177,7 +177,7 @@ function add_visual(target_class, target_instance, content) {
     }
     }
 
-function style_visual(target_class, target_instance, styles) {
+function style_d3_visual(target_class, target_instance, styles) {
      style_iframe(target_class, target_instance, {
          "width" : styles['width'],
          "height" : styles['height']
@@ -203,20 +203,23 @@ function style_visual(target_class, target_instance, styles) {
      if(styles.hasOwnProperty('padding-left')) {
          $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("all_style_d3('svg', {'padding-left' : '" + styles['padding-left'] + "'})")
      }
-     if(styles.hasOwnProperty('padding-right')) {
-         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("all_style_d3('svg', {'padding-right' : '" + styles['padding-right'] + "'})")
+     if(styles.hasOwnProperty('undefined')) {
+         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("$('svg').attr('margin.bottom', '" + styles['cutoff'] + "')")
      }
-     if(styles.hasOwnProperty('padding-top')) {
-         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("all_style_d3('svg', {'padding-top' : '" + styles['padding-top'] + "'})")
-     }
-     if(styles.hasOwnProperty('padding-bottom')) {
-         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("all_style_d3('svg', {'padding-bottom' : '" + styles['padding-bottom'] + "'})")
-     }
-     if(styles.hasOwnProperty('cutoff')) {
-         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("$('svg').attr('width', '" + styles['cutoff'] + "')")
-     }
-     if(styles.hasOwnProperty('height')) {
-         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("$('svg').attr('height', '" + styles['height'] + "')")
+     if(styles.hasOwnProperty('hover_color')) {
+         call_str = `
+         all_apply_id('bar');
+         all_add_event('bar', {
+         'type' : 'hover',
+         'function' : "style_d3('.bar', get_target_instance(this.id), {'fill' : 'green'})"
+	     })
+	     all_add_event('bar', {
+	     "type" : "unhover",
+	     "function" : "style_d3('.bar', get_target_instance(this.id), {'fill' : 'steelblue'});"
+	     })
+	     `
+         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3(call_str)
+
      }
 
 
@@ -229,7 +232,10 @@ function all_style_visual(target_class, styles) {
 	}
 
 
-
+function call_d3_wrapper(target_class, target_instance, content) {
+    arg_string = "'" + content['wrapper_arguments'].join("','") + "'"
+    $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("$('svg').empty(); draw_visual(" + arg_string + ")")
+}
 
     
 
