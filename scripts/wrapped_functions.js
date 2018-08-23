@@ -3,8 +3,10 @@
 function bar_color() {
 color_picker({
 "function" : `
-    style_d3_visual('my_d3', 1, {
-        "bar_color" : global_current_color
+    call_d3_wrapper('my_d3', 1, {
+    "wrapper_arguments" : barchart_wrapper_args,
+    "targeted_styles" : barchart_targeted_styles,
+    "bar_color" : global_current_color
     })
     `
 })
@@ -13,8 +15,9 @@ color_picker({
 function text_color() {
 color_picker({
 "function" : `
-    style_d3_visual('my_d3', 1, {
-        "text_color" : global_current_color
+    call_d3_wrapper('my_d3', 1, {
+    "wrapper_arguments" : barchart_wrapper_args,
+    "text_color" : global_current_color
     })
     `
 })
@@ -89,7 +92,7 @@ style_modal('text_size_modal', 1, {
 })
 add_text('text_size_modal_content', 1, {
 "this_class" : "text_size_title",
-"text" : "CUTOFF<br><br>"
+"text" : "BOTTOM<br><br>"
 })
 add_slider('text_size_modal_content', 1, {
 "this_class" : "d3_edit_slider",
@@ -101,7 +104,98 @@ add_event('d3_edit_slider', 1, {
 "type" : "as_change",
 "function" : `
 call_d3_wrapper('my_d3', 1, {
-    "wrapper_arguments" : ["../data/bar_data.tsv", "hello there", this.value]
+    "wrapper_arguments" : barchart_wrapper_args,
+    "bottom_choice" : this.value
+})
+`
+})
+}
+
+function top() {
+add_modal({
+"this_class" : "text_size_modal",
+"content_class" : "text_size_modal_content"
+})
+style_modal('text_size_modal', 1, {
+"width" : "auto",
+"height" : "auto"
+})
+add_text('text_size_modal_content', 1, {
+"this_class" : "text_size_title",
+"text" : "TOP<br><br>"
+})
+add_slider('text_size_modal_content', 1, {
+"this_class" : "d3_edit_slider",
+"default_value" : 0,
+"min_value" : 0,
+"max_value" : 500
+})
+add_event('d3_edit_slider', 1, {
+"type" : "as_change",
+"function" : `
+call_d3_wrapper('my_d3', 1, {
+    "wrapper_arguments" : barchart_wrapper_args,
+    "top_choice" : this.value
+})
+`
+})
+}
+
+function left() {
+add_modal({
+"this_class" : "text_size_modal",
+"content_class" : "text_size_modal_content"
+})
+style_modal('text_size_modal', 1, {
+"width" : "auto",
+"height" : "auto"
+})
+add_text('text_size_modal_content', 1, {
+"this_class" : "text_size_title",
+"text" : "LEFT<br><br>"
+})
+add_slider('text_size_modal_content', 1, {
+"this_class" : "d3_edit_slider",
+"default_value" : 0,
+"min_value" : 0,
+"max_value" : 500
+})
+add_event('d3_edit_slider', 1, {
+"type" : "as_change",
+"function" : `
+call_d3_wrapper('my_d3', 1, {
+    "wrapper_arguments" : barchart_wrapper_args,
+    "left_choice" : this.value
+})
+`
+})
+}
+
+function right() {
+add_modal({
+"this_class" : "text_size_modal",
+"content_class" : "text_size_modal_content"
+})
+style_modal('text_size_modal', 1, {
+"width" : "auto",
+"height" : "auto"
+})
+add_text('text_size_modal_content', 1, {
+"this_class" : "text_size_title",
+"text" : "RIGHT<br><br>"
+})
+add_slider('text_size_modal_content', 1, {
+"this_class" : "d3_edit_slider",
+"default_value" : 0,
+"min_value" : 0,
+"max_value" : 500
+})
+add_event('d3_edit_slider', 1, {
+"type" : "as_change",
+"function" : `
+call_d3_wrapper('my_d3', 1, {
+    "wrapper_arguments" : barchart_wrapper_args,
+    "right_choice" : this.value
 })
 `
 })

@@ -92,7 +92,7 @@ call_multiple({
     	"this_class": "options_layout",
     	"cell_class": "options_layout_cells",
     	"row_class": "options_layout_rows",
-    	"number_of_rows": 6,
+    	"number_of_rows": 7,
     	"number_of_columns": 1
 	})
 
@@ -100,8 +100,8 @@ call_multiple({
 })
 
 // ******* adding all buttons ********
-button_titles = ["bar_color", "text_color", "text_size", "padding-left", "bottom"]
-call_wrapper_functions = ["bar_color()", "text_color()", "text_size()", "padding_left()", "bottom()"]
+button_titles = ["bar_color", "text_color", "text_size", "bottom", "top", "left", "right"]
+call_wrapper_functions = ["bar_color()", "text_color()", "text_size()", "bottom()", "top()", "left()", "right()"]
 call_multiple({
 	"iterations" : button_titles.length,
 	"function" : `
@@ -122,18 +122,30 @@ call_multiple({
 
 // ******* adding section 1 D3 visual (see wrapped functions at bottom)********
 
+barchart_wrapper_args = {
+"data_path" : "../data/bar_data.tsv",
+"y_title" : "hello there",
+"top_choice" : 30,
+"right_choice" : 30,
+"bottom_choice" : 30,
+"left_choice" : 30,
+"bar_color" : "rgb(48, 229, 255)",
+"title_color" : "white",
+"text_color" : "white"
+}
+
+barchart_targeted_styles = [{
+    "target_class" : "text",
+    "target_instance" : "all",
+    "style" : "fill",
+    "value" : "white"
+    }]
+
 add_d3_visual('section_1_layout_cells', 2, {
     "this_class" : "my_d3",
     "html_path" : "visuals/barchart.html",
-    "wrapper_arguments" : ["../data/bar_data.tsv", "hello there", 30],
-    "styles" : `
-        style_d3_visual('my_d3', 1, {
-            "width" : "100%",
-            "height" : "500px",
-            "bar_color" : "rgb(48, 229, 255)",
-            "text_color" : "white"
-        })
-    `
+    "wrapper_arguments" : barchart_wrapper_args,
+    "targeted_styles" : barchart_targeted_styles
 })
 
 
@@ -158,84 +170,7 @@ all_style_layout('options_layout', {
 
 
 // ************************************************************************ kedion functions
-function add_d3_visual(target_class, target_instance, content) {
-    add_iframe(target_class, target_instance, {
-        "this_class" : content['this_class'],
-        "source" : content['html_path']
-    })
-    $('.' + content['this_class']).eq(last_class_instance(content['this_class'])-1)[0].setAttribute("scrolling", "no");
-    if(content.hasOwnProperty('wrapper_arguments')) {
-    setTimeout(function(){
-    arg_string = "'" + content['wrapper_arguments'].join("','") + "'"
-    $('.' + content['this_class']).eq(1-1)[0].contentWindow.kedion_d3("draw_visual(" + arg_string + ")")
-    },400)
-    }
-    if(content.hasOwnProperty('styles')) {
-    setTimeout(function(){
-    eval(content['styles'])
-    },1000)
-    }
-    }
 
-function style_d3_visual(target_class, target_instance, styles) {
-     style_iframe(target_class, target_instance, {
-         "width" : styles['width'],
-         "height" : styles['height']
-     })
-     if(styles.hasOwnProperty('align')) {
-         align_element(target_class, target_instance, styles['align'])
-     }
-     if(styles.hasOwnProperty('font-size')) {
-         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("all_style_d3('text', {'font-size' : '" + styles['font-size'] + "'})")
-     }
-     if(styles.hasOwnProperty('bar_color')) {
-         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("all_style_d3('.bar', {'fill' : '" + styles['bar_color'] + "'})")
-     }
-     if(styles.hasOwnProperty('text_color')) {
-         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("all_style_d3('text', {'fill' : '" + styles['text_color'] + "'})")
-     }
-     if(styles.hasOwnProperty('text_size')) {
-         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("all_style_d3('text', {'font-size' : '" + styles['text_size'] + "'})")
-     }
-     if(styles.hasOwnProperty('padding')) {
-         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("all_style_d3('svg', {'padding' : '" + styles['padding'] + "'})")
-     }
-     if(styles.hasOwnProperty('padding-left')) {
-         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("all_style_d3('svg', {'padding-left' : '" + styles['padding-left'] + "'})")
-     }
-     if(styles.hasOwnProperty('undefined')) {
-         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("$('svg').attr('margin.bottom', '" + styles['cutoff'] + "')")
-     }
-     if(styles.hasOwnProperty('hover_color')) {
-         call_str = `
-         all_apply_id('bar');
-         all_add_event('bar', {
-         'type' : 'hover',
-         'function' : "style_d3('.bar', get_target_instance(this.id), {'fill' : 'green'})"
-	     })
-	     all_add_event('bar', {
-	     "type" : "unhover",
-	     "function" : "style_d3('.bar', get_target_instance(this.id), {'fill' : 'steelblue'});"
-	     })
-	     `
-         $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3(call_str)
-
-     }
-
-
-     }
-
-function all_style_visual(target_class, styles) {
-	$('.' + target_class).each(function(index) {
-	style_visual(target_class, index, styles)
-	});
-	}
-
-
-function call_d3_wrapper(target_class, target_instance, content) {
-    arg_string = "'" + content['wrapper_arguments'].join("','") + "'"
-    $('.' + target_class).eq(target_instance-1)[0].contentWindow.kedion_d3("$('svg').empty(); draw_visual(" + arg_string + ")")
-}
 
     
 
