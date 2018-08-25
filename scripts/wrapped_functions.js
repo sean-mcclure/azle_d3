@@ -5,7 +5,7 @@ color_picker({
 "function" : `
     call_d3_wrapper('my_d3', 1, {
     "wrapper_arguments" : barchart_wrapper_args,
-    "targeted_styles" : barchart_targeted_styles,
+    "extra_functions" : barchart_extras,
     "bar_color" : global_current_color
     })
     `
@@ -15,9 +15,9 @@ color_picker({
 function text_color() {
 color_picker({
 "function" : `
-    call_d3_wrapper('my_d3', 1, {
-    "wrapper_arguments" : barchart_wrapper_args,
-    "text_color" : global_current_color
+    call_d3_extra('my_d3', 1, {
+       "extra_functions" : barchart_extras,
+       "text_size" : "all_style_d3('text', {'fill' : " + this.value + "})"
     })
     `
 })
@@ -45,37 +45,9 @@ add_slider('text_size_modal_content', 1, {
 add_event('d3_edit_slider', 1, {
 "type" : "as_change",
 "function" : `
-style_d3_visual('my_d3', 1, {
-        "text_size" : this.value
-    })
-`
-})
-}
-
-function padding_left() {
-add_modal({
-"this_class" : "text_size_modal",
-"content_class" : "text_size_modal_content"
-})
-style_modal('text_size_modal', 1, {
-"width" : "auto",
-"height" : "auto"
-})
-add_text('text_size_modal_content', 1, {
-"this_class" : "text_size_title",
-"text" : "PADDING-LEFT<br><br>"
-})
-add_slider('text_size_modal_content', 1, {
-"this_class" : "d3_edit_slider",
-"default_value" : 0,
-"min_value" : 0,
-"max_value" : 200
-})
-add_event('d3_edit_slider', 1, {
-"type" : "as_change",
-"function" : `
-style_d3_visual('my_d3', 1, {
-        "padding-left" : this.value
+    call_d3_extra('my_d3', 1, {
+       "extra_functions" : barchart_extras,
+       "text_size" : "all_style_d3('text', {'fill' : 'white', 'font-size' : " + this.value + "})"
     })
 `
 })
@@ -165,6 +137,7 @@ add_event('d3_edit_slider', 1, {
 "function" : `
 call_d3_wrapper('my_d3', 1, {
     "wrapper_arguments" : barchart_wrapper_args,
+    "extra_functions" : barchart_extras,
     "left_choice" : this.value
 })
 `
@@ -201,29 +174,26 @@ call_d3_wrapper('my_d3', 1, {
 })
 }
 
-
 function animate_rubberBand() {
-    call_d3_wrapper('my_d3', 1, {
-    "wrapper_arguments" : barchart_wrapper_args,
-    "extra_functions" : `
-        all_apply_id('bar')
-        all_add_event('bar', {
-        "type" : "hover",
-        "function" : "animate_element('bar', get_target_instance(this.id), {'type' : 'rubberBand'})"
-        })
-    `
+     call_d3_extra('my_d3', 1, {
+        "extra_functions" : `
+            all_apply_id('bar')
+            all_add_event('bar', {
+                "type" : "hover",
+                "function" : "animate_element('bar', get_target_instance(this.id), {'type' : 'rubberBand'})"
+            })
+        `
     })
 }
 
 function animate_zoomOutUp() {
-    call_d3_wrapper('my_d3', 1, {
-    "wrapper_arguments" : barchart_wrapper_args,
-    "extra_functions" : `
-        all_apply_id('bar')
-        all_add_event('bar', {
-        "type" : "hover",
-        "function" : "animate_element('bar', get_target_instance(this.id), {'type' : 'zoomOutUp'})"
-        })
-    `
+    call_d3_extra('my_d3', 1, {
+        "extra_functions" : `
+            all_apply_id('bar')
+            all_add_event('bar', {
+                "type" : "hover",
+                "function" : "animate_element('bar', get_target_instance(this.id), {'type' : 'zoomOutUp'})"
+            })
+        `
     })
 }
