@@ -52,8 +52,70 @@ add_layout('my_nav', 1, {
 
 style_layout('nav_layout', 1, {
     "height": "90px",
-    "column_widths": ['20%', '50%', '30%'],
-    "border": 1
+    "column_widths": ['33%', '33%', '33%'],
+    //"background" : "rgba(255, 255, 255, 0.8)",
+    "border": 0
+})
+
+style_layout('nav_layout_cells', 2, {
+"halign" : "center"
+})
+
+/*
+add_text('nav_layout_cells', 1, {
+"this_class" : "top_title",
+"text" : "KEDION & D3"
+})
+
+style_text('top_title', 1, {
+"font-size" : "26px",
+"color" : "white"
+})
+*/
+
+add_layout('nav_layout_cells', 2, {
+    "this_class": "logo_layout",
+    "cell_class": "logo_layout_cells",
+    "row_class": "logo_layout_rows",
+    "number_of_rows": 1,
+    "number_of_columns": 3
+})
+
+style_layout('logo_layout', 1, {
+    "height": "auto",
+    "width" : "300px",
+    "border": 0
+})
+
+all_style_layout('logo_layout_cells', {
+"halign" : "center"
+})
+
+add_image('logo_layout_cells', 1, {
+"this_class" : "k_logo",
+"image_path" : "img/kedion_logo.png"
+})
+style_image('k_logo', 1, {
+"width" : "100px",
+"shadow" : "drop-shadow(2px 2px 2px white)"
+})
+
+add_text('logo_layout_cells', 2, {
+"this_class" : "ampersand",
+"text" : "&"
+})
+style_image('ampersand', 1, {
+"font-size" : "30px",
+"color" : "white"
+})
+
+add_image('logo_layout_cells', 3, {
+"this_class" : "d_logo",
+"image_path" : "img/d3.png"
+})
+style_image('d_logo', 1, {
+"width" : "80px",
+"shadow" : "drop-shadow(2px 2px 2px white)"
 })
 
 add_spa({
@@ -92,7 +154,7 @@ call_multiple({
     	"this_class": "options_layout",
     	"cell_class": "options_layout_cells",
     	"row_class": "options_layout_rows",
-    	"number_of_rows": 7,
+    	"number_of_rows": 9,
     	"number_of_columns": 1
 	})
 
@@ -100,8 +162,8 @@ call_multiple({
 })
 
 // ******* adding all buttons ********
-button_titles = ["bar_color", "text_color", "text_size", "bottom", "top", "left", "right"]
-call_wrapper_functions = ["bar_color()", "text_color()", "text_size()", "bottom()", "top()", "left()", "right()"]
+button_titles = ["bar_color", "text_color", "text_size", "bottom", "top", "left", "right", "animation 1", "animation 2"]
+call_wrapper_functions = ["bar_color()", "text_color()", "text_size()", "bottom()", "top()", "left()", "right()", "animate_rubberBand()", "animate_zoomOutUp()"]
 call_multiple({
 	"iterations" : button_titles.length,
 	"function" : `
@@ -145,7 +207,12 @@ add_d3_visual('section_1_layout_cells', 2, {
     "this_class" : "my_d3",
     "html_path" : "visuals/barchart.html",
     "wrapper_arguments" : barchart_wrapper_args,
-    "targeted_styles" : barchart_targeted_styles
+    "extra_functions" : `
+       all_style_d3('text', {
+           "fill" : "white",
+           "font-size" : "17px"
+       })
+        `
 })
 
 

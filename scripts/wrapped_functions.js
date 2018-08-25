@@ -200,3 +200,30 @@ call_d3_wrapper('my_d3', 1, {
 `
 })
 }
+
+
+function animate_rubberBand() {
+    call_d3_wrapper('my_d3', 1, {
+    "wrapper_arguments" : barchart_wrapper_args,
+    "extra_functions" : `
+        all_apply_id('bar')
+        all_add_event('bar', {
+        "type" : "hover",
+        "function" : "animate_element('bar', get_target_instance(this.id), {'type' : 'rubberBand'})"
+        })
+    `
+    })
+}
+
+function animate_zoomOutUp() {
+    call_d3_wrapper('my_d3', 1, {
+    "wrapper_arguments" : barchart_wrapper_args,
+    "extra_functions" : `
+        all_apply_id('bar')
+        all_add_event('bar', {
+        "type" : "hover",
+        "function" : "animate_element('bar', get_target_instance(this.id), {'type' : 'zoomOutUp'})"
+        })
+    `
+    })
+}
