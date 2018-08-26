@@ -125,7 +125,18 @@ call_multiple({
 `
 })
 
-// ******* adding section 1 D3 visual (see wrapped functions at bottom)********
+// _all styles
+all_style_layout('section_1_layout_cells', {
+    "valign" : "top"
+})
+all_style_layout('options_layout_cells', {
+    "halign" : "center"
+})
+all_style_layout('options_layout', {
+    "border" : 0
+})
+
+// *************************Kedion D3***********************************
 
 barchart_wrapper_args = {
     "data_path" : "../data/bar_data.tsv",
@@ -142,16 +153,21 @@ barchart_wrapper_args = {
 barchart_extras = {
     "text_size" : `
         all_style_d3('text', {
-           "fill" : "white",
            "font-size" : "17px"
+        })
+       `,
+    "text_color" : `
+        all_style_d3('text', {
+           "fill" : "white"
         })
        `,
     "padding_left" : `
         style_d3('svg', 1, {
             "padding-left" : "30px"
         })
-    `
-
+        `,
+    "animate_rubber" : "",
+    "animate_zoomup" : ""
 }
 
 add_d3_visual('section_1_layout_cells', 2, {
@@ -161,26 +177,7 @@ add_d3_visual('section_1_layout_cells', 2, {
     "extra_functions" : barchart_extras
 })
 
-
-// _all styles
-all_style_layout('section_1_layout_cells', {
-    "valign" : "top"
-})
-all_style_layout('options_layout_cells', {
-    "halign" : "center"
-})
-all_style_layout('options_layout', {
-    "border" : 0
-})
-
-
-
-
-
-// ************************************************************************ kedion functions
-
-
-    
+// ************************************************************
 
 
 </script>

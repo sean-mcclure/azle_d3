@@ -17,7 +17,7 @@ color_picker({
 "function" : `
     call_d3_extra('my_d3', 1, {
        "extra_functions" : barchart_extras,
-       "text_size" : "all_style_d3('text', {'fill' : " + this.value + "})"
+       "text_color" : "all_style_d3('text', {'fill' : '" + global_current_color + "'})"
     })
     `
 })
@@ -47,7 +47,7 @@ add_event('d3_edit_slider', 1, {
 "function" : `
     call_d3_extra('my_d3', 1, {
        "extra_functions" : barchart_extras,
-       "text_size" : "all_style_d3('text', {'fill' : 'white', 'font-size' : " + this.value + "})"
+       "text_size" : "all_style_d3('text', {'font-size' : '" + this.value + "'})"
     })
 `
 })
@@ -75,11 +75,12 @@ add_slider('text_size_modal_content', 1, {
 add_event('d3_edit_slider', 1, {
 "type" : "as_change",
 "function" : `
-call_d3_wrapper('my_d3', 1, {
-    "wrapper_arguments" : barchart_wrapper_args,
-    "bottom_choice" : this.value
-})
-`
+    call_d3_wrapper('my_d3', 1, {
+        "wrapper_arguments" : barchart_wrapper_args,
+        "extra_functions" : barchart_extras,
+        "bottom_choice" : this.value
+        })
+    `
 })
 }
 
@@ -105,11 +106,12 @@ add_slider('text_size_modal_content', 1, {
 add_event('d3_edit_slider', 1, {
 "type" : "as_change",
 "function" : `
-call_d3_wrapper('my_d3', 1, {
-    "wrapper_arguments" : barchart_wrapper_args,
-    "top_choice" : this.value
-})
-`
+    call_d3_wrapper('my_d3', 1, {
+        "wrapper_arguments" : barchart_wrapper_args,
+        "extra_functions" : barchart_extras,
+        "top_choice" : this.value
+        })
+    `
 })
 }
 
@@ -135,12 +137,12 @@ add_slider('text_size_modal_content', 1, {
 add_event('d3_edit_slider', 1, {
 "type" : "as_change",
 "function" : `
-call_d3_wrapper('my_d3', 1, {
-    "wrapper_arguments" : barchart_wrapper_args,
-    "extra_functions" : barchart_extras,
-    "left_choice" : this.value
-})
-`
+    call_d3_wrapper('my_d3', 1, {
+        "wrapper_arguments" : barchart_wrapper_args,
+        "extra_functions" : barchart_extras,
+        "left_choice" : this.value
+    })
+    `
 })
 }
 
@@ -166,34 +168,37 @@ add_slider('text_size_modal_content', 1, {
 add_event('d3_edit_slider', 1, {
 "type" : "as_change",
 "function" : `
-call_d3_wrapper('my_d3', 1, {
-    "wrapper_arguments" : barchart_wrapper_args,
-    "right_choice" : this.value
-})
-`
+    call_d3_wrapper('my_d3', 1, {
+        "wrapper_arguments" : barchart_wrapper_args,
+        "extra_functions" : barchart_extras,
+        "right_choice" : this.value
+    })
+    `
 })
 }
 
 function animate_rubberBand() {
      call_d3_extra('my_d3', 1, {
-        "extra_functions" : `
+       "extra_functions" : barchart_extras,
+       "animate_rubber" : `
             all_apply_id('bar')
             all_add_event('bar', {
                 "type" : "hover",
                 "function" : "animate_element('bar', get_target_instance(this.id), {'type' : 'rubberBand'})"
             })
-        `
-    })
+            `
+     })
 }
 
 function animate_zoomOutUp() {
     call_d3_extra('my_d3', 1, {
-        "extra_functions" : `
+       "extra_functions" : barchart_extras,
+       "animate_rubber" : `
             all_apply_id('bar')
             all_add_event('bar', {
                 "type" : "hover",
                 "function" : "animate_element('bar', get_target_instance(this.id), {'type' : 'zoomOutUp'})"
             })
-        `
-    })
+            `
+     })
 }
