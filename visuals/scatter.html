@@ -21,10 +21,14 @@ body {
 <body>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
-<script src='http://worldofdatascience.com/kedion.min.js'></script>
+<!--<script src='http://worldofdatascience.com/kedion.min.js'></script>-->
+<script src="../../Kedion/main.js"></script>
 <script>
 
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
+function draw_visual() {                // add wrapper function
+kedion_args = arguments[0]          // add kedion_args
+
+var margin = {top: kedion_args['top_choice'], right: kedion_args['right_choice'], bottom: kedion_args['bottom_choice'], left: kedion_args['left_choice']},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -87,7 +91,7 @@ d3.tsv("../data/scatter_data.tsv", function(error, data) {
       .data(data)
     .enter().append("circle")
       .attr("class", "dot")
-      .attr("r", 3.5)
+      .attr("r", 6)
       .attr("cx", function(d) { return x(d.sepalWidth); })
       .attr("cy", function(d) { return y(d.sepalLength); })
       .style("fill", function(d) { return color(d.species); });
@@ -113,9 +117,7 @@ d3.tsv("../data/scatter_data.tsv", function(error, data) {
 
 });
 
-// kedion 
-function kedion_d3(func) {
-    eval(func)
+
 }
 
 </script>
