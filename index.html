@@ -93,20 +93,26 @@ call_multiple({
     	"border": 1
 	})
 
+	add_text('sectional_layout_cells', (index*2) + 1, {
+	    "this_class" : "examples_title",
+	    "text" : "EXAMPLES"
+	})
+
 	add_layout('sectional_layout_cells', (index*2) + 1, {
     	"this_class": "options_layout",
     	"cell_class": "options_layout_cells",
     	"row_class": "options_layout_rows",
-    	"number_of_rows": 9,
+    	"number_of_rows": 10,
     	"number_of_columns": 1
 	})
+
 
 `
 })
 
 // ******* adding all buttons ********
-button_titles = ["bar_color", "text_color", "text_size", "bottom", "top", "left", "right", "fly away animation", "START OVER"]
-call_wrapper_functions = ["bar_color()", "text_color()", "text_size()", "bottom()", "top()", "left()", "right()", "animate_zoomOutUp()", "location.reload()"]
+button_titles = ["bar_color", "text_color", "text_size", "bottom", "top", "left", "right", "fly away animation", "change data", "START OVER"]
+call_wrapper_functions = ["bar_color()", "text_color()", "text_size()", "bottom()", "top()", "left()", "right()", "animate_zoomOutUp()", "update_data_full()", "start_over()"]
 call_multiple({
 	"iterations" : button_titles.length,
 	"function" : `
@@ -126,7 +132,7 @@ call_multiple({
 	        "type" : "click",
 	        "function" : "all_style_button('option_button', {'outline' : 0}); style_button('option_button', get_target_instance(this.id), {'outline' : '2px solid yellow'})"
 	    })
-	    if(index == 8) {
+	    if(index == 9) {
 	    style_button('option_button', index+1, {
 	        "background" : "rgba(242, 155, 45, 0.97)"
 	    })
@@ -142,7 +148,12 @@ all_style_layout('options_layout_cells', {
     "halign" : "center"
 })
 all_style_layout('options_layout', {
-    "border" : 0
+    "border" : 1
+})
+all_style_text('examples_title', {
+    "color" : "white",
+    "align" : "center",
+    "padding" : "10px"
 })
 
 
@@ -154,29 +165,14 @@ barchart_wrapper_args = {
     "top_choice" : 30,
     "right_choice" : 30,
     "bottom_choice" : 30,
-    "left_choice" : 30,
+    "left_choice" : 60,
     "bar_color" : "rgb(48, 229, 255)",
     "title_color" : "white"
 }
 
 barchart_extras = {
-    "text_size" : `
-        all_style_d3('text', {
-           "font-size" : "17px"
-        })
-       `,
-    "text_color" : `
-        all_style_d3('text', {
-           "fill" : "white"
-        })
-       `,
-    "padding_left" : `
-        style_d3('svg', 1, {
-            "padding-left" : "30px"
-        })
-        `,
-    "animate_zoomup" : "",
-    "click_data" : ""
+    "text_color" : "all_style_d3('text', {'fill' : 'white'})",
+    "text_size" : "all_style_d3('text', {'font-size' : '17px'})"
 }
 
 add_d3_visual('sectional_layout_cells', 2, {
@@ -192,18 +188,17 @@ scatter_wrapper_args = {
     "top_choice" : 30,
     "right_choice" : 30,
     "bottom_choice" : 30,
-    "left_choice" : 30
+    "left_choice" : 60
 }
+
 scatter_extras = {
-    "hover" : `
-        all_add_event('dot', {
-            "type" : "hover",
-            "function" : "$(this).attr('r', 20).css('opacity', 0.8)"
-        })
-    `
+    "text_color" : "all_style_d3('text', {'fill' : 'white'})",
+    "text_size" : "all_style_d3('text', {'font-size' : '17px'})"
 }
+
+
 add_d3_visual('sectional_layout_cells', 4, {
-    "this_class" : "dual_2",
+    "this_class" : "scatter_chart",
     "html_path" : "visuals/scatter.html",
     "wrapper_arguments" : scatter_wrapper_args,
     "extra_functions" : scatter_extras
@@ -243,8 +238,8 @@ barchart_2_extras = {
 add_d3_visual('dual_viz_layout_cells', 1, {
     "this_class" : "dual_1",
     "html_path" : "visuals/barchart.html",
-    "wrapper_arguments" : barchart_2_wrapper_args,
-    "extra_functions" : barchart_2_extras
+    "wrapper_arguments" : barchart_2_wrapper_args
+    //"extra_functions" : barchart_2_extras
 })
 
 
@@ -261,8 +256,8 @@ scatter_2_extras = {
 add_d3_visual('dual_viz_layout_cells', 2, {
     "this_class" : "dual_2",
     "html_path" : "visuals/scatter.html",
-    "wrapper_arguments" : scatter_2_wrapper_args,
-    "extra_functions" : scatter_2_extras
+    "wrapper_arguments" : scatter_2_wrapper_args
+   // "extra_functions" : scatter_2_extras
 })
 
 

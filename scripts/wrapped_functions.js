@@ -1,7 +1,8 @@
 // wrapped_functions
 
 function bar_color() {
-color_picker({
+add_color_picker({
+"this_class" : "bar_color_picker",
 "function" : `
     call_d3_wrapper('my_d3', 1, {
     "wrapper_arguments" : barchart_wrapper_args,
@@ -13,7 +14,8 @@ color_picker({
 }
 
 function text_color() {
-color_picker({
+add_color_picker({
+"this_class" : "text_color_picker",
 "function" : `
     call_d3_extra('my_d3', 1, {
        "extra_functions" : barchart_extras,
@@ -232,4 +234,47 @@ function click_and_get_data() {
             })
             `
      })
+}
+
+
+function update_data_a() {
+    call_d3_wrapper('my_d3', 1, {
+    "wrapper_arguments" : barchart_wrapper_args,
+    "extra_functions" : barchart_extras,
+    "data_path" : "../data/bar_data.tsv"
+    })
+}
+
+function update_data_b() {
+    call_d3_wrapper('my_d3', 1, {
+    "wrapper_arguments" : barchart_wrapper_args,
+    "extra_functions" : barchart_extras,
+    "data_path" : "../data/bar_data_b.tsv"
+    })
+}
+
+function update_data_full() {
+    toggle_functions('update_data_b()', 'update_data_a()')
+}
+
+function start_over() {
+barchart_wrapper_args = {
+    "data_path" : "../data/bar_data.tsv",
+    "y_title" : "AVG RETURN",
+    "top_choice" : 30,
+    "right_choice" : 30,
+    "bottom_choice" : 30,
+    "left_choice" : 60,
+    "bar_color" : "rgb(48, 229, 255)",
+    "title_color" : "white"
+}
+
+barchart_extras = {
+    "text_color" : "all_style_d3('text', {'fill' : 'white'})",
+    "text_size" : "all_style_d3('text', {'font-size' : '17px'})"
+}
+call_d3_wrapper('my_d3', 1, {
+    "wrapper_arguments" : barchart_wrapper_args,
+    "extra_functions" : barchart_extras
+    })
 }
