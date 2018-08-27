@@ -14,6 +14,7 @@
 <script>
 
 load_script('scripts/wrapped_functions.js')
+load_script('scripts/code_modals.js')
 
 // ******* prepare page ********
 load_fonts({
@@ -34,7 +35,7 @@ style_navigation_bar('my_nav', 1, {
     "background-color": "rgba(91, 95, 100, 0.95)",
     "border-radius" : "4px",
     "margin-bottom" : "20px",
-    "height" : "200px"
+    "height" : "auto"
 })
 
 add_top_button({
@@ -52,9 +53,30 @@ add_layout('my_nav', 1, {
 })
 
 style_layout('nav_layout', 1, {
-    "height": "190px",
+    "height": "auto",
     "column_widths": ['33%', '33%', '33%'],
     "border": 0
+})
+
+style_layout('nav_layout_cells', 1, {
+    "valign" : "middle"
+})
+
+style_layout('nav_layout_cells', 2, {
+    "halign" : "center"
+})
+
+add_image('nav_layout_cells', 1, {
+"this_class" : "logo",
+"image_path" : "img/logo.png"
+})
+style_image('logo', 1, {
+"width" : "250px",
+"padding" : "10px"
+})
+add_event('logo', 1, {
+"type" : "click",
+"function" : "navigate_to('http://www.worldofdatascience.com', 'new_tab')"
 })
 
 add_image('nav_layout_cells', 2, {
@@ -62,8 +84,55 @@ add_image('nav_layout_cells', 2, {
 "image_path" : "img/logo_banner.png"
 })
 style_image('k_logo', 1, {
-"width" : "100%"
+"width" : "70%"
 })
+
+add_navigation_bar({
+    "this_class": "explain_nav"
+})
+
+style_navigation_bar('explain_nav', 1, {
+    "background-color": "transparent",
+    "border-radius" : "4px",
+    "margin-bottom" : "20px",
+    "height" : "auto"
+})
+
+add_layout('explain_nav', 1, {
+    "this_class": "hold_explain_buttons",
+    "cell_class": "hold_explain_buttons_cells",
+    "row_class": "hold_explain_buttons_rows",
+    "number_of_rows": 1,
+    "number_of_columns": 3
+})
+
+style_layout('hold_explain_buttons', 1, {
+    "height": "auto",
+    "width" : "auto",
+    "table-layout": "fixed",
+    "align" : "center",
+    "border": 0
+})
+
+all_style_layout('hold_explain_buttons_cells', {
+    "halign" : "center"
+})
+
+explain_buttons = ['CREATING WRAPPER ARGUMENTS', 'CREATING EXTRA FUNCTIONS', 'BINDING TO UI ELEMENTS']
+call_multiple({
+"iterations" : explain_buttons.length,
+"function" : `
+    add_button('hold_explain_buttons_cells', index + 1, {
+        "this_class" : "explain_button",
+        "text" : explain_buttons[index]
+    })
+    all_style_button('explain_button', {
+        "background" : "grey"
+    })
+`
+})
+
+
 
 add_spa({
     "this_class" : "sections",
@@ -74,6 +143,43 @@ all_style_spa('sections', {
     "background" : "rgba(91, 95, 100, 0.95)",
     "width" : "90%",
     "height" : "auto"
+})
+
+add_navigation_bar({
+    "this_class": "footer"
+})
+
+style_navigation_bar('footer', 1, {
+    "background" : "rgba(91, 95, 100, 0.95)",
+    "height" : "auto"
+})
+
+add_layout('footer', 1, {
+    "this_class": "footer_layout",
+    "cell_class": "footer_layout_cells",
+    "row_class": "footer_layout_rows",
+    "number_of_rows": 1,
+    "number_of_columns": 2
+})
+
+style_layout('footer_layout', 1, {
+    "height": "auto",
+    "width" : "auto",
+    "align" : "center",
+    "border": 0
+})
+
+add_text('footer_layout_cells', 1, {
+    "this_class" : "footer_text",
+    "text" : "Written in Kedion"
+})
+add_image('footer_layout_cells', 2, {
+    "this_class" : "footer_logo",
+    "image_path" : "img/kedion_logo.png"
+})
+style_image('footer_logo', 1, {
+    "width" : "50px",
+    "float" : "right"
 })
 
 // ******* setting up layouts and styling that apply to all sections ********
@@ -90,7 +196,7 @@ call_multiple({
 	all_style_layout('sectional_layout', {
     	"height": "auto",
     	"column_widths": ['20%', '80%'],
-    	"border": 1
+    	"border": 0
 	})
 
 	add_text('sectional_layout_cells', (index*2) + 1, {
@@ -110,18 +216,30 @@ call_multiple({
 `
 })
 
-// ******* adding all section 1 buttons ********
+// ******* adding all section 1 buttons and icons ********
 button_titles = ["bar color", "text color", "text size", "bottom", "top", "left", "right", "fly away animation", "change data", "START OVER"]
 call_wrapper_functions = ["bar_color()", "text_color()", "text_size()", "bottom()", "top()", "left()", "right()", "animate_zoomOutUp()", "update_data_full()", "start_over()"]
 call_multiple({
 	"iterations" : button_titles.length,
 	"function" : `
-	    add_button('options_layout_cells', index + 1, {
+	    add_layout('options_layout_cells', index + 1, {
+    	    "this_class": "butt_and_code_layout",
+    	    "cell_class": "butt_and_code_layout_cells",
+    	    "row_class": "butt_and_code_layout_rows",
+    	    "number_of_rows": 1,
+    	    "number_of_columns": 2
+	    })
+	    all_style_layout('butt_and_code_layout', {
+    	    "height" : "auto",
+    	    "width"  : "auto",
+    	    "border" : 0
+	    })
+	    add_button('butt_and_code_layout_cells', (index*2) + 1, {
 	        'this_class'  : 'option_button', 
 	        'text' : button_titles[index]
 	    })
 	    all_style_button('option_button', {
-	        "width" : "90%",
+	        "width" : "190px",
 	        "background" : "rgb(16, 168, 180)"
 	    })
 	    add_event('option_button', index+1, {
@@ -132,28 +250,62 @@ call_multiple({
 	        "type" : "click",
 	        "function" : "all_style_button('option_button', {'outline' : 0}); style_button('option_button', get_target_instance(this.id), {'outline' : '2px solid yellow'})"
 	    })
+
+	    add_icon('butt_and_code_layout_cells', (index*2) + 2, {
+	        "this_class" : "code_icon",
+	        "icon_class" : "fa-file-code-o"
+	    })
+	    add_event('code_icon', last_class_instance('code_icon'), {
+	        "type" : "click",
+	        "function" : "pop_code_modal(this.id)"
+	    })
+
+	    all_style_icon('code_icon', {
+	        "font-size" : "30px",
+	        "color" : "rgba(221, 173, 81, 0.92)",
+	        "padding" : "2px",
+	        "cursor" : "pointer"
+	    })
+
 	    if(index == 9) {
 	    style_button('option_button', index+1, {
 	        "background" : "rgba(242, 155, 45, 0.97)"
+	    })
+	    style_icon('code_icon', index + 1, {
+	        "visibility" : "hidden"
 	    })
 	    }
 `
 })
 
 
-// ******* adding all section 2 buttons ********
+// ******* adding all section 2 buttons and icons ********
 button_titles_b = ["circle size", "circle opacity", "START OVER"]
 call_wrapper_functions_b = ["circle_size()", "circle_opacity()", "start_over_b()"]
 call_multiple({
 	"iterations" : button_titles_b.length,
 	"function" : `
 	    new_index = 10 + index
-	    add_button('options_layout_cells', new_index + 1, {
+
+	    add_layout('options_layout_cells', new_index + 1, {
+    	    "this_class": "butt_and_code_layout",
+    	    "cell_class": "butt_and_code_layout_cells",
+    	    "row_class": "butt_and_code_layout_rows",
+    	    "number_of_rows": 1,
+    	    "number_of_columns": 2
+	    })
+	    all_style_layout('butt_and_code_layout', {
+    	    "height" : "auto",
+    	    "width"  : "auto",
+    	    "border" : 0
+	    })
+
+	    add_button('butt_and_code_layout_cells', (new_index*2) + 1, {
 	        'this_class'  : 'option_button_b',
 	        'text' : button_titles_b[index]
 	    })
 	    style_button('option_button_b', index + 1, {
-	        "width" : "90%",
+	        "width" : "190px",
 	        "background" : "rgb(16, 168, 180)"
 	    })
 	    add_event('option_button_b', index+1, {
@@ -164,6 +316,21 @@ call_multiple({
 	        "type" : "click",
 	        "function" : "all_style_button('option_button', {'outline' : 0}); style_button('option_button', get_target_instance(this.id), {'outline' : '2px solid yellow'})"
 	    })
+	    add_icon('butt_and_code_layout_cells', (new_index*2) + 2, {
+	        "this_class" : "code_icon",
+	        "icon_class" : "fa-file-code-o"
+	    })
+	    add_event('code_icon', last_class_instance('code_icon'), {
+	        "type" : "click",
+	        "function" : "pop_code_modal(this.id)"
+	    })
+
+	    all_style_icon('code_icon', {
+	        "font-size" : "30px",
+	        "color" : "rgba(221, 173, 81, 0.92)",
+	        "padding" : "2px",
+	        "cursor" : "pointer"
+	    })
 	    if(index == 10) {
 	    style_button('option_button_b', new_index+1, {
 	        "background" : "rgba(242, 155, 45, 0.97)"
@@ -171,6 +338,35 @@ call_multiple({
 	    }
 `
 })
+
+add_radiobutton('options_layout_cells', 13, {
+    "this_class" : "choose_data_check",
+    "text_class" : "choose_data_label",
+    "text" : "DATASET 1"
+})
+add_radiobutton('options_layout_cells', 14, {
+    "this_class" : "choose_data_check",
+    "text_class" : "choose_data_label",
+    "text" : "DATASET 2"
+})
+add_radiobutton('options_layout_cells', 15, {
+    "this_class" : "choose_data_check",
+    "text_class" : "choose_data_label",
+    "text" : "DATASET 3"
+})
+all_style_text('choose_data_label', {
+    "color" : "white"
+})
+
+add_dropdown("options_layout_cells", 16, {
+    "this_class" : "data_dropdown",
+    "options" : ["option A", "option B", "option C", "option D"],
+    "title" : "choose option..."
+    })
+style_dropdown('data_dropdown', 1, {
+    "width" : "200px"
+})
+
 
 
 // _all styles
@@ -181,7 +377,7 @@ all_style_layout('options_layout_cells', {
     "halign" : "center"
 })
 all_style_layout('options_layout', {
-    "border" : 1
+    "border" : 0
 })
 all_style_text('examples_title', {
     "color" : "white",
