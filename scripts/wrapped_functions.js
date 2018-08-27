@@ -40,7 +40,7 @@ add_text('text_size_modal_content', 1, {
 })
 add_slider('text_size_modal_content', 1, {
 "this_class" : "d3_edit_slider",
-"default_value" : get_current_d3_value(barchart_extras, 'text_size', 'font-size'),
+"default_value" : current_d3_extras_value(barchart_extras, 'text_size', 'font-size'),
 "min_value" : 10,
 "max_value" : 30
 })
@@ -277,4 +277,89 @@ call_d3_wrapper('my_d3', 1, {
     "wrapper_arguments" : barchart_wrapper_args,
     "extra_functions" : barchart_extras
     })
+}
+
+function circle_size() {
+    add_modal({
+        "this_class" : "text_size_modal",
+        "content_class" : "text_size_modal_content"
+    })
+    style_modal('text_size_modal', 1, {
+        "width" : "auto",
+        "height" : "auto"
+    })
+    add_text('text_size_modal_content', 1, {
+        "this_class" : "text_size_title",
+        "text" : "CIRCLE SIZE<br><br>"
+    })
+    add_slider('text_size_modal_content', 1, {
+        "this_class" : "d3_edit_slider",
+        "default_value" : current_d3_extras_value(scatter_extras, 'circle_size', 'r'),
+        "min_value" : 0,
+        "max_value" : 30
+    })
+add_event('d3_edit_slider', 1, {
+"type" : "as_change",
+"function" : `
+    call_d3_extra('scatter_chart', 1, {
+        "extra_functions" : scatter_extras,
+        "circle_size" : "all_style_d3('dot', {'r' : " + this.value + "})"
+    })
+    `
+    })
+}
+
+hold_op_val={'scatter_dot' : 0}
+function circle_opacity() {
+    add_modal({
+        "this_class" : "text_size_modal",
+        "content_class" : "text_size_modal_content"
+    })
+    style_modal('text_size_modal', 1, {
+        "width" : "auto",
+        "height" : "auto"
+    })
+    add_text('text_size_modal_content', 1, {
+        "this_class" : "text_size_title",
+        "text" : "OPACITY<br><br>"
+    })
+
+    add_slider('text_size_modal_content', 1, {
+        "this_class" : "d3_edit_slider",
+        "default_value" : hold_op_val.scatter_dot,
+        "min_value" : 0,
+        "max_value" : 100,
+        "label_multiplier" : 1/100
+    })
+
+add_event('d3_edit_slider', 1, {
+"type" : "as_change",
+"function" : `
+    hold_op_val['scatter_dot'] = this.value
+    call_d3_extra('scatter_chart', 1, {
+        "extra_functions" : scatter_extras,
+        "circle_opacity" : "all_style_d3('dot', {'opacity' : " + this.value/100 + "})"
+    })
+    `
+    })
+}
+
+function rotate_out_change_data() {
+    /*
+    call_d3_extra('scatter_chart', 1, {
+        "extra_functions" : scatter_extras,
+        "circle_spin" : "all_animate_element('dot', {'type' : 'rotateOut'})"
+    })
+    */
+    setTimeout(function(){
+    call_d3_wrapper('scatter_chart', 1, {
+        "wrapper_arguments" : scatter_wrapper_args,
+        "extra_functions" : scatter_extras,
+        "data_path" : "../data/scatter_data_b.tsv"
+     })
+     },1000)
+}
+
+function start_over_b() {
+
 }

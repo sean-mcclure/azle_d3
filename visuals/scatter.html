@@ -26,6 +26,7 @@ body {
 <script>
 
 function draw_visual() {                // add wrapper function
+
 kedion_args = arguments[0]          // add kedion_args
 
 var margin = {top: kedion_args['top_choice'], right: kedion_args['right_choice'], bottom: kedion_args['bottom_choice'], left: kedion_args['left_choice']},
@@ -54,7 +55,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("../data/scatter_data.tsv", function(error, data) {
+d3.tsv(kedion_args['data_path'], function(error, data) {
   if (error) throw error;
 
   data.forEach(function(d) {
@@ -91,7 +92,7 @@ d3.tsv("../data/scatter_data.tsv", function(error, data) {
       .data(data)
     .enter().append("circle")
       .attr("class", "dot")
-      .attr("r", 6)
+      .attr("r", 10)
       .attr("cx", function(d) { return x(d.sepalWidth); })
       .attr("cy", function(d) { return y(d.sepalLength); })
       .style("fill", function(d) { return color(d.species); });

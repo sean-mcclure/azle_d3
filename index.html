@@ -110,8 +110,8 @@ call_multiple({
 `
 })
 
-// ******* adding all buttons ********
-button_titles = ["bar_color", "text_color", "text_size", "bottom", "top", "left", "right", "fly away animation", "change data", "START OVER"]
+// ******* adding all section 1 buttons ********
+button_titles = ["bar color", "text color", "text size", "bottom", "top", "left", "right", "fly away animation", "change data", "START OVER"]
 call_wrapper_functions = ["bar_color()", "text_color()", "text_size()", "bottom()", "top()", "left()", "right()", "animate_zoomOutUp()", "update_data_full()", "start_over()"]
 call_multiple({
 	"iterations" : button_titles.length,
@@ -140,6 +140,39 @@ call_multiple({
 `
 })
 
+
+// ******* adding all section 2 buttons ********
+button_titles_b = ["circle size", "circle opacity", "START OVER"]
+call_wrapper_functions_b = ["circle_size()", "circle_opacity()", "start_over_b()"]
+call_multiple({
+	"iterations" : button_titles_b.length,
+	"function" : `
+	    new_index = 10 + index
+	    add_button('options_layout_cells', new_index + 1, {
+	        'this_class'  : 'option_button_b',
+	        'text' : button_titles_b[index]
+	    })
+	    style_button('option_button_b', index + 1, {
+	        "width" : "90%",
+	        "background" : "rgb(16, 168, 180)"
+	    })
+	    add_event('option_button_b', index+1, {
+	        "type" : "click",
+	        "function" : call_wrapper_functions_b[index]
+	    })
+	    add_event('option_button_b', new_index+1, {
+	        "type" : "click",
+	        "function" : "all_style_button('option_button', {'outline' : 0}); style_button('option_button', get_target_instance(this.id), {'outline' : '2px solid yellow'})"
+	    })
+	    if(index == 10) {
+	    style_button('option_button_b', new_index+1, {
+	        "background" : "rgba(242, 155, 45, 0.97)"
+	    })
+	    }
+`
+})
+
+
 // _all styles
 all_style_layout('sectional_layout_cells', {
     "valign" : "top"
@@ -153,7 +186,8 @@ all_style_layout('options_layout', {
 all_style_text('examples_title', {
     "color" : "white",
     "align" : "center",
-    "padding" : "10px"
+    "padding" : "10px",
+    "font-size" : "22px"
 })
 
 
@@ -188,14 +222,16 @@ scatter_wrapper_args = {
     "top_choice" : 30,
     "right_choice" : 30,
     "bottom_choice" : 30,
-    "left_choice" : 60
+    "left_choice" : 60,
+    "circle_size" : 10
 }
 
 scatter_extras = {
     "text_color" : "all_style_d3('text', {'fill' : 'white'})",
-    "text_size" : "all_style_d3('text', {'font-size' : '17px'})"
+    "text_size" : "all_style_d3('text', {'font-size' : '17px'})",
+    "circle_size" : "all_style_d3('dot', {'r' : '7px'})",
+    "circle_opacity" : "all_style_d3('dot', {'opacity' : 1})"
 }
-
 
 add_d3_visual('sectional_layout_cells', 4, {
     "this_class" : "scatter_chart",
