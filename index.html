@@ -72,7 +72,8 @@ add_image('nav_layout_cells', 1, {
 })
 style_image('logo', 1, {
 "width" : "250px",
-"padding" : "10px"
+"padding" : "10px",
+"shadow" : "drop-shadow(4px 4px 16px rgb(154, 148, 151))"
 })
 add_event('logo', 1, {
 "type" : "click",
@@ -280,8 +281,8 @@ call_multiple({
 
 
 // ******* adding all section 2 buttons and icons ********
-button_titles_b = ["circle size", "circle opacity", "START OVER"]
-call_wrapper_functions_b = ["circle_size()", "circle_opacity()", "start_over_b()"]
+button_titles_b = ["circle size", "circle opacity"]
+call_wrapper_functions_b = ["circle_size()", "circle_opacity()"]
 call_multiple({
 	"iterations" : button_titles_b.length,
 	"function" : `
@@ -344,15 +345,27 @@ add_radiobutton('options_layout_cells', 13, {
     "text_class" : "choose_data_label",
     "text" : "DATASET 1"
 })
+add_event('choose_data_check', 1, {
+    "type" : "click",
+    "function" : "dataset1()"
+})
 add_radiobutton('options_layout_cells', 14, {
     "this_class" : "choose_data_check",
     "text_class" : "choose_data_label",
     "text" : "DATASET 2"
 })
+add_event('choose_data_check', 2, {
+    "type" : "click",
+    "function" : "dataset2()"
+})
 add_radiobutton('options_layout_cells', 15, {
     "this_class" : "choose_data_check",
     "text_class" : "choose_data_label",
     "text" : "DATASET 3"
+})
+add_event('choose_data_check', 3, {
+    "type" : "click",
+    "function" : "dataset3()"
 })
 all_style_text('choose_data_label', {
     "color" : "white"
@@ -367,7 +380,15 @@ style_dropdown('data_dropdown', 1, {
     "width" : "200px"
 })
 
-
+add_button('options_layout_cells', 17, {
+	"this_class"  : 'run_timeline_button',
+	"text" : "run timeline"
+})
+style_button('run_timeline_button', 1, {
+	 "width" : "190px",
+     "background" : "rgb(16, 168, 180)",
+     "margin-top" : "10px"
+})
 
 // _all styles
 all_style_layout('sectional_layout_cells', {
@@ -418,8 +439,7 @@ scatter_wrapper_args = {
     "top_choice" : 30,
     "right_choice" : 30,
     "bottom_choice" : 30,
-    "left_choice" : 60,
-    "circle_size" : 10
+    "left_choice" : 60
 }
 
 scatter_extras = {
@@ -455,7 +475,7 @@ barchart_2_wrapper_args = {
     "right_choice" : 510,
     "bottom_choice" : 30,
     "left_choice" : 30,
-    "bar_color" : "pink",
+    "bar_color" : "rgb(254, 225, 180)",
     "title_color" : "white",
     "text_color" : "white"
 }

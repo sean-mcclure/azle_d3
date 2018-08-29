@@ -360,6 +360,30 @@ function rotate_out_change_data() {
      },1000)
 }
 
+function dataset1() {
+    call_d3_wrapper('scatter_chart', 1, {
+        "wrapper_arguments" : scatter_wrapper_args,
+        "extra_functions" : scatter_extras,
+        "data_path" : "../data/scatter_data.tsv"
+    })
+}
+
+function dataset2() {
+    call_d3_wrapper('scatter_chart', 1, {
+        "wrapper_arguments" : scatter_wrapper_args,
+        "extra_functions" : scatter_extras,
+        "data_path" : "../data/scatter_data_b.tsv"
+    })
+}
+
+function dataset3() {
+    call_d3_wrapper('scatter_chart', 1, {
+        "wrapper_arguments" : scatter_wrapper_args,
+        "extra_functions" : scatter_extras,
+        "data_path" : "../data/scatter_data_c.tsv"
+    })
+}
+
 function start_over_b() {
 
 }
