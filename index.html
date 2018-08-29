@@ -137,7 +137,7 @@ call_multiple({
 
 add_spa({
     "this_class" : "sections",
-    "sections" : 3
+    "sections" : 4
 })
 
 all_style_spa('sections', {
@@ -281,8 +281,8 @@ call_multiple({
 
 
 // ******* adding all section 2 buttons and icons ********
-button_titles_b = ["circle size", "circle opacity"]
-call_wrapper_functions_b = ["circle_size()", "circle_opacity()"]
+button_titles_b = ["circle size", "circle opacity", "chart width"]
+call_wrapper_functions_b = ["circle_size()", "circle_opacity()", "change_width()"]
 call_multiple({
 	"iterations" : button_titles_b.length,
 	"function" : `
@@ -340,7 +340,7 @@ call_multiple({
 `
 })
 
-add_radiobutton('options_layout_cells', 13, {
+add_radiobutton('options_layout_cells', 14, {
     "this_class" : "choose_data_check",
     "text_class" : "choose_data_label",
     "text" : "DATASET 1"
@@ -349,7 +349,7 @@ add_event('choose_data_check', 1, {
     "type" : "click",
     "function" : "dataset1()"
 })
-add_radiobutton('options_layout_cells', 14, {
+add_radiobutton('options_layout_cells', 15, {
     "this_class" : "choose_data_check",
     "text_class" : "choose_data_label",
     "text" : "DATASET 2"
@@ -358,7 +358,7 @@ add_event('choose_data_check', 2, {
     "type" : "click",
     "function" : "dataset2()"
 })
-add_radiobutton('options_layout_cells', 15, {
+add_radiobutton('options_layout_cells', 16, {
     "this_class" : "choose_data_check",
     "text_class" : "choose_data_label",
     "text" : "DATASET 3"
@@ -371,16 +371,20 @@ all_style_text('choose_data_label', {
     "color" : "white"
 })
 
-add_dropdown("options_layout_cells", 16, {
+add_dropdown("options_layout_cells", 17, {
     "this_class" : "data_dropdown",
-    "options" : ["option A", "option B", "option C", "option D"],
-    "title" : "choose option..."
+    "options" : ["Setosa", "Versicolor", "Virginica"],
+    "title" : "choose class..."
     })
 style_dropdown('data_dropdown', 1, {
     "width" : "200px"
 })
+add_event('data_dropdown', 1, {
+    "type" : "change",
+    "function" : "choose_class(this.value)"
+})
 
-add_button('options_layout_cells', 17, {
+add_button('options_layout_cells', 18, {
 	"this_class"  : 'run_timeline_button',
 	"text" : "run timeline"
 })
@@ -439,7 +443,8 @@ scatter_wrapper_args = {
     "top_choice" : 30,
     "right_choice" : 30,
     "bottom_choice" : 30,
-    "left_choice" : 60
+    "left_choice" : 60,
+    "chart_width" : 930
 }
 
 scatter_extras = {
@@ -494,23 +499,6 @@ add_d3_visual('dual_viz_layout_cells', 1, {
     //"extra_functions" : barchart_2_extras
 })
 
-
-scatter_2_wrapper_args = {
-    "data_path" : "../data/scatter_data.tsv",
-    "top_choice" : 30,
-    "right_choice" : 30,
-    "bottom_choice" : 30,
-    "left_choice" : 30
-}
-scatter_2_extras = {
-
-}
-add_d3_visual('dual_viz_layout_cells', 2, {
-    "this_class" : "dual_2",
-    "html_path" : "visuals/scatter.html",
-    "wrapper_arguments" : scatter_2_wrapper_args
-   // "extra_functions" : scatter_2_extras
-})
 
 
 

@@ -30,7 +30,7 @@ function draw_visual() {                // add wrapper function
 kedion_args = arguments[0]          // add kedion_args
 
 var margin = {top: kedion_args['top_choice'], right: kedion_args['right_choice'], bottom: kedion_args['bottom_choice'], left: kedion_args['left_choice']},
-    width = 960 - margin.left - margin.right,
+    width = kedion_args['chart_width'] - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 var x = d3.scale.linear()

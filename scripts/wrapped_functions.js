@@ -323,7 +323,6 @@ function circle_opacity() {
         "this_class" : "text_size_title",
         "text" : "OPACITY<br><br>"
     })
-
     add_slider('text_size_modal_content', 1, {
         "this_class" : "d3_edit_slider",
         "default_value" : hold_op_val.scatter_dot,
@@ -331,34 +330,53 @@ function circle_opacity() {
         "max_value" : 100,
         "label_multiplier" : 1/100
     })
+    style_html('slider_label', 1, {
+        "display" : "none"
+    })
+    add_event('d3_edit_slider', 1, {
+        "type" : "as_change",
+        "function" : `
+        hold_op_val['scatter_dot'] = this.value
+        call_d3_extra('scatter_chart', 1, {
+            "extra_functions" : scatter_extras,
+            "circle_opacity" : "all_style_d3('dot', {'opacity' : " + this.value/100 + "})"
+        })
+        `
+    })
+}
 
+
+function change_width() {
+add_modal({
+        "this_class" : "text_size_modal",
+        "content_class" : "text_size_modal_content"
+    })
+    style_modal('text_size_modal', 1, {
+        "width" : "auto",
+        "height" : "auto"
+    })
+    add_text('text_size_modal_content', 1, {
+        "this_class" : "text_size_title",
+        "text" : "CHART WIDTH<br><br>"
+    })
+    add_slider('text_size_modal_content', 1, {
+        "this_class" : "d3_edit_slider",
+        "default_value" : scatter_wrapper_args.chart_width,
+        "min_value" : 500,
+        "max_value" : 930
+    })
 add_event('d3_edit_slider', 1, {
 "type" : "as_change",
 "function" : `
-    hold_op_val['scatter_dot'] = this.value
-    call_d3_extra('scatter_chart', 1, {
+    call_d3_wrapper('scatter_chart', 1, {
+        "wrapper_arguments" : scatter_wrapper_args,
         "extra_functions" : scatter_extras,
-        "circle_opacity" : "all_style_d3('dot', {'opacity' : " + this.value/100 + "})"
-    })
+        "chart_width" : this.value
+     })
     `
     })
 }
 
-function rotate_out_change_data() {
-    /*
-    call_d3_extra('scatter_chart', 1, {
-        "extra_functions" : scatter_extras,
-        "circle_spin" : "all_animate_element('dot', {'type' : 'rotateOut'})"
-    })
-    */
-    setTimeout(function(){
-    call_d3_wrapper('scatter_chart', 1, {
-        "wrapper_arguments" : scatter_wrapper_args,
-        "extra_functions" : scatter_extras,
-        "data_path" : "../data/scatter_data_b.tsv"
-     })
-     },1000)
-}
 
 function dataset1() {
     call_d3_wrapper('scatter_chart', 1, {
@@ -366,6 +384,8 @@ function dataset1() {
         "extra_functions" : scatter_extras,
         "data_path" : "../data/scatter_data.tsv"
     })
+    delete scatter_extras['circle_color'] // to reset original colors after using dropdown
+    delete scatter_extras['legend'] // to reset original legend after using dropdown
 }
 
 function dataset2() {
@@ -374,6 +394,8 @@ function dataset2() {
         "extra_functions" : scatter_extras,
         "data_path" : "../data/scatter_data_b.tsv"
     })
+    delete scatter_extras['circle_color'] // to reset original colors after using dropdown
+    delete scatter_extras['legend'] // to reset original legend after using dropdown
 }
 
 function dataset3() {
@@ -382,8 +404,57 @@ function dataset3() {
         "extra_functions" : scatter_extras,
         "data_path" : "../data/scatter_data_c.tsv"
     })
+    delete scatter_extras['circle_color'] // to reset original colors after using dropdown
+    delete scatter_extras['legend'] // to reset original legend after using dropdown
 }
 
-function start_over_b() {
+function choose_class(choice) {
+    if(choice == 'Setosa') {
+    setosa_only()
+    }
+    if(choice == 'Versicolor') {
+    versicolor_only()
+    }
+    if(choice == 'Virginica') {
+    virginica_only()
+    }
+}
 
+function setosa_only() {
+    call_d3_wrapper('scatter_chart', 1, {
+        "wrapper_arguments" : scatter_wrapper_args,
+        "extra_functions" : scatter_extras,
+        "data_path" : "../data/scatter_data_setosa.tsv"
+    })
+    call_d3_extra('scatter_chart', 1, {
+        "extra_functions" : scatter_extras,
+        "circle_color" : "all_style_d3('dot', {'fill' : 'rgb(31, 119, 180)'})",
+        "legend" : "style_d3('rect', 1, {'fill' : 'rgb(31, 119, 180)'})"
+    })
+}
+
+function versicolor_only() {
+    call_d3_wrapper('scatter_chart', 1, {
+        "wrapper_arguments" : scatter_wrapper_args,
+        "extra_functions" : scatter_extras,
+        "data_path" : "../data/scatter_data_versicolor.tsv"
+    })
+    call_d3_extra('scatter_chart', 1, {
+        "extra_functions" : scatter_extras,
+        "circle_color" : "all_style_d3('dot', {'fill' : 'rgb(255, 127, 14)'})",
+        "legend" : "style_d3('rect', 1, {'fill' : 'rgb(255, 127, 14)'})"
+    })
+}
+
+function virginica_only() {
+    call_d3_wrapper('scatter_chart', 1, {
+        "wrapper_arguments" : scatter_wrapper_args,
+        "extra_functions" : scatter_extras,
+        "data_path" : "../data/scatter_data_virginica.tsv"
+    })
+    call_d3_extra('scatter_chart', 1, {
+        "extra_functions" : scatter_extras,
+        "circle_color" : "all_style_d3('dot', {'fill' : 'rgb(44, 160, 44)'})",
+        "legend" : "style_d3('rect', 1, {'fill' : 'rgb(44, 160, 44)'})"
+    })
 }
