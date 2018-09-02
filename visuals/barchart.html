@@ -28,7 +28,7 @@
                 bottom: kedion_args['bottom_choice'],
                 left: kedion_args['left_choice']
             },
-            width = +svg.attr("width") - margin.left - margin.right,
+            width = kedion_args['chart_width'] - margin.left - margin.right,
             height = +svg.attr("height") - margin.top - margin.bottom;
         var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
             y = d3.scaleLinear().rangeRound([height, 0]);

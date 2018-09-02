@@ -266,7 +266,8 @@ barchart_wrapper_args = {
     "bottom_choice" : 30,
     "left_choice" : 60,
     "bar_color" : "rgb(48, 229, 255)",
-    "title_color" : "white"
+    "title_color" : "white",
+    "chart_width" : 850
 }
 
 barchart_extras = {
@@ -457,4 +458,57 @@ function virginica_only() {
         "circle_color" : "all_style_d3('dot', {'fill' : 'rgb(44, 160, 44)'})",
         "legend" : "style_d3('rect', 1, {'fill' : 'rgb(44, 160, 44)'})"
     })
+}
+
+
+function change_line_chart(bar_instance) {
+    if(bar_instance == 1) {
+    call_d3_wrapper('dual_2', 1, {
+        "wrapper_arguments" : linechart_wrapper_args,
+        "extra_functions" : linechart_extras,
+        "data_path" : "../data/linechart_data.tsv"
+    })
+    }
+    if(bar_instance == 2) {
+    call_d3_wrapper('dual_2', 1, {
+        "wrapper_arguments" : linechart_wrapper_args,
+        "extra_functions" : linechart_extras,
+        "data_path" : "../data/linechart_data_b.tsv"
+    })
+    }
+    if(bar_instance == 3) {
+    call_d3_wrapper('dual_2', 1, {
+        "wrapper_arguments" : linechart_wrapper_args,
+        "extra_functions" : linechart_extras,
+        "data_path" : "../data/linechart_data_c.tsv"
+    })
+    }
+    if(bar_instance == 4) {
+    call_d3_wrapper('dual_2', 1, {
+        "wrapper_arguments" : linechart_wrapper_args,
+        "extra_functions" : linechart_extras,
+        "data_path" : "../data/linechart_data_c.tsv"
+    })
+    }
+    if(bar_instance == 5) {
+    call_d3_wrapper('dual_2', 1, {
+        "wrapper_arguments" : linechart_wrapper_args,
+        "extra_functions" : linechart_extras,
+        "data_path" : "../data/linechart_data_c.tsv"
+    })
+    }
+    if(bar_instance == 6) {
+    call_d3_wrapper('dual_2', 1, {
+        "wrapper_arguments" : linechart_wrapper_args,
+        "extra_functions" : linechart_extras,
+        "data_path" : "../data/linechart_data_c.tsv"
+    })
+    }if(bar_instance == 7) {
+    call_d3_wrapper('dual_2', 1, {
+        "wrapper_arguments" : linechart_wrapper_args,
+        "extra_functions" : linechart_extras,
+        "data_path" : "../data/linechart_data_c.tsv"
+    })
+    }
+
 }

@@ -174,6 +174,9 @@ add_text('footer_layout_cells', 1, {
     "this_class" : "footer_text",
     "text" : "Written in Kedion"
 })
+style_text('footer_text', 1, {
+    "color" : "lightgrey"
+})
 add_image('footer_layout_cells', 2, {
     "this_class" : "footer_logo",
     "image_path" : "img/kedion_logo.png"
@@ -422,7 +425,8 @@ barchart_wrapper_args = {
     "bottom_choice" : 30,
     "left_choice" : 60,
     "bar_color" : "rgb(48, 229, 255)",
-    "title_color" : "white"
+    "title_color" : "white",
+    "chart_width" : 850
 }
 
 barchart_extras = {
@@ -462,41 +466,95 @@ add_d3_visual('sectional_layout_cells', 4, {
 })
 
 // **********************SECTION 3 **************************************
-add_layout('sectional_layout_cells', 6, {
+remove_element('examples_title', 3)
+remove_element('options_layout', 3)
+
+add_text('sections', 3, {
+    "this_class" : "section_explain",
+    "text" : "Communicating between 2 charts. Click on a bar in the left chart to change the linechart on the right."
+})
+
+style_text('section_explain', 1, {
+    "color" : "white",
+    "font-size" : "18px",
+    "margin-bottom" : "10px"
+})
+
+add_icon('sections', 3, {
+	"this_class" : "code_icon",
+	"icon_class" : "fa-file-code-o"
+})
+
+add_event('code_icon', last_class_instance('code_icon'), {
+	"type" : "click",
+	"function" : "pop_code_modal(this.id)"
+})
+
+all_style_icon('code_icon', {
+	"font-size" : "30px",
+	"color" : "rgba(221, 173, 81, 0.92)",
+	"padding" : "2px",
+	"cursor" : "pointer"
+})
+
+add_layout('sections', 3, {
     "this_class": "dual_viz_layout",
     "cell_class": "dual_viz_layout_cells",
     "row_class": "dual_viz_layout_rows",
     "number_of_rows": 1,
     "number_of_columns": 2
 })
+
 style_layout('dual_viz_layout', 1, {
     "table-layout" : "fixed",
     "border" : 1
 })
+
+// ******* BAR CHART 2
 barchart_2_wrapper_args = {
-    "data_path" : "../data/bar_data.tsv",
+    "data_path" : "../data/bar_data_b.tsv",
     "y_title" : "AVG RETURN",
     "top_choice" : 30,
-    "right_choice" : 510,
+    "right_choice" : 230,
     "bottom_choice" : 30,
-    "left_choice" : 30,
+    "left_choice" : 60,
     "bar_color" : "rgb(254, 225, 180)",
     "title_color" : "white",
-    "text_color" : "white"
+    "chart_width" : 800
 }
+
 barchart_2_extras = {
-    "text_color" : `
-        all_style_d3('text', {
-           "fill" : "white"
-        })
-        `
-}
+    "pointer_cursor" : "all_style_d3('rect', {'cursor' : 'pointer'})",
+    "text_color" : "all_style_d3('text', {'fill' : 'white'})",
+    "text_size" : "all_style_d3('text', {'font-size' : '17px'})",
+    "call_line_chart" : "all_apply_id('bar'); all_add_event('bar', {'type' : 'click', 'function' : 'parent.change_line_chart(get_target_instance(this.id))'})"
+    }
 
 add_d3_visual('dual_viz_layout_cells', 1, {
     "this_class" : "dual_1",
     "html_path" : "visuals/barchart.html",
-    "wrapper_arguments" : barchart_2_wrapper_args
-    //"extra_functions" : barchart_2_extras
+    "wrapper_arguments" : barchart_2_wrapper_args,
+    "extra_functions" : barchart_2_extras
+})
+
+// ******* LINE CHART
+linechart_wrapper_args = {
+    "data_path" : "../data/linechart_data.tsv",
+    "chart_width" : 400,
+    "line_color" : "hotpink",
+    "text_color" : "white"
+}
+
+linechart_extras = {
+    "text_color" : "all_style_d3('text', {'fill' : 'white'})",
+    "text_size" : "all_style_d3('text', {'font-size' : '17px'})"
+    }
+
+add_d3_visual('dual_viz_layout_cells', 2, {
+    "this_class" : "dual_2",
+    "html_path" : "visuals/linechart.html",
+    "wrapper_arguments" : linechart_wrapper_args,
+    "extra_functions" : linechart_extras
 })
 
 
