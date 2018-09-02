@@ -387,34 +387,6 @@ add_event('data_dropdown', 1, {
     "function" : "choose_class(this.value)"
 })
 
-add_button('options_layout_cells', 18, {
-	"this_class"  : 'run_timeline_button',
-	"text" : "run timeline"
-})
-style_button('run_timeline_button', 1, {
-	 "width" : "190px",
-     "background" : "rgb(16, 168, 180)",
-     "margin-top" : "10px"
-})
-
-// _all styles
-all_style_layout('sectional_layout_cells', {
-    "valign" : "top"
-})
-all_style_layout('options_layout_cells', {
-    "halign" : "center"
-})
-all_style_layout('options_layout', {
-    "border" : 0
-})
-all_style_text('examples_title', {
-    "color" : "white",
-    "align" : "center",
-    "padding" : "10px",
-    "font-size" : "22px"
-})
-
-
 // *************************Kedion D3***********************************
 
 barchart_wrapper_args = {
@@ -426,7 +398,7 @@ barchart_wrapper_args = {
     "left_choice" : 60,
     "bar_color" : "rgb(48, 229, 255)",
     "title_color" : "white",
-    "chart_width" : 850
+    "chart_width" : 950
 }
 
 barchart_extras = {
@@ -469,18 +441,40 @@ add_d3_visual('sectional_layout_cells', 4, {
 remove_element('examples_title', 3)
 remove_element('options_layout', 3)
 
-add_text('sections', 3, {
+add_layout('sections', 3, {
+    "this_class" : "explain_layout",
+    "row_class" : "explain_layout_row",
+     "cell_class" : "explain_layout_cell",
+     "number_of_rows" : 1,
+     "number_of_columns" : 2
+})
+
+style_layout('explain_layout', 1, {
+    "column_widths" : ['90%', '10%'],
+    "height" : "auto",
+    "width" : "auto",
+    "margin-bottom" : "10px",
+    "border" : 0
+})
+
+add_text('explain_layout_cell', 1, {
     "this_class" : "section_explain",
-    "text" : "Communicating between 2 charts. Click on a bar in the left chart to change the linechart on the right."
+    "text" : "Communicating between 2 charts. Hover over the bars in the left chart to change the linechart on the right."
 })
 
 style_text('section_explain', 1, {
     "color" : "white",
-    "font-size" : "18px",
-    "margin-bottom" : "10px"
+    "font-size" : "18px"
 })
 
-add_icon('sections', 3, {
+style_word('section_explain', 1, {
+    "this_class" : "hover_word",
+    "word" : "Hover",
+    "color" : "rgb(254, 225, 180)",
+    "font-weight" : "bold"
+})
+
+add_icon('explain_layout_cell', 2, {
 	"this_class" : "code_icon",
 	"icon_class" : "fa-file-code-o"
 })
@@ -488,13 +482,6 @@ add_icon('sections', 3, {
 add_event('code_icon', last_class_instance('code_icon'), {
 	"type" : "click",
 	"function" : "pop_code_modal(this.id)"
-})
-
-all_style_icon('code_icon', {
-	"font-size" : "30px",
-	"color" : "rgba(221, 173, 81, 0.92)",
-	"padding" : "2px",
-	"cursor" : "pointer"
 })
 
 add_layout('sections', 3, {
@@ -527,7 +514,7 @@ barchart_2_extras = {
     "pointer_cursor" : "all_style_d3('rect', {'cursor' : 'pointer'})",
     "text_color" : "all_style_d3('text', {'fill' : 'white'})",
     "text_size" : "all_style_d3('text', {'font-size' : '17px'})",
-    "call_line_chart" : "all_apply_id('bar'); all_add_event('bar', {'type' : 'click', 'function' : 'parent.change_line_chart(get_target_instance(this.id))'})"
+    "call_line_chart" : "all_apply_id('bar'); all_add_event('bar', {'type' : 'hover', 'function' : 'parent.change_line_chart(get_target_instance(this.id))'})"
     }
 
 add_d3_visual('dual_viz_layout_cells', 1, {
@@ -558,9 +545,98 @@ add_d3_visual('dual_viz_layout_cells', 2, {
 })
 
 
+// **********************SECTION 4 **************************************
+
+remove_element('options_layout', 3)
+
+style_layout('sectional_layout_cells', 7, {
+    "halign" : "center"
+})
+
+add_button('sectional_layout_cells', 7, {
+	"this_class"  : 'run_timeline_button',
+	"text" : "play timeline"
+})
+
+style_button('run_timeline_button', 1, {
+	 "width" : "190px",
+     "background" : "rgb(16, 168, 180)",
+     "margin-top" : "10px",
+     "margin-bottom" : "10px"
+})
+
+add_event('run_timeline_button', 1, {
+    "type" : "click",
+    "function" : "play_timeline()"
+})
+
+add_layout('sectional_layout_cells', 7, {
+    "this_class": "calendar_layout",
+    "cell_class": "calendar_layout_cells",
+    "row_class": "calendar_layout_rows",
+    "number_of_rows": 6,
+    "number_of_columns": 7
+})
+
+style_layout('calendar_layout', 1, {
+    "table-layout" : "fixed",
+    "border" : 1
+})
+
+style_layout('calendar_layout_rows', 1, {
+    "background" : "rgba(255, 156, 62, 0.64)"
+})
+
+cal_adds = ['S','M','T','W','T','F','S','','','','','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31']
+call_multiple({
+    "iterations" : 42,
+    "function" : `
+        add_text('calendar_layout_cells', index+1, {'this_class' : 'cal_text', 'text': cal_adds[index]})
+        all_style_text('cal_text', {'color' : 'white', 'align' : 'center'})
+        `
+})
+
+piechart_wrapper_args = {
+}
+
+piechart_extras = {
+    "text_color" : "all_style_d3('text', {'fill' : 'white'})",
+    "line_color" : "all_style_d3('polyline', {'stroke' : 'rgb(39, 228, 255)'})",
+    "line_opacity" : "all_style_d3('polyline', {'opacity' : 0.9})",
+    "hide_button" : "all_style_d3('button', {'visibility' : 'hidden'})"
+}
+
+add_d3_visual('sectional_layout_cells', 8, {
+    "this_class" : "piechart",
+    "html_path" : "visuals/pie_chart.html",
+    "wrapper_arguments" : piechart_wrapper_args,
+    "extra_functions" : piechart_extras
+})
 
 
 
+// _all styles
+all_style_layout('sectional_layout_cells', {
+    "valign" : "top"
+})
+all_style_layout('options_layout_cells', {
+    "halign" : "center"
+})
+all_style_layout('options_layout', {
+    "border" : 0
+})
+all_style_text('examples_title', {
+    "color" : "white",
+    "align" : "center",
+    "padding" : "10px",
+    "font-size" : "22px"
+})
+all_style_icon('code_icon', {
+	        "font-size" : "30px",
+	        "color" : "rgba(221, 173, 81, 0.92)",
+	        "padding" : "2px",
+	        "cursor" : "pointer"
+	    })
 
 </script>
 

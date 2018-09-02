@@ -267,7 +267,7 @@ barchart_wrapper_args = {
     "left_choice" : 60,
     "bar_color" : "rgb(48, 229, 255)",
     "title_color" : "white",
-    "chart_width" : 850
+    "chart_width" : 950
 }
 
 barchart_extras = {
@@ -510,5 +510,17 @@ function change_line_chart(bar_instance) {
         "data_path" : "../data/linechart_data_c.tsv"
     })
     }
-
 }
+
+function play_timeline() {
+    call_every({
+        "every" : 2000,
+        "function" : `
+                call_d3_extra('piechart', 1, {
+                    "extra_functions" : piechart_extras,
+                     "click_button" : "click_element('randomize', 1)"
+                })
+        `
+    })
+}
+
