@@ -462,11 +462,6 @@ add_text('explain_layout_cell', 1, {
     "text" : "Communicating between 2 charts. Hover over the bars in the left chart to change the linechart on the right."
 })
 
-style_text('section_explain', 1, {
-    "color" : "white",
-    "font-size" : "18px"
-})
-
 style_word('section_explain', 1, {
     "this_class" : "hover_word",
     "word" : "Hover",
@@ -548,12 +543,44 @@ add_d3_visual('dual_viz_layout_cells', 2, {
 // **********************SECTION 4 **************************************
 
 remove_element('options_layout', 3)
+remove_element('examples_title', 3)
+
+style_layout('sectional_layout', 4, {
+    "column_widths" : ['30%', '70%'],
+    "border" : 0
+})
 
 style_layout('sectional_layout_cells', 7, {
+    "halign" : "center",
+    "padding-left" : "100px",
+    "padding-top" : "30px"
+})
+
+add_text('sectional_layout_cells', 7, {
+    "this_class" : "section_explain",
+    "text" : "Run timeline or click on date to see corresponding data."
+})
+
+add_layout('sectional_layout_cells', 7, {
+    "this_class": "cal_but_layout",
+    "cell_class": "cal_but_layout_cells",
+    "row_class": "cal_but_layout_rows",
+    "number_of_rows": 1,
+    "number_of_columns": 2
+})
+
+style_layout('cal_but_layout', 1, {
+    "column_widths" : ['80%', '20%'],
+    "height" : "auto",
+    "width" : "auto",
+    "border" : 0
+})
+
+all_style_layout('cal_but_layout_cells', {
     "halign" : "center"
 })
 
-add_button('sectional_layout_cells', 7, {
+add_button('cal_but_layout_cells', 1, {
 	"this_class"  : 'run_timeline_button',
 	"text" : "play timeline"
 })
@@ -568,6 +595,20 @@ style_button('run_timeline_button', 1, {
 add_event('run_timeline_button', 1, {
     "type" : "click",
     "function" : "play_timeline()"
+})
+
+add_button('cal_but_layout_cells', 2, {
+	"this_class"  : 'stop_timeline_button',
+	"text" : "stop"
+})
+
+style_button('stop_timeline_button', 1, {
+    "background" : "rgba(179, 180, 153, 0.41)"
+})
+
+add_event('stop_timeline_button', 1, {
+    "type" : "click",
+    "function" : "stop_call_every()"
 })
 
 add_layout('sectional_layout_cells', 7, {
@@ -586,6 +627,11 @@ style_layout('calendar_layout', 1, {
 style_layout('calendar_layout_rows', 1, {
     "background" : "rgba(255, 156, 62, 0.64)"
 })
+
+all_add_event('calendar_layout_cells', {
+    "type" : "hover",
+    "function" : "all_style_layout('calendar_layout_cells', {'background' : 'transparent', 'cursor' : 'pointer'}); style_layout('calendar_layout_cells', get_target_instance(this.id), {'background' : 'limegreen'})"
+    })
 
 cal_adds = ['S','M','T','W','T','F','S','','','','','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31']
 call_multiple({
@@ -632,11 +678,15 @@ all_style_text('examples_title', {
     "font-size" : "22px"
 })
 all_style_icon('code_icon', {
-	        "font-size" : "30px",
-	        "color" : "rgba(221, 173, 81, 0.92)",
-	        "padding" : "2px",
-	        "cursor" : "pointer"
-	    })
+	 "font-size" : "30px",
+     "color" : "rgba(221, 173, 81, 0.92)",
+     "padding" : "2px",
+     "cursor" : "pointer"
+})
+all_style_text('section_explain', {
+    "color" : "white",
+    "font-size" : "18px"
+})
 
 </script>
 

@@ -518,8 +518,10 @@ function play_timeline() {
         "function" : `
                 call_d3_extra('piechart', 1, {
                     "extra_functions" : piechart_extras,
-                     "click_button" : "click_element('randomize', 1)"
+                    "click_button" : "click_element('randomize', 1)"
                 })
+                all_style_layout('calendar_layout_cells', {'background' : 'transparent'})
+                style_layout('calendar_layout_cells', 13 + index, {'background' : 'hotpink'})
         `
     })
 }
