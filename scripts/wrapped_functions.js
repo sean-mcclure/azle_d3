@@ -544,3 +544,19 @@ function play_timeline() {
     })
 }
 
+
+go_to_circle = {
+    "zoom out" : 1,
+    "analytics" : 2,
+    "cluster" : 3,
+    "graph" : 4,
+    "display" : 10
+}
+
+function click_circle_pack(use_val) {
+    call_d3_extra('circlepack', 1, {
+        "extra_functions" : circlepack_extras,
+        "click_circle" : "click_d3('parent', " + go_to_circle[use_val] + ")"
+    })
+}
+

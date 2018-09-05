@@ -720,11 +720,23 @@ circlepack_extras = {
 }
 
 add_d3_visual('sectional_layout_cells', 10, {
-    "this_class" : "map",
+    "this_class" : "circlepack",
     "html_path" : "visuals/circlepack.html",
     "wrapper_arguments" : circlepack_wrapper_args,
     "extra_functions" : circlepack_extras
 })
+
+add_dropdown('options_layout_cells', 21, {
+    "this_class" : "option_drop",
+    "options" : ['zoom out', 'analytics', 'cluster', 'graph', 'display'],
+    "title" : "choose..."
+})
+
+add_event('option_drop', 1, {
+    "type" : "change",
+    "function" : "click_circle_pack(this.value)"
+})
+
 
 // **********************SECTION 6 **************************************
 
