@@ -513,6 +513,12 @@ function change_line_chart(bar_instance) {
 }
 
 function play_timeline() {
+    style_button('run_timeline_button', 1, {
+        "pointer-events" : "none"
+    })
+    style_layout('calendar_layout', 1, {
+        "pointer-events" : "none"
+    })
     call_every({
         "every" : 2000,
         "function" : `
@@ -523,6 +529,18 @@ function play_timeline() {
                 all_style_layout('calendar_layout_cells', {'background' : 'transparent'})
                 style_layout('calendar_layout_cells', 13 + index, {'background' : 'hotpink'})
         `
+    })
+    delay_event({
+        "delay" : 63000,
+        "function" : `
+             stop_call_every();
+             style_button('run_timeline_button', 1, {
+                "pointer-events" : "auto"
+             })
+             style_layout('calendar_layout', 1, {
+                "pointer-events" : "auto"
+             })
+             `
     })
 }
 
