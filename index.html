@@ -137,7 +137,7 @@ call_multiple({
 
 add_spa({
     "this_class" : "sections",
-    "sections" : 4
+    "sections" : 6
 })
 
 all_style_spa('sections', {
@@ -200,7 +200,7 @@ call_multiple({
 	all_style_layout('sectional_layout', {
     	"height": "auto",
     	"column_widths": ['20%', '80%'],
-    	"border": 0
+    	"border": 1
 	})
 
 	add_text('sectional_layout_cells', (index*2) + 1, {
@@ -705,6 +705,29 @@ all_style_text('section_explain', {
     "color" : "white",
     "font-size" : "18px"
 })
+
+// **********************SECTION 5 **************************************
+
+circlepack_wrapper_args = {
+    "data_path" : "../data/flare.json",
+    "chart_width" : 600,
+    "chart_height" : 600,
+    "chart_radius" : 450
+}
+
+circlepack_extras = {
+    "top" : "style_d3('svg', 1, {'margin-top' : '-60px'})"
+}
+
+add_d3_visual('sectional_layout_cells', 10, {
+    "this_class" : "map",
+    "html_path" : "visuals/circlepack.html",
+    "wrapper_arguments" : circlepack_wrapper_args,
+    "extra_functions" : circlepack_extras
+})
+
+// **********************SECTION 6 **************************************
+
 
 </script>
 
