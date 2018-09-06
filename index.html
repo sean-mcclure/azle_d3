@@ -738,14 +738,13 @@ style_layout('sectional_layout_cells', 10, {
 
 circlepack_wrapper_args = {
     "data_path" : "../data/flare.json",
-    "chart_width" : 600,
+    "chart_width" : 1000,
     "chart_height" : 600,
     "chart_radius" : 450
 }
 
 circlepack_extras = {
-    "top" : "style_d3('svg', 1, {'margin-top' : '-60px'})",
-    "left" : "style_d3('svg', 1, {'margin-left' : '200px'})"
+    "top" : "style_d3('svg', 1, {'margin-top' : '-60px'})"
 }
 
 add_d3_visual('sectional_layout_cells', 10, {
@@ -776,6 +775,10 @@ add_text('sections', 6, {
 
 move_up_down('section_explain', 3, 'up')
 
+style_text('examples_title', 4, {
+    "margin-top" : "60px"
+})
+
 add_radiobutton('options_layout_cells', 31, {
     "this_class" : "choose_data_check",
     "text_class" : "choose_data_label",
@@ -783,7 +786,7 @@ add_radiobutton('options_layout_cells', 31, {
 })
 add_event('choose_data_check', 4, {
     "type" : "click",
-    "function" : "()"
+    "function" : "switch_client_side('data_choice_1')"
 })
 add_radiobutton('options_layout_cells', 32, {
     "this_class" : "choose_data_check",
@@ -792,7 +795,7 @@ add_radiobutton('options_layout_cells', 32, {
 })
 add_event('choose_data_check', 5, {
     "type" : "click",
-    "function" : "()"
+    "function" : "switch_client_side('data_choice_2')"
 })
 add_radiobutton('options_layout_cells', 33, {
     "this_class" : "choose_data_check",
@@ -801,7 +804,7 @@ add_radiobutton('options_layout_cells', 33, {
 })
 add_event('choose_data_check', 6, {
     "type" : "click",
-    "function" : "()"
+    "function" : "switch_client_side('data_choice_3')"
 })
 all_style_text('choose_data_label', {
     "color" : "white"
@@ -809,11 +812,15 @@ all_style_text('choose_data_label', {
 
 add_button('options_layout_cells', 34, {
     "this_class" : "call_api_button",
-    "text" : "CALL API"
+    "text" : "FETCH DATA"
 })
 style_button('call_api_button', 1, {
     "background" : "rgb(254, 225, 180)",
     "color" : "black"
+})
+add_event('call_api_button', 1, {
+    "type" : "click",
+    "function" : "pop_api_modal()"
 })
 
 add_button('options_layout_cells', 36, {
@@ -828,6 +835,28 @@ add_event('upload_button', 1, {
     "type" : "click",
     "function" : "pop_upload()"
 })
+
+
+chord_wrapper_args = {
+    "data_choice" : [
+                    [11975,  5871, 8916, 2868],
+                    [ 1951, 10048, 2060, 6171],
+                    [ 8010, 16145, 8090, 8045],
+                    [ 1013,   990,  940, 6907]
+                    ]
+}
+
+chord_extras = {
+
+}
+
+add_d3_visual('sectional_layout_cells', 12, {
+    "this_class" : "chord_chart",
+    "html_path" : "visuals/chord.html",
+    "wrapper_arguments" : chord_wrapper_args,
+    "extra_functions" : chord_extras
+})
+
 
 
 
@@ -848,6 +877,25 @@ all_style_text('choose_flare', {
 style_text('choose_flare', 1, {
     "color" : "hotpink"
 })
+
+all_style_button('call_api_button', {
+    "border" : "1px solid black"
+})
+all_style_button('upload_button', {
+    "border" : "1px solid black"
+})
+all_style_button('run_timeline_button', {
+    "border" : "1px solid darkgrey"
+})
+all_style_button('stop_timeline_button', {
+    "border" : "1px solid darkgrey"
+})
+all_style_button('option_button', {
+    "border" : "0px solid darkgrey"
+})
+
+
+
 
 
 </script>

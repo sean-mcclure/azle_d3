@@ -687,7 +687,7 @@ add_event('option_drop', 1, {
 
 circlepack_wrapper_args = {
     "data_path" : "../data/flare.json",
-    "chart_width" : 600,
+    "chart_width" : 1000,
     "chart_height" : 600,
     "chart_radius" : 450
 }
@@ -730,7 +730,81 @@ style_upload_button('upload_data_button', 1, {
 add_event('upload_data_button', 1, {
     "type" : "upload",
     "function" : `
-
+    call_d3_wrapper('chord_chart', 1, {
+        "wrapper_arguments" : chord_wrapper_args,
+        "extra_functions" : chord_extras,
+        "data_choice" : data['data']
+    })
+    close_modal()
     `
 })
+}
+
+all_chord_data = {
+    "data_choice_1" : [
+                      [11975,  5871, 8916, 2868],
+                      [ 1951, 10048, 2060, 6171],
+                      [ 8010, 16145, 8090, 8045],
+                      [ 1013,   990,  940, 6907]
+                      ],
+    "data_choice_2" : [
+                      [2000,  5871, 8916, 1868],
+                      [ 1951, 1048, 2060, 4171],
+                      [ 8010, 1645, 8090, 1045],
+                      [ 1013,   990,  1940, 6907]
+                      ],
+    "data_choice_3" : [
+                      [1975,  5871, 1916, 2868],
+                      [ 2951, 13048, 4060, 171],
+                      [ 3010, 1145, 8090, 4045],
+                      [ 113,   2990,  940, 6907]
+                      ]
+    }
+
+function switch_client_side(data_choice) {
+    call_d3_wrapper('chord_chart', 1, {
+        "wrapper_arguments" : chord_wrapper_args,
+        "extra_functions" : chord_extras,
+        "data_choice" : all_chord_data[data_choice]
+    })
+}
+
+function pop_api_modal() {
+add_modal({
+    "this_class" : "api_modal",
+    "content_class" : "api_modal_content"
+})
+style_modal('api_modal', 1, {
+    "width" : "auto",
+    "height" : "auto"
+})
+add_text('api_modal_content', 1, {
+    "this_class" : "api_ex_text",
+    "text" : "CALL REST API ENDPOINT"
+})
+style_text('api_ex_text', 1, {
+    "font-weight" : "bold"
+})
+ add_code("api_modal_content", 1, {
+        "this_class" : "kedion_d3_code",
+        "code" : "http://worldofdatascience/com?dataset=[[1,2,3],[4,5,6],[7,8,9],[10,11,12]]"
+    })
+    style_code('kedion_d3_code', 1, {
+        "text-align" : "left",
+        "width" : "auto",
+        "padding" : "14px"
+    })
+    add_button('api_modal_content', 1, {
+        "this_class" : "fetch_data_button",
+        "text" : "FETCH DATA"
+    })
+    style_button('fetch_data_button', 1, {
+        "background" : "rgb(254, 225, 180)",
+        "color" : "black",
+        "border" : "1px solid black"
+    })
+    add_event('fetch_data_button', 1, {
+    "type" : "click",
+    "function" : "animate_element('fetch_data_button', 1, {'type' : 'spin'})"
+    })
 }
