@@ -120,6 +120,7 @@ all_style_layout('hold_explain_buttons_cells', {
 })
 
 explain_buttons = ['CREATING WRAPPER ARGUMENTS', 'CREATING EXTRA FUNCTIONS', 'BINDING TO UI ELEMENTS']
+explain_functs = ['creating_wrapper_args()', 'creating_extra_functs()', 'binding_to_ui()']
 call_multiple({
 "iterations" : explain_buttons.length,
 "function" : `
@@ -129,6 +130,10 @@ call_multiple({
     })
     all_style_button('explain_button', {
         "background" : "grey"
+    })
+    add_event('explain_button', index + 1, {
+        "type" : "click",
+        "function" : explain_functs[index]
     })
 `
 })
@@ -200,7 +205,7 @@ call_multiple({
 	all_style_layout('sectional_layout', {
     	"height": "auto",
     	"column_widths": ['20%', '80%'],
-    	"border": 1
+    	"border": 0
 	})
 
 	add_text('sectional_layout_cells', (index*2) + 1, {
@@ -701,12 +706,35 @@ all_style_icon('code_icon', {
      "padding" : "2px",
      "cursor" : "pointer"
 })
-all_style_text('section_explain', {
-    "color" : "white",
-    "font-size" : "18px"
-})
 
 // **********************SECTION 5 **************************************
+
+add_text('sectional_layout_cells', 9, {
+    "this_class" : "choose_flare",
+    "text" : "&#8226; circle packing"
+})
+
+add_text('sectional_layout_cells', 9, {
+    "this_class" : "choose_flare",
+    "text" : "&#8226; tree layout"
+})
+
+move_up_down('choose_flare', 1, 'up')
+move_up_down('choose_flare', 2, 'up')
+
+add_event('choose_flare', 1, {
+    "type" : "click",
+    "function" : "switch_flares_packing()"
+})
+
+add_event('choose_flare', 2, {
+    "type" : "click",
+    "function" : "switch_flares_tree()"
+})
+
+style_layout('sectional_layout_cells', 10, {
+    "halign" : "center"
+})
 
 circlepack_wrapper_args = {
     "data_path" : "../data/flare.json",
@@ -716,7 +744,8 @@ circlepack_wrapper_args = {
 }
 
 circlepack_extras = {
-    "top" : "style_d3('svg', 1, {'margin-top' : '-60px'})"
+    "top" : "style_d3('svg', 1, {'margin-top' : '-60px'})",
+    "left" : "style_d3('svg', 1, {'margin-left' : '200px'})"
 }
 
 add_d3_visual('sectional_layout_cells', 10, {
@@ -739,6 +768,86 @@ add_event('option_drop', 1, {
 
 
 // **********************SECTION 6 **************************************
+
+add_text('sections', 6, {
+    "this_class" : "section_explain",
+    "text" : "Examples showing client-side data. In this case data are not saved as local files but exist as JavaScript objects. There are 3 scenarios where it makes sense to use client-side data with D3."
+})
+
+move_up_down('section_explain', 3, 'up')
+
+add_radiobutton('options_layout_cells', 31, {
+    "this_class" : "choose_data_check",
+    "text_class" : "choose_data_label",
+    "text" : "DATASET 1"
+})
+add_event('choose_data_check', 4, {
+    "type" : "click",
+    "function" : "()"
+})
+add_radiobutton('options_layout_cells', 32, {
+    "this_class" : "choose_data_check",
+    "text_class" : "choose_data_label",
+    "text" : "DATASET 2"
+})
+add_event('choose_data_check', 5, {
+    "type" : "click",
+    "function" : "()"
+})
+add_radiobutton('options_layout_cells', 33, {
+    "this_class" : "choose_data_check",
+    "text_class" : "choose_data_label",
+    "text" : "DATASET 3"
+})
+add_event('choose_data_check', 6, {
+    "type" : "click",
+    "function" : "()"
+})
+all_style_text('choose_data_label', {
+    "color" : "white"
+})
+
+add_button('options_layout_cells', 34, {
+    "this_class" : "call_api_button",
+    "text" : "CALL API"
+})
+style_button('call_api_button', 1, {
+    "background" : "rgb(254, 225, 180)",
+    "color" : "black"
+})
+
+add_button('options_layout_cells', 36, {
+    "this_class" : "upload_button",
+    "text" : "UPLOAD DATA"
+})
+style_button('upload_button', 1, {
+    "background" : "rgb(254, 225, 180)",
+    "color" : "black"
+})
+add_event('upload_button', 1, {
+    "type" : "click",
+    "function" : "pop_upload()"
+})
+
+
+
+
+// ***** all_styles
+all_style_text('section_explain', {
+    "color" : "white",
+    "font-size" : "18px"
+})
+
+all_style_text('choose_flare', {
+    "color" : "white",
+    "font-size" : "18px",
+    "margin-left" : "60px",
+    "cursor" : "pointer"
+})
+
+style_text('choose_flare', 1, {
+    "color" : "hotpink"
+})
 
 
 </script>

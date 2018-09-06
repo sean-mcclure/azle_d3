@@ -1,5 +1,52 @@
 // wrapped_functions
 
+function creating_wrapper_args() {
+add_modal({
+    "this_class" : "creating_wrapper_args_modal",
+    "content_class" : "creating_wrapper_args_modal_content"
+})
+style_modal('creating_wrapper_args_modal', 1, {
+    "width" : "auto",
+    "height" : "auto"
+})
+add_text('creating_wrapper_args_modal_content', 1, {
+    "this_class" : "wrapper_ex_text",
+    "text" : "WRAPPER ARGUMENTS"
+})
+}
+
+
+function creating_extra_functs() {
+add_modal({
+    "this_class" : "extra_functs_modal",
+    "content_class" : "extra_functs_modal_content"
+})
+style_modal('extra_functs_modal', 1, {
+    "width" : "auto",
+    "height" : "auto"
+})
+add_text('extra_functs_modal_content', 1, {
+    "this_class" : "wrapper_ex_text",
+    "text" : "EXTRA FUNCTIONS"
+})
+}
+
+
+function binding_to_ui() {
+add_modal({
+    "this_class" : "binding_ui_modal",
+    "content_class" : "binding_ui_modal_content"
+})
+style_modal('binding_ui_modal', 1, {
+    "width" : "auto",
+    "height" : "auto"
+})
+add_text('binding_ui_modal_content', 1, {
+    "this_class" : "wrapper_ex_text",
+    "text" : "BINDING D3 TO UI ELEMENTS"
+})
+}
+
 function bar_color() {
 add_color_picker({
 "this_class" : "bar_color_picker",
@@ -560,3 +607,130 @@ function click_circle_pack(use_val) {
     })
 }
 
+function click_circle_tree(use_val) {
+    call_d3_extra('tree_layout', 1, {
+        "extra_functions" : tree_extras,
+        "click_circle" : "click_d3('node', " + go_to_circle[use_val] + ")"
+        })
+}
+
+
+function switch_flares_tree() {
+
+empty_contents('sectional_layout_cells', 10)
+remove_element('option_drop', 1)
+
+style_text('choose_flare', 1, {
+    "color" : "white"
+})
+
+style_text('choose_flare', 2, {
+    "color" : "hotpink"
+})
+
+add_dropdown('options_layout_cells', 21, {
+    "this_class" : "option_drop",
+    "options" : ['zoom out', 'analytics', 'cluster', 'graph', 'display'],
+    "title" : "choose..."
+})
+
+add_event('option_drop', 1, {
+    "type" : "change",
+    "function" : "click_circle_tree(this.value)"
+})
+
+tree_wrapper_args = {
+    "data_path" : "../data/flare.json"
+}
+
+tree_extras = {
+
+}
+
+add_d3_visual('sectional_layout_cells', 10, {
+    "this_class" : "tree_layout",
+    "html_path" : "visuals/tree.html",
+    "wrapper_arguments" : tree_wrapper_args,
+    "extra_functions" : tree_extras
+})
+setTimeout(function() {
+style_d3_visual('tree_layout', 1, {
+    "height" : "500px"
+})
+}, 1000)
+}
+
+
+function switch_flares_packing() {
+
+empty_contents('sectional_layout_cells', 10)
+remove_element('option_drop', 1)
+
+style_text('choose_flare', 1, {
+    "color" : "hotpink"
+})
+
+style_text('choose_flare', 2, {
+    "color" : "white"
+})
+
+add_dropdown('options_layout_cells', 21, {
+    "this_class" : "option_drop",
+    "options" : ['zoom out', 'analytics', 'cluster', 'graph', 'display'],
+    "title" : "choose..."
+})
+
+add_event('option_drop', 1, {
+    "type" : "change",
+    "function" : "click_circle_pack(this.value)"
+})
+
+circlepack_wrapper_args = {
+    "data_path" : "../data/flare.json",
+    "chart_width" : 600,
+    "chart_height" : 600,
+    "chart_radius" : 450
+}
+
+circlepack_extras = {
+    "top" : "style_d3('svg', 1, {'margin-top' : '-60px'})"
+}
+
+add_d3_visual('sectional_layout_cells', 10, {
+    "this_class" : "circlepack",
+    "html_path" : "visuals/circlepack.html",
+    "wrapper_arguments" : circlepack_wrapper_args,
+    "extra_functions" : circlepack_extras
+})
+
+}
+
+function pop_upload() {
+add_modal({
+    "this_class" : "upload_data_modal",
+    "content_class" : "upload_data_modal_content"
+})
+style_modal('upload_data_modal', 1, {
+    "width" : "auto",
+    "height" : "auto"
+})
+add_text('upload_data_modal_content', 1, {
+    "this_class" : "upload_text",
+    "text" : "UPLOAD DATA<br><br>"
+})
+style_text('upload_text', 1, {
+    "font-weight" : "bold"
+})
+add_upload_button('upload_data_modal_content', 1, {
+    "this_class" : "upload_data_button"
+})
+style_upload_button('upload_data_button', 1, {
+    "margin-left" : "70px"
+})
+add_event('upload_data_button', 1, {
+    "type" : "upload",
+    "function" : `
+
+    `
+})
+}
