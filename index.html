@@ -4,7 +4,8 @@
 <head>
 <script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
 <!--<script src='http://worldofdatascience.com/kedion.min.js'></script>-->
-    <script src="../Kedion/main.js"></script>
+<script src="../Kedion/main.js"></script>
+<script src="data/states_and_positions.js"></script>
 </head>
 
 <body>
@@ -709,6 +710,7 @@ all_style_icon('code_icon', {
 
 // **********************SECTION 5 **************************************
 
+/*
 add_text('sectional_layout_cells', 9, {
     "this_class" : "choose_flare",
     "text" : "&#8226; circle packing"
@@ -719,8 +721,15 @@ add_text('sectional_layout_cells', 9, {
     "text" : "&#8226; tree layout"
 })
 
+add_text('sectional_layout_cells', 9, {
+    "this_class" : "choose_flare",
+    "text" : "&#8226; US map"
+})
+
+
 move_up_down('choose_flare', 1, 'up')
 move_up_down('choose_flare', 2, 'up')
+move_up_down('choose_flare', 3, 'up')
 
 add_event('choose_flare', 1, {
     "type" : "click",
@@ -732,9 +741,17 @@ add_event('choose_flare', 2, {
     "function" : "switch_flares_tree()"
 })
 
+add_event('choose_flare', 3, {
+    "type" : "click",
+    "function" : "switch_to_map()"
+})
+*/
+
 style_layout('sectional_layout_cells', 10, {
     "halign" : "center"
 })
+
+//*********** circle pack
 
 circlepack_wrapper_args = {
     "data_path" : "../data/flare.json",
@@ -760,10 +777,111 @@ add_dropdown('options_layout_cells', 21, {
     "title" : "choose..."
 })
 
+style_dropdown('option_drop', 1, {
+    "margin-top" : "80px"
+})
+
 add_event('option_drop', 1, {
     "type" : "change",
     "function" : "click_circle_pack(this.value)"
 })
+
+//*********** map
+
+map_wrapper_args = {
+
+}
+
+map_extras = {
+
+}
+
+add_d3_visual('sectional_layout_cells', 10, {
+    "this_class" : "map",
+    "html_path" : "visuals/map.html",
+    "wrapper_arguments" : map_wrapper_args,
+    "extra_functions" : map_extras
+})
+
+add_dropdown('options_layout_cells', 25, {
+    "this_class" : "option_drop",
+    "options" : Object.keys(states_and_positions),
+    "title" : "choose..."
+})
+
+style_dropdown('option_drop', 2, {
+    "margin-top" : "0px"
+})
+
+
+add_event('option_drop', 2, {
+    "type" : "change",
+    "function" : "click_circle_map(this.value)"
+})
+
+//*********** tree
+
+tree_wrapper_args = {
+    "data_path" : "../data/dataScience.json"
+}
+
+tree_extras = {
+
+}
+
+add_d3_visual('sectional_layout_cells', 10, {
+    "this_class" : "tree_layout",
+    "html_path" : "visuals/tree.html",
+    "wrapper_arguments" : tree_wrapper_args,
+    "extra_functions" : tree_extras
+})
+
+add_button('options_layout_cells', 29, {
+    "this_class" : "tree_option_buttons",
+    "text" : "DATA PREPARATION"
+})
+delay_event({
+"function" : `
+style_button('tree_option_buttons', 1, {
+    "margin-top" : "400px"
+})
+`
+})
+
+add_button('options_layout_cells', 29, {
+    "this_class" : "tree_option_buttons",
+    "text" : "MODEL BUILDING"
+})
+
+add_button('options_layout_cells', 29, {
+    "this_class" : "tree_option_buttons",
+    "text" : "MODEL PERFORMANCE"
+})
+
+add_event('tree_option_buttons', 1, {
+    "type" : "click",
+    "function" : "click_circle_tree('data_cleaning')"
+})
+
+add_event('tree_option_buttons', 2, {
+    "type" : "click",
+    "function" : "click_circle_tree('centroid_models')"
+})
+
+add_event('tree_option_buttons', 3, {
+    "type" : "click",
+    "function" : "click_circle_tree('model_performance')"
+})
+
+style_layout('options_layout', 3, {
+    "height" : "1400px"
+})
+
+setTimeout(function() {
+style_d3_visual('tree_layout', 1, {
+    "height" : "500px"
+})
+}, 1000)
 
 
 // **********************SECTION 6 **************************************
@@ -893,6 +1011,17 @@ all_style_button('stop_timeline_button', {
 all_style_button('option_button', {
     "border" : "0px solid darkgrey"
 })
+
+all_style_button('tree_option_buttons', {
+    "width" : "60%",
+    "background" : "rgb(254, 225, 180)",
+    "border" : "1px solid black",
+    "color" : "black",
+    "height" : "50px",
+    "margin-top" : "10px"
+})
+
+
 
 
 

@@ -1,0 +1,766 @@
+{
+  "name": "Data Science",
+  "children": [
+    {
+      "name": "Data Gathering",
+      "children": [
+        {
+              "name": "Data Collection",
+              "url": "https://en.wikipedia.org/wiki/Data_collection"
+            },
+            {
+              "name": "Data Integration",
+              "url": "https://en.wikipedia.org/wiki/Data_integration"
+            },
+            {
+              "name": "Data Dimensions",
+              "url": "https://en.wikipedia.org/wiki/Dimension_(data_warehouse)"
+            },
+            {
+              "name": "Summary Statistics",
+              "url": "https://en.wikipedia.org/wiki/Summary_statistics"
+            },
+            {
+              "name": "Sensors",
+              "url": "https://en.wikipedia.org/wiki/Sensor"
+            },
+            {
+              "name": "Stream Processing",
+              "url": "https://en.wikipedia.org/wiki/Stream_processing"
+            },
+        {
+          "name": "Data Profiling",
+          "children": [
+            {
+              "name": "Data Types",
+              "url": "https://en.wikipedia.org/wiki/Data_type"
+            },
+            {
+              "name": "Class Balance",
+              "url": "https://en.wikipedia.org/wiki/Statistical_classification"
+            },
+            {
+              "name": "Standard Deviation",
+              "url": "https://en.wikipedia.org/wiki/Standard_deviation"
+            },
+            {
+              "name": "Skewness",
+              "url": "https://en.wikipedia.org/wiki/Skewness"
+            },
+            {
+              "name": "Correlations",
+              "url": "https://en.wikipedia.org/wiki/Correlation_and_dependence"
+            },
+            {
+              "name": "Missing Data",
+              "url": "https://en.wikipedia.org/wiki/Missing_data"
+            },
+            {
+              "name": "Outliers",
+              "url": "https://en.wikipedia.org/wiki/Outlier"
+            },
+            {
+              "name": "Probability Distribution",
+              "url": "https://en.wikipedia.org/wiki/Probability_distribution"
+            },
+            {
+              "name": "Multicollinearity",
+              "url": "https://en.wikipedia.org/wiki/Multicollinearity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Data Preparation",
+      "children": [
+        {
+          "name": "Data Discretization",
+          "url": "https://en.wikipedia.org/wiki/Discretization_of_continuous_features"
+        },
+        {
+          "name": "Data Cleaning",
+          "children": [
+            {
+              "name": "Type Conversion",
+              "url": "http://en.wikipedia.org/wiki/Type_conversion"
+            },
+            {
+              "name": "Character Encoding",
+              "url": "http://en.wikipedia.org/wiki/Character_encoding"
+            },
+            {
+              "name": "Imputing Missing Data",
+              "url": "http://en.wikipedia.org/wiki/Imputation_(statistics)"
+            },
+            {
+              "name": "Removing Outliers",
+              "url": "http://en.wikipedia.org/wiki/Outlier"
+            }
+          ]
+        },
+        {
+          "name": "Data Transformation",
+          "url": "https://en.wikipedia.org/wiki/Data_transformation_(statistics)"
+        },
+        {
+          "name": "Data Reduction",
+          "url": "https://en.wikipedia.org/wiki/Data_reduction"
+        },
+        {
+          "name": "Feature Learning",
+          "url": "http://en.wikipedia.org/wiki/Feature_learning"
+        },
+        {
+          "name": "Feature Selection",
+          "url": "http://en.wikipedia.org/wiki/Feature_selection"
+        },
+        {
+          "name": "Feature Engineering",
+          "url": "https://en.wikipedia.org/wiki/Feature_engineering"
+        },
+        {
+          "name": "Dim. Reduction",
+          "children": [
+            {
+              "name": "Principal Component Analysis (PCA)",
+              "url": "http://en.wikipedia.org/wiki/Principal_component_analysis"
+            },
+            {
+              "name": "Partial Least Squares Regression (PLS)",
+              "url": "http://en.wikipedia.org/wiki/Partial_least_squares_regression"
+            },
+            {
+              "name": "Sammon Mapping",
+              "url": "http://en.wikipedia.org/wiki/Sammon_mapping"
+            },
+            {
+              "name": "Multidimensional Scaling (MDS)",
+              "url": "http://en.wikipedia.org/wiki/Multidimensional_scaling"
+            },
+            {
+              "name": "Projection Pursuit",
+              "url": "http://en.wikipedia.org/wiki/Projection_pursuit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Model Building",
+      "children": [
+        {
+          "name": "Instance-Based Methods",
+          "children": [
+            {
+              "name": "k-Nearest Neighbor (kNN)",
+              "url": "http://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm"
+            },
+            {
+              "name": "Learning Vector Quantization (LVQ)",
+              "url": "http://en.wikipedia.org/wiki/Learning_vector_quantization"
+            }
+          ]
+        },
+        {
+          "name": "Probabilistic Classifiers",
+          "children": [
+            {
+              "name": "Naive Bayes (NB)",
+              "url": "http://en.wikipedia.org/wiki/Naive_Bayes_classifier"
+            },
+            {
+              "name": "Bayesian Belief Network",
+              "url": "http://en.wikipedia.org/wiki/Bayesian_network"
+            }
+          ]
+        },
+        {
+          "name": "Decision Trees",
+          "children": [
+            {
+              "name": "C4.5/5.0",
+              "url": "http://en.wikipedia.org/wiki/C4.5_algorithm#Improvements_in_C5.0.2FSee5_algorithm"
+            },
+            {
+              "name": "Classification and Regression Tree (CART)",
+              "url": "http://en.wikipedia.org/wiki/Decision_tree_learning"
+            },
+            {
+              "name": "Chi-squared Automatic Interaction Detection",
+              "url": "http://en.wikipedia.org/wiki/CHAID"
+            },
+            {
+              "name": "Decision Stump",
+              "url": "http://en.wikipedia.org/wiki/Decision_stump"
+            },
+            {
+              "name": "Multivariate Adaptive Regression Splines (MARS)",
+              "url": "http://en.wikipedia.org/wiki/Multivariate_adaptive_regression_splines"
+            },
+            {
+              "name": "Gradient Boosting Machines (GBM)",
+              "url": "http://en.wikipedia.org/wiki/Gradient_boosting"
+            },
+            {
+              "name": "Random Forests",
+              "url": "https://en.wikipedia.org/wiki/Random_forest"
+            }
+          ]
+        },
+        {
+          "name": "Regression",
+          "children": [
+            {
+              "name": "Multiple Linear Regression",
+              "url": "http://en.wikipedia.org/wiki/Linear_regression"
+            },
+            {
+              "name": "Logistic Regression",
+              "url": "http://en.wikipedia.org/wiki/Logistic_regression"
+            },
+            {
+              "name": "Stepwise Regression",
+              "url": "http://en.wikipedia.org/wiki/Stepwise_regression"
+            },
+            {
+              "name": "Ridge Regression",
+              "url": "http://en.wikipedia.org/wiki/Tikhonov_regularization"
+            },
+            {
+              "name": "Least Absolute Shrinkage and Selection Operator (LASSO)",
+              "url": "http://en.wikipedia.org/wiki/Least_squares#Lasso_method"
+            },
+            {
+              "name": "Elastic Net Regularization",
+              "url": "http://en.wikipedia.org/wiki/Elastic_net_regularization"
+            },
+            {
+              "name": "Multivariate Adaptive Regression Splines (MARS)",
+              "url": "http://en.wikipedia.org/wiki/Multivariate_adaptive_regression_splines"
+            },
+            {
+              "name": "Locally Estimated Scatterplot Smoothing (LOESS)",
+              "url": "http://en.wikipedia.org/wiki/Local_regression"
+            }
+          ]
+        },
+        {
+          "name": "Neural Networks",
+          "children": [
+            {
+              "name": "Feedforward Network",
+              "url": "http://en.wikipedia.org/wiki/Feedforward_neural_network"
+            },
+            {
+              "name": "Radial Basis Function Network",
+              "url": "http://en.wikipedia.org/wiki/Radial_basis_function_network"
+            },
+            {
+              "name": "Kohonen Self Organizing Network",
+              "url": "http://en.wikipedia.org/wiki/Self-organizing_map"
+            },
+            {
+              "name": "Learning Vector Quantization",
+              "url": "http://en.wikipedia.org/wiki/Learning_vector_quantization"
+            },
+            {
+              "name": "Recurrent Networks",
+              "children": [
+                {
+                  "name": "Hopfield Network",
+                  "url": "http://en.wikipedia.org/wiki/Hopfield_network"
+                },
+                {
+                  "name": "Elman/Jordan Networks",
+                  "url": "https://en.wikipedia.org/wiki/Recurrent_neural_network#Elman_networks_and_Jordan_networks"
+                },
+                {
+                  "name": "Echo State Network",
+                  "url": "http://en.wikipedia.org/wiki/Echo_state_network"
+                },
+                {
+                  "name": "Long Short Term Memory Network",
+                  "url": "http://en.wikipedia.org/wiki/Long_short_term_memory"
+                },
+                {
+                  "name": "Bi-Directional Recurrent Neural Network",
+                  "url": "papers/BRNN.pdf"
+                },
+                {
+                  "name": "Continuous Time Recurrent Neural Network",
+                  "url": "papers/CTRNN.pdf"
+                },
+                {
+                  "name": "Hierarchical Recurrent Neural Network",
+                  "url": "papers/HRNN.pdf"
+                },
+                {
+                  "name": "Recurrent Multilayer Perceptron",
+                  "url": "papers/RMLP.pdf"
+                },
+                {
+                  "name": "Second Order Recurrent Neural Network",
+                  "url": "papers/sornn.pdf"
+                },
+                {
+                  "name": "Multiple Time Scales Recurrent Neural Network",
+                  "url": "papers/mtsrnn.pdf"
+                },
+                {
+                  "name": "Stochastic Neural Network",
+                  "url": "http://en.wikipedia.org/wiki/Stochastic_neural_network"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Deep Learning",
+          "children": [
+            {
+              "name": "Architectures",
+              "children": [
+                {
+                  "name": "Deep Neural Network",
+                  "url": "papers/bengio.pdf"
+                },
+                {
+                  "name": "Deep Belief Network",
+                  "url": "http://en.wikipedia.org/wiki/Deep_belief_network"
+                },
+                {
+                  "name": "Convolutional Neural Network",
+                  "url": "http://en.wikipedia.org/wiki/Convolutional_neural_network"
+                },
+                {
+                  "name": "Convolutional Deep Belief Network",
+                  "url": "http://en.wikipedia.org/wiki/Convolutional_Deep_Belief_Networks"
+                },
+                {
+                  "name": "Deep Boltzmann Machines",
+                  "url": "papers/larochelle.pdf"
+                },
+                {
+                  "name": "Stacked (Denoising) Auto-Encoders",
+                  "url": "papers/vincent.pdf"
+                },
+                {
+                  "name": "Deep Stacking Network",
+                  "url": "papers/dong.pdf"
+                },
+                {
+                  "name": "Tensor Deep Stacking Network (T-DSN)",
+                  "url": "papers/deng.pdf"
+                },
+                {
+                  "name": "Spike-and-Slab RBMs (ssRBMs)",
+                  "url": "papers/luo.pdf"
+                },
+                {
+                  "name": "Compound Hierarchical-Deep Models",
+                  "url": "papers/torralba.pdf"
+                },
+                {
+                  "name": "Deep Coding Network",
+                  "url": "papers/yu.pdf"
+                },
+                {
+                  "name": "Deep Kernel Machines",
+                  "url": "papers/saul.pdf"
+                },
+                {
+                  "name": "Deep Q-Network",
+                  "url": "papers/dqn.pdf"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Kernel Methods",
+          "children": [
+            {
+              "name": "Kernels",
+              "children": [
+                {
+                  "name": "Linear",
+                  "url": "http://en.wikipedia.org/wiki/Kernel_%28linear_algebra%29"
+                },
+                {
+                  "name": "Guassian Radial Basis",
+                  "url": "http://en.wikipedia.org/wiki/Radial_basis_function_kernel"
+                },
+                {
+                  "name": "Polynomial",
+                  "url": "http://en.wikipedia.org/wiki/Polynomial_kernel"
+                },
+                {
+                  "name": "Hyperbolic Tangent",
+                  "url": "http://en.wikipedia.org/wiki/Hyperbolic_function"
+                },
+                {
+                  "name": "Bessel",
+                  "url": "http://en.wikipedia.org/wiki/Bessel_function"
+                },
+                {
+                  "name": "Laplace Radial Basis",
+                  "url": ""
+                },
+                {
+                  "name": "ANOVA Radial Basis",
+                  "url": ""
+                }
+              ]
+            },
+            {
+              "name": "Methods",
+              "children": [
+                {
+                  "name": "Support Vector Machine",
+                  "url": "http://en.wikipedia.org/wiki/Support_vector_machine"
+                },
+                {
+                  "name": "Relevance Vector Machine",
+                  "url": "http://en.wikipedia.org/wiki/Relevance_vector_machine"
+                },
+                {
+                  "name": "Gaussian Processes",
+                  "url": "http://en.wikipedia.org/wiki/Gaussian_process"
+                },
+                {
+                  "name": "Ranking",
+                  "url": "papers/ranking.pdf"
+                },
+                {
+                  "name": "Online Learning with Kernels",
+                  "url": "papers/onlinekern.pdf"
+                },
+                {
+                  "name": "Spectral Clustering",
+                  "url": "http://en.wikipedia.org/wiki/Spectral_clustering"
+                },
+                {
+                  "name": "Kernel Principle Components Analysis (KPCA)",
+                  "url": "http://en.wikipedia.org/wiki/Kernel_principal_component_analysis"
+                },
+                {
+                  "name": "Kernel Feature Analysis",
+                  "url": "papers/Feng.pdf"
+                },
+                {
+                  "name": "Kernel Canonical Correlation Analysis (KCCA)",
+                  "url": "papers/kCCA.pdf"
+                },
+                {
+                  "name": "Interior Point Code Quadratic Optimizer",
+                  "url": "papers/loqo.pdf"
+                },
+                {
+                  "name": "Incomplete Cholesky Decomposition",
+                  "url": "http://en.wikipedia.org/wiki/Incomplete_Cholesky_factorization"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Association Rules",
+          "children": [
+            {
+              "name": "Apriori Algorithm",
+              "url": "http://en.wikipedia.org/wiki/Apriori_algorithm"
+            },
+            {
+              "name": "Eclat Algorithm",
+              "url": "papers/Eclat.pdf"
+            },
+            {
+              "name": "FP-Growth",
+              "url": "papers/hunyadi.pdf"
+            }
+          ]
+        },
+        {
+          "name": "Clustering",
+          "children": [
+            {
+              "name": "Connectivity Models",
+              "children": [
+                {
+                  "name": "Hierarchical Clustering",
+                  "children": [
+                    {
+                      "name": "Single Linkage",
+                      "url": "http://en.wikipedia.org/wiki/Single-linkage_clustering"
+                    },
+                    {
+                      "name": "Complete Linkage",
+                      "url": "http://en.wikipedia.org/wiki/Complete-linkage_clustering"
+                    },
+                    {
+                      "name": "Average Linkage",
+                      "url": "http://en.wikipedia.org/wiki/UPGMA"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Centroid Models",
+              "children": [
+                {
+                  "name": "k-Means",
+                  "url": "http://en.wikipedia.org/wiki/K-means_clustering"
+                },
+                {
+                  "name": "k-Medoids",
+                  "url": "http://en.wikipedia.org/wiki/K-medoids"
+                },
+                {
+                  "name": "k-Medians",
+                  "url": "http://en.wikipedia.org/wiki/K-medians_clustering"
+                },
+                {
+                  "name": "K-Means++",
+                  "url": "http://en.wikipedia.org/wiki/K-means%2B%2B"
+                },
+                {
+                  "name": "Fuzzy C-Means",
+                  "url": "http://en.wikipedia.org/wiki/Fuzzy_clustering#Fuzzy_c-means_clustering"
+                }
+              ]
+            },
+            {
+              "name": "Distribution Models",
+              "children": [
+                {
+                  "name": "Expectation-Maximization (EM) Algorithm",
+                  "url": "http://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm"
+                }
+              ]
+            },
+            {
+              "name": "Density Models",
+              "children": [
+                {
+                  "name": "DBSCAN",
+                  "url": "http://en.wikipedia.org/wiki/DBSCAN"
+                },
+                {
+                  "name": "OPTICS",
+                  "url": "http://en.wikipedia.org/wiki/OPTICS_algorithm"
+                },
+                {
+                  "name": "Mean-shift",
+                  "url": "http://en.wikipedia.org/wiki/Mean-shift"
+                }
+              ]
+            },
+            {
+              "name": "Subspace Models",
+              "children": [
+                {
+                  "name": "CLIQUE",
+                  "url": "http://en.wikipedia.org/wiki/Clique_problem"
+                }
+              ]
+            },
+            {
+              "name": "Performant",
+              "children": [
+                {
+                  "name": "BIRCH",
+                  "url": "http://en.wikipedia.org/wiki/BIRCH_(data_clustering)"
+                },
+                {
+                  "name": "BSAS",
+                  "url": "http://en.wikipedia.org/wiki/Basic_sequential_algorithmic_scheme"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Model Validation",
+      "children": [
+        {
+          "name": "Confusion Matrix",
+          "url": "http://en.wikipedia.org/wiki/Confusion_matrix"
+        },
+        {
+          "name": "Kappa Statistic",
+          "url": "http://en.wikipedia.org/wiki/Cohen%27s_kappa"
+        },
+        {
+          "name": "Sensitivity and Specificity",
+          "url": "http://en.wikipedia.org/wiki/Sensitivity_and_specificity"
+        },
+        {
+          "name": "F1 Score",
+          "url": "https://en.wikipedia.org/wiki/F1_score"
+        },
+        {
+          "name": "Precision and Recall",
+          "url": "http://en.wikipedia.org/wiki/Precision_and_recall"
+        },
+        {
+          "name": "ROC Curves",
+          "url": "http://en.wikipedia.org/wiki/Receiver_operating_characteristic"
+        },
+        {
+          "name": "Cross Validation",
+          "url": "http://en.wikipedia.org/wiki/Cross-validation_(statistics)"
+        },
+        {
+          "name": "Bootstrap Sampling",
+          "url": "http://en.wikipedia.org/wiki/Bootstrapping_(statistics)"
+        },
+        {
+          "name": "Cluster Validity",
+          "children": [
+            {
+              "name": "Internal Evaluation",
+              "children": [
+                {
+                  "name": "Davies–Bouldin index",
+                  "url": "http://en.wikipedia.org/wiki/Davies%E2%80%93Bouldin_index"
+                },
+                {
+                  "name": "Dunn index",
+                  "url": "http://en.wikipedia.org/wiki/Dunn_index"
+                },
+                {
+                  "name": "Silhouette coefficient",
+                  "url": "http://en.wikipedia.org/wiki/Silhouette_(clustering)"
+                }
+              ]
+            },
+            {
+              "name": "External Evaluation",
+              "children": [
+                {
+                  "name": "Rand Measure",
+                  "url": "http://en.wikipedia.org/wiki/Rand_index"
+                },
+                {
+                  "name": "F-measure",
+                  "url": "http://en.wikipedia.org/wiki/F1_score"
+                },
+                {
+                  "name": "Jaccard index",
+                  "url": "http://en.wikipedia.org/wiki/Jaccard_index"
+                },
+                {
+                  "name": "Fowlkes–Mallows index",
+                  "url": "http://en.wikipedia.org/wiki/Fowlkes%E2%80%93Mallows_index"
+                },
+                {
+                  "name": "Mutual Information",
+                  "url": "http://en.wikipedia.org/wiki/Mutual_information"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Deployment",
+      "children": [
+        {
+          "name": "Web frameworks",
+          "children": [
+            {
+              "name": "Flask",
+              "url": "https://en.wikipedia.org/wiki/Flask_(web_framework)"
+            },
+            {
+              "name": "Node/Express",
+              "url": "https://en.wikipedia.org/wiki/Express.js"
+            }
+          ]
+        },
+        {
+          "name": "Containerization",
+          "children": [
+            {
+              "name": "Docker",
+              "url": "https://en.wikipedia.org/wiki/Docker_(software)"
+            },
+            {
+              "name": "Kubernetes",
+              "url": "https://en.wikipedia.org/wiki/Kubernetes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Monitoring Models",
+      "children": [
+        {
+          "name": "Peformance Metrics and Tracking",
+          "url": "https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers"
+        },
+        {
+          "name": "A/B Testing",
+          "url": "https://en.wikipedia.org/wiki/A/B_testing"
+        },
+        {
+          "name": "MAB Testing",
+          "url": "https://en.wikipedia.org/wiki/Multi-armed_bandit"
+        },
+        {
+          "name": "Concept Drift",
+          "url": "https://en.wikipedia.org/wiki/Concept_drift"
+        }
+      ]
+    },
+    {
+      "name": "Model Performance",
+      "children": [
+        {
+          "name": "Hyperparameter optimization",
+          "url": "http://en.wikipedia.org/wiki/Hyperparameter_optimization"
+        },
+        {
+          "name": "Meta Learning",
+          "children": [
+            {
+              "name": "Bagging",
+              "url": "http://en.wikipedia.org/wiki/Bootstrap_aggregating"
+            },
+            {
+              "name": "Boosting",
+              "url": "http://en.wikipedia.org/wiki/Boosting_(machine_learning)"
+            },
+            {
+              "name": "Gradient Boosting Machines (GBM)",
+              "url": "http://en.wikipedia.org/wiki/Gradient_boosting"
+            },
+            {
+              "name": "Random Forest",
+              "url": "http://en.wikipedia.org/wiki/Random_forest"
+            },
+            {
+              "name": "Stacked Generalization",
+              "url": "http://en.wikipedia.org/wiki/Ensemble_averaging"
+            },
+            {
+              "name": "Consensus clustering",
+              "url": "https://en.wikipedia.org/wiki/Consensus_clustering"
+            }
+          ]
+        },
+        {
+          "name": "Regularization",
+          "url": "http://en.wikipedia.org/wiki/Regularization_(mathematics)"
+        }
+      ]
+    }
+  ]
+}
+

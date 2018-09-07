@@ -607,10 +607,31 @@ function click_circle_pack(use_val) {
     })
 }
 
-function click_circle_tree(use_val) {
+function click_circle_tree(choice) {
+    if(choice == 'data_cleaning') {
     call_d3_extra('tree_layout', 1, {
         "extra_functions" : tree_extras,
-        "click_circle" : "click_d3('node', " + go_to_circle[use_val] + ")"
+        "click_circle" : "click_d3('node', 6)"
+    })
+    }
+    if(choice == 'centroid_models') {
+    call_d3_extra('tree_layout', 1, {
+        "extra_functions" : tree_extras,
+        "click_circle" : "click_d3('node', 5)"
+    })
+    }
+    if(choice == 'model_performance') {
+    call_d3_extra('tree_layout', 1, {
+        "extra_functions" : tree_extras,
+        "click_circle" : "click_d3('node', 1)"
+    })
+    }
+}
+
+function click_circle_map(use_val) {
+    call_d3_extra('map', 1, {
+        "extra_functions" : map_extras,
+        "click_circle" : "click_d3('click_state', " + states_and_positions[use_val] + ")"
         })
 }
 
@@ -626,6 +647,10 @@ style_text('choose_flare', 1, {
 
 style_text('choose_flare', 2, {
     "color" : "hotpink"
+})
+
+style_text('choose_flare', 3, {
+    "color" : "white"
 })
 
 add_dropdown('options_layout_cells', 21, {
@@ -674,6 +699,10 @@ style_text('choose_flare', 2, {
     "color" : "white"
 })
 
+style_text('choose_flare', 3, {
+    "color" : "white"
+})
+
 add_dropdown('options_layout_cells', 21, {
     "this_class" : "option_drop",
     "options" : ['zoom out', 'analytics', 'cluster', 'graph', 'display'],
@@ -704,6 +733,53 @@ add_d3_visual('sectional_layout_cells', 10, {
 })
 
 }
+
+
+function switch_to_map() {
+
+empty_contents('sectional_layout_cells', 10)
+remove_element('option_drop', 1)
+
+style_text('choose_flare', 1, {
+    "color" : "white"
+})
+
+style_text('choose_flare', 2, {
+    "color" : "white"
+})
+
+style_text('choose_flare', 3, {
+    "color" : "hotpink"
+})
+
+add_dropdown('options_layout_cells', 21, {
+    "this_class" : "option_drop",
+    "options" : ['STATE 1', 'STATE 2', 'STATE 3', 'STATE 4', 'STATE 5'],
+    "title" : "choose..."
+})
+
+add_event('option_drop', 1, {
+    "type" : "change",
+    "function" : "click_circle_map(this.value)"
+})
+
+map_wrapper_args = {
+
+}
+
+map_extras = {
+
+}
+
+add_d3_visual('sectional_layout_cells', 10, {
+    "this_class" : "map",
+    "html_path" : "visuals/map.html",
+    "wrapper_arguments" : map_wrapper_args,
+    "extra_functions" : map_extras
+})
+
+}
+
 
 function pop_upload() {
 add_modal({
