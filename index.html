@@ -120,8 +120,8 @@ all_style_layout('hold_explain_buttons_cells', {
     "halign" : "center"
 })
 
-explain_buttons = ['CREATING WRAPPER ARGUMENTS', 'CREATING EXTRA FUNCTIONS', 'BINDING TO UI ELEMENTS']
-explain_functs = ['creating_wrapper_args()', 'creating_extra_functs()', 'binding_to_ui()']
+explain_buttons = ['ADDING D3 VISUALS', 'WRAPPER ARGUMENTS', 'EXTRA FUNCTIONS']
+explain_functs = ['adding_d3_visuals()', 'creating_wrapper_args()', 'creating_extra_functs()']
 call_multiple({
 "iterations" : explain_buttons.length,
 "function" : `
@@ -368,6 +368,7 @@ call_multiple({
 add_radiobutton('options_layout_cells', 14, {
     "this_class" : "choose_data_check",
     "text_class" : "choose_data_label",
+    "name" : "choose_data_section_6",
     "text" : "DATASET 1"
 })
 add_event('choose_data_check', 1, {
@@ -377,6 +378,7 @@ add_event('choose_data_check', 1, {
 add_radiobutton('options_layout_cells', 15, {
     "this_class" : "choose_data_check",
     "text_class" : "choose_data_label",
+    "name" : "choose_data_section_6",
     "text" : "DATASET 2"
 })
 add_event('choose_data_check', 2, {
@@ -386,6 +388,7 @@ add_event('choose_data_check', 2, {
 add_radiobutton('options_layout_cells', 16, {
     "this_class" : "choose_data_check",
     "text_class" : "choose_data_label",
+    "name" : "choose_data_section_6",
     "text" : "DATASET 3"
 })
 add_event('choose_data_check', 3, {
@@ -536,7 +539,7 @@ add_d3_visual('dual_viz_layout_cells', 1, {
 
 // ******* LINE CHART
 linechart_wrapper_args = {
-    "data_path" : "../data/linechart_data.tsv",
+    "data_path" : "../data/linechart_data_a.tsv",
     "chart_width" : 400,
     "line_color" : "hotpink",
     "text_color" : "white"
@@ -750,7 +753,7 @@ add_d3_visual('sectional_layout_cells', 10, {
 
 add_dropdown('options_layout_cells', 21, {
     "this_class" : "option_drop",
-    "options" : ['zoom out', 'analytics', 'cluster', 'graph', 'display'],
+    "options" : ['analytics', 'cluster', 'graph', 'scale', 'controls', 'label', 'display'],
     "title" : "choose..."
 })
 
@@ -896,6 +899,7 @@ style_text('examples_title', 4, {
 add_radiobutton('options_layout_cells', 31, {
     "this_class" : "choose_data_check",
     "text_class" : "choose_data_label",
+    "name" : "choose_data_section_2",
     "text" : "DATASET 1"
 })
 style_layout('options_layout', 4, {
@@ -908,6 +912,7 @@ add_event('choose_data_check', 4, {
 add_radiobutton('options_layout_cells', 32, {
     "this_class" : "choose_data_check",
     "text_class" : "choose_data_label",
+    "name" : "choose_data_section_2",
     "text" : "DATASET 2"
 })
 add_event('choose_data_check', 5, {
@@ -917,6 +922,7 @@ add_event('choose_data_check', 5, {
 add_radiobutton('options_layout_cells', 33, {
     "this_class" : "choose_data_check",
     "text_class" : "choose_data_label",
+    "name" : "choose_data_section_2",
     "text" : "DATASET 3"
 })
 add_event('choose_data_check', 6, {
@@ -953,6 +959,8 @@ add_event('upload_button', 1, {
     "function" : "pop_upload()"
 })
 
+check_checkbox('choose_data_check', 1)
+
 
 chord_wrapper_args = {
     "data_choice" : [
@@ -973,6 +981,8 @@ add_d3_visual('sectional_layout_cells', 12, {
     "wrapper_arguments" : chord_wrapper_args,
     "extra_functions" : chord_extras
 })
+
+check_checkbox('choose_data_check', 4)
 
 
 

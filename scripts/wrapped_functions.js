@@ -13,6 +13,35 @@ add_text('creating_wrapper_args_modal_content', 1, {
     "this_class" : "wrapper_ex_text",
     "text" : "WRAPPER ARGUMENTS"
 })
+style_text('wrapper_ex_text', 1, {
+    "font-weight" : "bold"
+})
+add_text('creating_wrapper_args_modal_content', 1, {
+    "this_class" : "explain_wraps",
+    "text" : "<br>Wrapper arguments are used to pass data dynamically to a D3 visual.<br>In the below example, we are passing the path to the data, along with a variety of stylings."
+})
+add_code("creating_wrapper_args_modal_content", 1, {
+    "this_class" : "kedion_d3_code",
+    "code" : `
+barchart_wrapper_args = {
+    "data_path" : "../data/bar_data.tsv",
+    "y_title" : "AVG RETURN",
+    "top_choice" : 30,
+    "right_choice" : 30,
+    "bottom_choice" : 30,
+    "left_choice" : 60,
+    "bar_color" : "rgb(48, 229, 255)",
+    "title_color" : "white",
+    "chart_width" : 950
+}
+    `
+})
+style_code('kedion_d3_code', 1, {
+    "text-align" : "left",
+    "width" : "auto",
+    "padding" : "14px"
+})
+
 }
 
 
@@ -29,21 +58,66 @@ add_text('extra_functs_modal_content', 1, {
     "this_class" : "wrapper_ex_text",
     "text" : "EXTRA FUNCTIONS"
 })
+
+style_text('wrapper_ex_text', 1, {
+    "font-weight" : "bold"
+})
+add_text('extra_functs_modal_content', 1, {
+    "this_class" : "explain_wraps",
+    "text" : "<br>Extra functions are used to ... can be wither Kedion functions or jQuery."
+})
+add_code("extra_functs_modal_content", 1, {
+    "this_class" : "kedion_d3_code",
+    "code" : `
+barchart_extras = {
+    "text_color" : "all_style_d3('text', {'fill' : 'white'})",
+    "text_size" : "all_style_d3('text', {'font-size' : '17px'})"
+}
+    `
+})
+style_code('kedion_d3_code', 1, {
+    "text-align" : "left",
+    "width" : "auto",
+    "padding" : "14px"
+})
 }
 
 
-function binding_to_ui() {
+function adding_d3_visuals() {
 add_modal({
-    "this_class" : "binding_ui_modal",
-    "content_class" : "binding_ui_modal_content"
+    "this_class" : "adding_visual_modal",
+    "content_class" : "adding_visual_modal_content"
 })
-style_modal('binding_ui_modal', 1, {
+style_modal('adding_visual_modal', 1, {
     "width" : "auto",
     "height" : "auto"
 })
-add_text('binding_ui_modal_content', 1, {
+add_text('adding_visual_modal_content', 1, {
     "this_class" : "wrapper_ex_text",
-    "text" : "BINDING D3 TO UI ELEMENTS"
+    "text" : "ADDING D3 VISUALS"
+})
+style_text('wrapper_ex_text', 1, {
+    "font-weight" : "bold"
+})
+add_text('adding_visual_modal_content', 1, {
+    "this_class" : "explain_wraps",
+    "text" : "<br>Adding visuals is done using add_d3_visual function.<br>We specify the path to the D3 html file, as well as wrapper arguments and any extra functions."
+})
+add_code("adding_visual_modal_content", 1, {
+    "this_class" : "kedion_d3_code",
+    "code" : `
+add_d3_visual('sectional_layout_cells', 2, {
+    "this_class" : "my_d3",
+    "html_path" : "visuals/barchart.html",
+    "wrapper_arguments" : barchart_wrapper_args,
+    "extra_functions" : barchart_extras
+})
+    `
+})
+style_code('kedion_d3_code', 1, {
+    "text-align" : "left",
+    "width" : "auto",
+    "padding" : "14px"
 })
 }
 
@@ -513,7 +587,7 @@ function change_line_chart(bar_instance) {
     call_d3_wrapper('dual_2', 1, {
         "wrapper_arguments" : linechart_wrapper_args,
         "extra_functions" : linechart_extras,
-        "data_path" : "../data/linechart_data.tsv"
+        "data_path" : "../data/linechart_data_a.tsv"
     })
     }
     if(bar_instance == 2) {
@@ -534,27 +608,27 @@ function change_line_chart(bar_instance) {
     call_d3_wrapper('dual_2', 1, {
         "wrapper_arguments" : linechart_wrapper_args,
         "extra_functions" : linechart_extras,
-        "data_path" : "../data/linechart_data_c.tsv"
+        "data_path" : "../data/linechart_data_d.tsv"
     })
     }
     if(bar_instance == 5) {
     call_d3_wrapper('dual_2', 1, {
         "wrapper_arguments" : linechart_wrapper_args,
         "extra_functions" : linechart_extras,
-        "data_path" : "../data/linechart_data_c.tsv"
+        "data_path" : "../data/linechart_data_e.tsv"
     })
     }
     if(bar_instance == 6) {
     call_d3_wrapper('dual_2', 1, {
         "wrapper_arguments" : linechart_wrapper_args,
         "extra_functions" : linechart_extras,
-        "data_path" : "../data/linechart_data_c.tsv"
+        "data_path" : "../data/linechart_data_f.tsv"
     })
     }if(bar_instance == 7) {
     call_d3_wrapper('dual_2', 1, {
         "wrapper_arguments" : linechart_wrapper_args,
         "extra_functions" : linechart_extras,
-        "data_path" : "../data/linechart_data_c.tsv"
+        "data_path" : "../data/linechart_data_g.tsv"
     })
     }
 }
@@ -566,6 +640,7 @@ function play_timeline() {
     style_layout('calendar_layout', 1, {
         "pointer-events" : "none"
     })
+    animate_element('run_timeline_button', 1, {'type' : 'spin', 'speed' : 2000})
     call_every({
         "every" : 2000,
         "function" : `
@@ -593,10 +668,12 @@ function play_timeline() {
 
 
 go_to_circle = {
-    "zoom out" : 1,
     "analytics" : 2,
     "cluster" : 3,
     "graph" : 4,
+    "scale" : 15,
+    "controls" : 22,
+    "label" : 31,
     "display" : 10
 }
 
@@ -634,152 +711,6 @@ function click_circle_map(use_val) {
         "click_circle" : "click_d3('click_state', " + states_and_positions[use_val] + ")"
         })
 }
-
-
-function switch_flares_tree() {
-
-empty_contents('sectional_layout_cells', 10)
-remove_element('option_drop', 1)
-
-style_text('choose_flare', 1, {
-    "color" : "white"
-})
-
-style_text('choose_flare', 2, {
-    "color" : "hotpink"
-})
-
-style_text('choose_flare', 3, {
-    "color" : "white"
-})
-
-add_dropdown('options_layout_cells', 21, {
-    "this_class" : "option_drop",
-    "options" : ['zoom out', 'analytics', 'cluster', 'graph', 'display'],
-    "title" : "choose..."
-})
-
-add_event('option_drop', 1, {
-    "type" : "change",
-    "function" : "click_circle_tree(this.value)"
-})
-
-tree_wrapper_args = {
-    "data_path" : "../data/flare.json"
-}
-
-tree_extras = {
-
-}
-
-add_d3_visual('sectional_layout_cells', 10, {
-    "this_class" : "tree_layout",
-    "html_path" : "visuals/tree.html",
-    "wrapper_arguments" : tree_wrapper_args,
-    "extra_functions" : tree_extras
-})
-setTimeout(function() {
-style_d3_visual('tree_layout', 1, {
-    "height" : "500px"
-})
-}, 1000)
-}
-
-
-function switch_flares_packing() {
-
-empty_contents('sectional_layout_cells', 10)
-remove_element('option_drop', 1)
-
-style_text('choose_flare', 1, {
-    "color" : "hotpink"
-})
-
-style_text('choose_flare', 2, {
-    "color" : "white"
-})
-
-style_text('choose_flare', 3, {
-    "color" : "white"
-})
-
-add_dropdown('options_layout_cells', 21, {
-    "this_class" : "option_drop",
-    "options" : ['zoom out', 'analytics', 'cluster', 'graph', 'display'],
-    "title" : "choose..."
-})
-
-add_event('option_drop', 1, {
-    "type" : "change",
-    "function" : "click_circle_pack(this.value)"
-})
-
-circlepack_wrapper_args = {
-    "data_path" : "../data/flare.json",
-    "chart_width" : 1000,
-    "chart_height" : 600,
-    "chart_radius" : 450
-}
-
-circlepack_extras = {
-    "top" : "style_d3('svg', 1, {'margin-top' : '-60px'})"
-}
-
-add_d3_visual('sectional_layout_cells', 10, {
-    "this_class" : "circlepack",
-    "html_path" : "visuals/circlepack.html",
-    "wrapper_arguments" : circlepack_wrapper_args,
-    "extra_functions" : circlepack_extras
-})
-
-}
-
-
-function switch_to_map() {
-
-empty_contents('sectional_layout_cells', 10)
-remove_element('option_drop', 1)
-
-style_text('choose_flare', 1, {
-    "color" : "white"
-})
-
-style_text('choose_flare', 2, {
-    "color" : "white"
-})
-
-style_text('choose_flare', 3, {
-    "color" : "hotpink"
-})
-
-add_dropdown('options_layout_cells', 21, {
-    "this_class" : "option_drop",
-    "options" : ['STATE 1', 'STATE 2', 'STATE 3', 'STATE 4', 'STATE 5'],
-    "title" : "choose..."
-})
-
-add_event('option_drop', 1, {
-    "type" : "change",
-    "function" : "click_circle_map(this.value)"
-})
-
-map_wrapper_args = {
-
-}
-
-map_extras = {
-
-}
-
-add_d3_visual('sectional_layout_cells', 10, {
-    "this_class" : "map",
-    "html_path" : "visuals/map.html",
-    "wrapper_arguments" : map_wrapper_args,
-    "extra_functions" : map_extras
-})
-
-}
-
 
 function pop_upload() {
 add_modal({
@@ -863,7 +794,7 @@ style_text('api_ex_text', 1, {
 })
  add_code("api_modal_content", 1, {
         "this_class" : "kedion_d3_code",
-        "code" : "http://worldofdatascience/com?dataset=[[1,2,3],[4,5,6],[7,8,9],[10,11,12]]"
+        "code" : "http://104.236.231.30:3333/api"
     })
     style_code('kedion_d3_code', 1, {
         "text-align" : "left",
@@ -881,6 +812,25 @@ style_text('api_ex_text', 1, {
     })
     add_event('fetch_data_button', 1, {
     "type" : "click",
-    "function" : "animate_element('fetch_data_button', 1, {'type' : 'spin'})"
+    "function" : "fetch_chord_data()"
     })
+}
+
+function fetch_chord_data() {
+    animate_element('fetch_data_button', 1, {'type' : 'spin'})
+    call_api({
+        "url" : listen_for_value('kedion_d3_code', 1),
+        "parameters" : '{"choice" : "fetch_data"}',
+        "done" : `
+
+        call_d3_wrapper('chord_chart', 1, {
+        "wrapper_arguments" : chord_wrapper_args,
+        "extra_functions" : chord_extras,
+        "data_choice" : data['response']['data']
+        })
+
+        close_modal()
+
+        `
+        })
 }
