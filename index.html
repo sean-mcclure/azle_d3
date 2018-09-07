@@ -139,8 +139,6 @@ call_multiple({
 `
 })
 
-
-
 add_spa({
     "this_class" : "sections",
     "sections" : 6
@@ -189,13 +187,26 @@ add_image('footer_layout_cells', 2, {
 })
 style_image('footer_logo', 1, {
     "width" : "50px",
-    "float" : "right"
+    "float" : "right",
+    "shadow" : "drop-shadow(0px 0px 8px rgb(250, 255, 245))"
 })
 
 // ******* setting up layouts and styling that apply to all sections ********
+section_titles = ['STYLING & ANIMATION', 'STYLING & CHANGING DATA', '2 CHARTS COMMUNICATING', 'PLAYING A TIMELINE', 'DELEGATING CLICK EVENTS', 'CLIENT-SIDE DATA']
+section_explains = ['We can style charts and add animations by passing data dynamically.', 'We can dynamically pass new datasets to existing visuals.', 'It is often useful to have 2 charts communicate with each other this example. Hover over the bars in the left chart to change the linechart on the right.', 'When it comes to telling stories with data it can be useful to create a series of visuals that play in succession.', 'Delegating click events allows us to programmatically fire a click event inside a D3 visual.', 'Examples showing client-side data. In this case data are not saved as local files but exist as JavaScript objects. There are 3 scenarios where it makes sense to use client-side data with D3.']
 call_multiple({
 "iterations" : $('.sections').length,
 "function" : `
+	add_text('sections', index + 1, {
+        "this_class" : "section_explain_title",
+        "text" : section_titles[index]
+    })
+    if((index + 1) !== 3) {
+    add_text('sections', index + 1, {
+        "this_class" : "section_explain",
+        "text" : section_explains[index]
+    })
+    }
 	add_layout('sections', index + 1, {
     	"this_class": "sectional_layout",
     	"cell_class": "sectional_layout_cells",
@@ -225,6 +236,11 @@ call_multiple({
 
 `
 })
+
+add_text('sections', 3, {
+        "this_class" : "section_explain",
+        "text" : section_explains[2]
+    })
 
 // ******* adding all section 1 buttons and icons ********
 button_titles = ["bar color", "text color", "text size", "bottom", "top", "left", "right", "fly away animation", "change data", "START OVER"]
@@ -420,6 +436,11 @@ add_d3_visual('sectional_layout_cells', 2, {
 })
 
 // **********************SECTION 2 **************************************
+
+style_text('examples_title', 2, {
+    "margin-top" : "60px"
+})
+
 scatter_wrapper_args = {
     "data_path" : "../data/scatter_data.tsv",
     "top_choice" : 30,
@@ -463,19 +484,7 @@ style_layout('explain_layout', 1, {
     "border" : 0
 })
 
-add_text('explain_layout_cell', 1, {
-    "this_class" : "section_explain",
-    "text" : "Communicating between 2 charts. Hover over the bars in the left chart to change the linechart on the right."
-})
-
-style_word('section_explain', 1, {
-    "this_class" : "hover_word",
-    "word" : "Hover",
-    "color" : "rgb(254, 225, 180)",
-    "font-weight" : "bold"
-})
-
-add_icon('explain_layout_cell', 2, {
+add_icon('sections', 3, {
 	"this_class" : "code_icon",
 	"icon_class" : "fa-file-code-o"
 })
@@ -495,7 +504,7 @@ add_layout('sections', 3, {
 
 style_layout('dual_viz_layout', 1, {
     "table-layout" : "fixed",
-    "border" : 1
+    "border" : 0
 })
 
 // ******* BAR CHART 2
@@ -696,10 +705,13 @@ all_style_layout('options_layout', {
     "border" : 0
 })
 all_style_text('examples_title', {
-    "color" : "white",
+    "color" : "whitesmoke",
     "align" : "center",
     "padding" : "10px",
-    "font-size" : "22px"
+    "font-size" : "17px",
+    "float" : "left",
+    "margin-left" : "4px",
+    "margin-bottom" : "-8px"
 })
 all_style_icon('code_icon', {
 	 "font-size" : "30px",
@@ -710,42 +722,7 @@ all_style_icon('code_icon', {
 
 // **********************SECTION 5 **************************************
 
-/*
-add_text('sectional_layout_cells', 9, {
-    "this_class" : "choose_flare",
-    "text" : "&#8226; circle packing"
-})
-
-add_text('sectional_layout_cells', 9, {
-    "this_class" : "choose_flare",
-    "text" : "&#8226; tree layout"
-})
-
-add_text('sectional_layout_cells', 9, {
-    "this_class" : "choose_flare",
-    "text" : "&#8226; US map"
-})
-
-
-move_up_down('choose_flare', 1, 'up')
-move_up_down('choose_flare', 2, 'up')
-move_up_down('choose_flare', 3, 'up')
-
-add_event('choose_flare', 1, {
-    "type" : "click",
-    "function" : "switch_flares_packing()"
-})
-
-add_event('choose_flare', 2, {
-    "type" : "click",
-    "function" : "switch_flares_tree()"
-})
-
-add_event('choose_flare', 3, {
-    "type" : "click",
-    "function" : "switch_to_map()"
-})
-*/
+remove_element('examples_title', 3)
 
 style_layout('sectional_layout_cells', 10, {
     "halign" : "center"
@@ -778,12 +755,23 @@ add_dropdown('options_layout_cells', 21, {
 })
 
 style_dropdown('option_drop', 1, {
-    "margin-top" : "80px"
+    "margin-top" : "80px",
+    "margin-left" : "7px"
 })
 
 add_event('option_drop', 1, {
     "type" : "change",
     "function" : "click_circle_pack(this.value)"
+})
+
+add_button('options_layout_cells', 21, {
+    "this_class" : "zoom_option_buttons",
+    "text" : "ZOOM OUT"
+})
+
+add_event('zoom_option_buttons', 1, {
+    "type" : "click",
+    "function" : "click_circle_pack(1)"
 })
 
 //*********** map
@@ -803,20 +791,31 @@ add_d3_visual('sectional_layout_cells', 10, {
     "extra_functions" : map_extras
 })
 
-add_dropdown('options_layout_cells', 25, {
+add_dropdown('options_layout_cells', 24, {
     "this_class" : "option_drop",
     "options" : Object.keys(states_and_positions),
     "title" : "choose..."
 })
 
 style_dropdown('option_drop', 2, {
-    "margin-top" : "0px"
+    "margin-top" : "200px",
+    "margin-left" : "8px",
 })
 
 
 add_event('option_drop', 2, {
     "type" : "change",
     "function" : "click_circle_map(this.value)"
+})
+
+add_button('options_layout_cells', 24, {
+    "this_class" : "zoom_option_buttons",
+    "text" : "ZOOM OUT"
+})
+
+add_event('zoom_option_buttons', 2, {
+    "type" : "click",
+    "function" : "click_circle_map(1)"
 })
 
 //*********** tree
@@ -843,7 +842,7 @@ add_button('options_layout_cells', 29, {
 delay_event({
 "function" : `
 style_button('tree_option_buttons', 1, {
-    "margin-top" : "400px"
+    "margin-top" : "300px"
 })
 `
 })
@@ -886,10 +885,7 @@ style_d3_visual('tree_layout', 1, {
 
 // **********************SECTION 6 **************************************
 
-add_text('sections', 6, {
-    "this_class" : "section_explain",
-    "text" : "Examples showing client-side data. In this case data are not saved as local files but exist as JavaScript objects. There are 3 scenarios where it makes sense to use client-side data with D3."
-})
+remove_element('examples_title', 3)
 
 move_up_down('section_explain', 3, 'up')
 
@@ -901,6 +897,9 @@ add_radiobutton('options_layout_cells', 31, {
     "this_class" : "choose_data_check",
     "text_class" : "choose_data_label",
     "text" : "DATASET 1"
+})
+style_layout('options_layout', 4, {
+    "margin-top" : "80px"
 })
 add_event('choose_data_check', 4, {
     "type" : "click",
@@ -977,12 +976,15 @@ add_d3_visual('sectional_layout_cells', 12, {
 
 
 
-
-
 // ***** all_styles
 all_style_text('section_explain', {
     "color" : "white",
     "font-size" : "18px"
+})
+
+all_style_text('section_explain_title', {
+    "color" : "rgb(245, 255, 169)",
+    "font-size" : "22px"
 })
 
 all_style_text('choose_flare', {
@@ -1020,6 +1022,18 @@ all_style_button('tree_option_buttons', {
     "height" : "50px",
     "margin-top" : "10px"
 })
+
+
+all_style_button('zoom_option_buttons', {
+    "width" : "150px",
+    "background" : "rgb(254, 225, 180)",
+    "border" : "1px solid black",
+    "color" : "black",
+    "height" : "40px",
+    "margin-top" : "10px",
+    "margin-left" : "2px"
+})
+
 
 
 
