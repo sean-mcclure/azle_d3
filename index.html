@@ -86,6 +86,19 @@
         "margin-right": "30px",
         "color": "black"
     })
+    add_image('nav_layout_cells', 3, {
+        "this_class": "octocat",
+        "image_path": "img/octocat.png"
+    })
+    style_image('octocat', 1, {
+        "width": "50px",
+        "float" : "right",
+        "cursor" : "pointer"
+    })
+    add_event('octocat', 1, {
+        "type" : "click",
+        "function" : "navigate_to('https://github.com/WorldofDataScience/kedion_d3', 'new_tab')"
+    })
     add_navigation_bar({
         "this_class": "explain_nav"
     })
