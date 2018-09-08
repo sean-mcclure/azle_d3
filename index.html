@@ -2,129 +2,121 @@
 <html>
 
 <head>
-<script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
-<!--<script src='http://worldofdatascience.com/kedion.min.js'></script>-->
-<script src="../Kedion/main.js"></script>
-<script src="data/states_and_positions.js"></script>
+    <script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
+    <script src='http://worldofdatascience.com/kedion.min.js'></script>
+    <script src="data/states_and_positions.js"></script>
 </head>
 
 <body>
 </body>
+
 </html>
-
 <script>
-
-load_script('scripts/wrapped_functions.js')
-load_script('scripts/code_modals.js')
-
-// ******* prepare page ********
-load_fonts({
-    "font": "Ubuntu"
-})
-
-style_body({
-    "background": "rgb(85, 85, 85)",
-    "font-family": "Ubuntu",
-    "min-width": "1300px"
-})
-
-add_navigation_bar({
-    "this_class": "my_nav"
-})
-
-style_navigation_bar('my_nav', 1, {
-    "background-color": "rgba(91, 95, 100, 0.95)",
-    "border-radius" : "4px",
-    "margin-bottom" : "20px",
-    "height" : "auto"
-})
-
-add_top_button({
-    "this_class": "to_top_button",
-    "text": "TOP",
-    "side": "right"
-})
-
-add_layout('my_nav', 1, {
-    "this_class": "nav_layout",
-    "cell_class": "nav_layout_cells",
-    "row_class": "nav_layout_rows",
-    "number_of_rows": 1,
-    "number_of_columns": 3
-})
-
-style_layout('nav_layout', 1, {
-    "height": "auto",
-    "column_widths": ['33%', '33%', '33%'],
-    "border": 0
-})
-
-style_layout('nav_layout_cells', 1, {
-    "valign" : "middle"
-})
-
-style_layout('nav_layout_cells', 2, {
-    "halign" : "center"
-})
-
-add_image('nav_layout_cells', 1, {
-"this_class" : "logo",
-"image_path" : "img/logo.png"
-})
-style_image('logo', 1, {
-"width" : "250px",
-"padding" : "10px",
-"shadow" : "drop-shadow(4px 4px 16px rgb(154, 148, 151))"
-})
-add_event('logo', 1, {
-"type" : "click",
-"function" : "navigate_to('http://www.worldofdatascience.com', 'new_tab')"
-})
-
-add_image('nav_layout_cells', 2, {
-"this_class" : "k_logo",
-"image_path" : "img/logo_banner.png"
-})
-style_image('k_logo', 1, {
-"width" : "70%"
-})
-
-add_navigation_bar({
-    "this_class": "explain_nav"
-})
-
-style_navigation_bar('explain_nav', 1, {
-    "background-color": "transparent",
-    "border-radius" : "4px",
-    "margin-bottom" : "20px",
-    "height" : "auto"
-})
-
-add_layout('explain_nav', 1, {
-    "this_class": "hold_explain_buttons",
-    "cell_class": "hold_explain_buttons_cells",
-    "row_class": "hold_explain_buttons_rows",
-    "number_of_rows": 1,
-    "number_of_columns": 3
-})
-
-style_layout('hold_explain_buttons', 1, {
-    "height": "auto",
-    "width" : "auto",
-    "table-layout": "fixed",
-    "align" : "center",
-    "border": 0
-})
-
-all_style_layout('hold_explain_buttons_cells', {
-    "halign" : "center"
-})
-
-explain_buttons = ['ADDING D3 VISUALS', 'WRAPPER ARGUMENTS', 'EXTRA FUNCTIONS']
-explain_functs = ['adding_d3_visuals()', 'creating_wrapper_args()', 'creating_extra_functs()']
-call_multiple({
-"iterations" : explain_buttons.length,
-"function" : `
+    load_script('scripts/wrapped_functions.js')
+    load_script('scripts/code_modals.js')
+    // ******* prepare page ********
+    load_fonts({
+        "font": "Ubuntu"
+    })
+    style_body({
+        "background": "rgb(85, 85, 85)",
+        "font-family": "Ubuntu",
+        "min-width": "1300px"
+    })
+    add_navigation_bar({
+        "this_class": "my_nav"
+    })
+    style_navigation_bar('my_nav', 1, {
+        "background-color": "rgba(91, 95, 100, 0.95)",
+        "border-radius": "4px",
+        "margin-bottom": "20px",
+        "height": "auto"
+    })
+    add_top_button({
+        "this_class": "to_top_button",
+        "text": "TOP",
+        "side": "right"
+    })
+    add_layout('my_nav', 1, {
+        "this_class": "nav_layout",
+        "cell_class": "nav_layout_cells",
+        "row_class": "nav_layout_rows",
+        "number_of_rows": 1,
+        "number_of_columns": 3
+    })
+    style_layout('nav_layout', 1, {
+        "height": "auto",
+        "column_widths": ['33%', '33%', '33%'],
+        "border": 0
+    })
+    style_layout('nav_layout_cells', 1, {
+        "valign": "middle"
+    })
+    style_layout('nav_layout_cells', 2, {
+        "halign": "center"
+    })
+    add_image('nav_layout_cells', 1, {
+        "this_class": "logo",
+        "image_path": "img/logo.png"
+    })
+    style_image('logo', 1, {
+        "width": "250px",
+        "padding": "10px",
+        "shadow": "drop-shadow(4px 4px 16px rgb(154, 148, 151))"
+    })
+    add_event('logo', 1, {
+        "type": "click",
+        "function": "navigate_to('http://www.worldofdatascience.com', 'new_tab')"
+    })
+    add_image('nav_layout_cells', 2, {
+        "this_class": "k_logo",
+        "image_path": "img/logo_banner.png"
+    })
+    style_image('k_logo', 1, {
+        "width": "70%"
+    })
+    add_button('nav_layout_cells', 3, {
+        "this_class": "to_article_button",
+        "text": "TUTORIAL"
+    })
+    style_button('to_article_button', 1, {
+        "background": "rgb(254, 225, 180)",
+        "border": "1px solid black",
+        "float": "right",
+        "margin-right": "30px",
+        "color": "black"
+    })
+    add_navigation_bar({
+        "this_class": "explain_nav"
+    })
+    style_navigation_bar('explain_nav', 1, {
+        "background-color": "transparent",
+        "border-radius": "4px",
+        "margin-bottom": "20px",
+        "height": "auto"
+    })
+    add_layout('explain_nav', 1, {
+        "this_class": "hold_explain_buttons",
+        "cell_class": "hold_explain_buttons_cells",
+        "row_class": "hold_explain_buttons_rows",
+        "number_of_rows": 1,
+        "number_of_columns": 4
+    })
+    style_layout('hold_explain_buttons', 1, {
+        "height": "auto",
+        "width": "auto",
+        "table-layout": "fixed",
+        "align": "center",
+        "border": 0
+    })
+    all_style_layout('hold_explain_buttons_cells', {
+        "halign": "center"
+    })
+    explain_buttons = ['ADDING D3 VISUALS', 'WRAPPER ARGUMENTS', 'EXTRA FUNCTIONS', 'BINDING D3 TO UI ELEMENTS']
+    explain_functs = ['adding_d3_visuals()', 'creating_wrapper_args()', 'creating_extra_functs()', 'bind_to_element()']
+    call_multiple({
+        "iterations": explain_buttons.length,
+        "function": `
     add_button('hold_explain_buttons_cells', index + 1, {
         "this_class" : "explain_button",
         "text" : explain_buttons[index]
@@ -137,66 +129,58 @@ call_multiple({
         "function" : explain_functs[index]
     })
 `
-})
-
-add_spa({
-    "this_class" : "sections",
-    "sections" : 6
-})
-
-all_style_spa('sections', {
-    "background" : "rgba(91, 95, 100, 0.95)",
-    "width" : "90%",
-    "height" : "auto"
-})
-
-add_navigation_bar({
-    "this_class": "footer"
-})
-
-style_navigation_bar('footer', 1, {
-    "background" : "rgba(91, 95, 100, 0.95)",
-    "height" : "auto"
-})
-
-add_layout('footer', 1, {
-    "this_class": "footer_layout",
-    "cell_class": "footer_layout_cells",
-    "row_class": "footer_layout_rows",
-    "number_of_rows": 1,
-    "number_of_columns": 2
-})
-
-style_layout('footer_layout', 1, {
-    "height": "auto",
-    "width" : "auto",
-    "align" : "center",
-    "border": 0
-})
-
-add_text('footer_layout_cells', 1, {
-    "this_class" : "footer_text",
-    "text" : "Written in Kedion"
-})
-style_text('footer_text', 1, {
-    "color" : "lightgrey"
-})
-add_image('footer_layout_cells', 2, {
-    "this_class" : "footer_logo",
-    "image_path" : "img/kedion_logo.png"
-})
-style_image('footer_logo', 1, {
-    "width" : "50px",
-    "float" : "right",
-    "shadow" : "drop-shadow(0px 0px 8px rgb(250, 255, 245))"
-})
-
-// ******* setting up layouts and styling that apply to all sections ********
-section_titles = ['STYLING & ANIMATION', 'STYLING & CHANGING DATA', '2 CHARTS COMMUNICATING', 'PLAYING A TIMELINE', 'DELEGATING CLICK EVENTS', 'CLIENT-SIDE DATA']
-section_explains = ['We can style charts and add animations by passing data dynamically.', 'We can dynamically pass new datasets to existing visuals.', 'It is often useful to have 2 charts communicate with each other this example. Hover over the bars in the left chart to change the linechart on the right.', 'When it comes to telling stories with data it can be useful to create a series of visuals that play in succession.', 'Delegating click events allows us to programmatically fire a click event inside a D3 visual.', 'Examples showing client-side data. In this case data are not saved as local files but exist as JavaScript objects. There are 3 scenarios where it makes sense to use client-side data with D3.']
-call_multiple({
-"iterations" : $('.sections').length,
-"function" : `
+    })
+    add_spa({
+        "this_class": "sections",
+        "sections": 6
+    })
+    all_style_spa('sections', {
+        "background": "rgba(91, 95, 100, 0.95)",
+        "width": "90%",
+        "height": "auto"
+    })
+    add_navigation_bar({
+        "this_class": "footer"
+    })
+    style_navigation_bar('footer', 1, {
+        "background": "rgba(91, 95, 100, 0.95)",
+        "height": "auto"
+    })
+    add_layout('footer', 1, {
+        "this_class": "footer_layout",
+        "cell_class": "footer_layout_cells",
+        "row_class": "footer_layout_rows",
+        "number_of_rows": 1,
+        "number_of_columns": 2
+    })
+    style_layout('footer_layout', 1, {
+        "height": "auto",
+        "width": "auto",
+        "align": "center",
+        "border": 0
+    })
+    add_text('footer_layout_cells', 1, {
+        "this_class": "footer_text",
+        "text": "Written in Kedion"
+    })
+    style_text('footer_text', 1, {
+        "color": "lightgrey"
+    })
+    add_image('footer_layout_cells', 2, {
+        "this_class": "footer_logo",
+        "image_path": "img/kedion_logo.png"
+    })
+    style_image('footer_logo', 1, {
+        "width": "50px",
+        "float": "right",
+        "shadow": "drop-shadow(0px 0px 8px rgb(250, 255, 245))"
+    })
+    // ******* setting up layouts and styling that apply to all sections ********
+    section_titles = ['STYLING & ANIMATION', 'CHANGING DATA', '2 CHARTS COMMUNICATING', 'PLAYING A TIMELINE', 'DELEGATING CLICK EVENTS', 'CLIENT-SIDE DATA']
+    section_explains = ['Styling charts and animating elements.', 'Dynamically passing new datasets to existing visuals.', '2 charts communicating with each other. Hover over bars on the left chart to change data on the right.', 'Creating a series of visuals that play in succession.', 'Delegating click events to programmatically click elements inside a D3 visual.', 'Examples showing client-side data. In this case data are not saved as local files, but instead exist as JavaScript objects. There are 3 scenarios where it makes sense to use client-side data with D3; storing data as a JS object, fetching data from an API, and uploading data from the browser.']
+    call_multiple({
+        "iterations": $('.sections').length,
+        "function": `
 	add_text('sections', index + 1, {
         "this_class" : "section_explain_title",
         "text" : section_titles[index]
@@ -235,19 +219,17 @@ call_multiple({
 
 
 `
-})
-
-add_text('sections', 3, {
-        "this_class" : "section_explain",
-        "text" : section_explains[2]
     })
-
-// ******* adding all section 1 buttons and icons ********
-button_titles = ["bar color", "text color", "text size", "bottom", "top", "left", "right", "fly away animation", "change data", "START OVER"]
-call_wrapper_functions = ["bar_color()", "text_color()", "text_size()", "bottom()", "top()", "left()", "right()", "animate_zoomOutUp()", "update_data_full()", "start_over()"]
-call_multiple({
-	"iterations" : button_titles.length,
-	"function" : `
+    add_text('sections', 3, {
+        "this_class": "section_explain",
+        "text": section_explains[2]
+    })
+    // ******* adding all section 1 buttons and icons ********
+    button_titles = ["bar color", "text color", "text size", "bottom", "top", "left", "right", "fly away animation", "change data", "START OVER"]
+    call_wrapper_functions = ["bar_color()", "text_color()", "text_size()", "bottom()", "top()", "left()", "right()", "animate_zoomOutUp()", "update_data_full()", "start_over()"]
+    call_multiple({
+        "iterations": button_titles.length,
+        "function": `
 	    add_layout('options_layout_cells', index + 1, {
     	    "this_class": "butt_and_code_layout",
     	    "cell_class": "butt_and_code_layout_cells",
@@ -261,7 +243,7 @@ call_multiple({
     	    "border" : 0
 	    })
 	    add_button('butt_and_code_layout_cells', (index*2) + 1, {
-	        'this_class'  : 'option_button', 
+	        'this_class'  : 'option_button',
 	        'text' : button_titles[index]
 	    })
 	    all_style_button('option_button', {
@@ -269,7 +251,7 @@ call_multiple({
 	        "background" : "rgb(16, 168, 180)"
 	    })
 	    add_event('option_button', index+1, {
-	        "type" : "click", 
+	        "type" : "click",
 	        "function" : call_wrapper_functions[index]
 	    })
 	    add_event('option_button', index+1, {
@@ -302,15 +284,13 @@ call_multiple({
 	    })
 	    }
 `
-})
-
-
-// ******* adding all section 2 buttons and icons ********
-button_titles_b = ["circle size", "circle opacity", "chart width"]
-call_wrapper_functions_b = ["circle_size()", "circle_opacity()", "change_width()"]
-call_multiple({
-	"iterations" : button_titles_b.length,
-	"function" : `
+    })
+    // ******* adding all section 2 buttons and icons ********
+    button_titles_b = ["circle size", "circle opacity", "chart width"]
+    call_wrapper_functions_b = ["circle_size()", "circle_opacity()", "change_width()"]
+    call_multiple({
+        "iterations": button_titles_b.length,
+        "function": `
 	    new_index = 10 + index
 
 	    add_layout('options_layout_cells', new_index + 1, {
@@ -363,270 +343,223 @@ call_multiple({
 	    })
 	    }
 `
-})
-
-add_radiobutton('options_layout_cells', 14, {
-    "this_class" : "choose_data_check",
-    "text_class" : "choose_data_label",
-    "name" : "choose_data_section_6",
-    "text" : "DATASET 1"
-})
-add_event('choose_data_check', 1, {
-    "type" : "click",
-    "function" : "dataset1()"
-})
-add_radiobutton('options_layout_cells', 15, {
-    "this_class" : "choose_data_check",
-    "text_class" : "choose_data_label",
-    "name" : "choose_data_section_6",
-    "text" : "DATASET 2"
-})
-add_event('choose_data_check', 2, {
-    "type" : "click",
-    "function" : "dataset2()"
-})
-add_radiobutton('options_layout_cells', 16, {
-    "this_class" : "choose_data_check",
-    "text_class" : "choose_data_label",
-    "name" : "choose_data_section_6",
-    "text" : "DATASET 3"
-})
-add_event('choose_data_check', 3, {
-    "type" : "click",
-    "function" : "dataset3()"
-})
-all_style_text('choose_data_label', {
-    "color" : "white"
-})
-
-add_dropdown("options_layout_cells", 17, {
-    "this_class" : "data_dropdown",
-    "options" : ["Setosa", "Versicolor", "Virginica"],
-    "title" : "choose class..."
     })
-style_dropdown('data_dropdown', 1, {
-    "width" : "200px"
-})
-add_event('data_dropdown', 1, {
-    "type" : "change",
-    "function" : "choose_class(this.value)"
-})
-
-// *************************Kedion D3***********************************
-
-barchart_wrapper_args = {
-    "data_path" : "../data/bar_data.tsv",
-    "y_title" : "AVG RETURN",
-    "top_choice" : 30,
-    "right_choice" : 30,
-    "bottom_choice" : 30,
-    "left_choice" : 60,
-    "bar_color" : "rgb(48, 229, 255)",
-    "title_color" : "white",
-    "chart_width" : 950
-}
-
-barchart_extras = {
-    "text_color" : "all_style_d3('text', {'fill' : 'white'})",
-    "text_size" : "all_style_d3('text', {'font-size' : '17px'})"
-}
-
-add_d3_visual('sectional_layout_cells', 2, {
-    "this_class" : "my_d3",
-    "html_path" : "visuals/barchart.html",
-    "wrapper_arguments" : barchart_wrapper_args,
-    "extra_functions" : barchart_extras
-})
-
-// **********************SECTION 2 **************************************
-
-style_text('examples_title', 2, {
-    "margin-top" : "60px"
-})
-
-scatter_wrapper_args = {
-    "data_path" : "../data/scatter_data.tsv",
-    "top_choice" : 30,
-    "right_choice" : 30,
-    "bottom_choice" : 30,
-    "left_choice" : 60,
-    "chart_width" : 930
-}
-
-scatter_extras = {
-    "text_color" : "all_style_d3('text', {'fill' : 'white'})",
-    "text_size" : "all_style_d3('text', {'font-size' : '17px'})",
-    "circle_size" : "all_style_d3('dot', {'r' : '7px'})",
-    "circle_opacity" : "all_style_d3('dot', {'opacity' : 1})"
-}
-
-add_d3_visual('sectional_layout_cells', 4, {
-    "this_class" : "scatter_chart",
-    "html_path" : "visuals/scatter.html",
-    "wrapper_arguments" : scatter_wrapper_args,
-    "extra_functions" : scatter_extras
-})
-
-// **********************SECTION 3 **************************************
-remove_element('examples_title', 3)
-remove_element('options_layout', 3)
-
-add_layout('sections', 3, {
-    "this_class" : "explain_layout",
-    "row_class" : "explain_layout_row",
-     "cell_class" : "explain_layout_cell",
-     "number_of_rows" : 1,
-     "number_of_columns" : 2
-})
-
-style_layout('explain_layout', 1, {
-    "column_widths" : ['90%', '10%'],
-    "height" : "auto",
-    "width" : "auto",
-    "margin-bottom" : "10px",
-    "border" : 0
-})
-
-add_icon('sections', 3, {
-	"this_class" : "code_icon",
-	"icon_class" : "fa-file-code-o"
-})
-
-add_event('code_icon', last_class_instance('code_icon'), {
-	"type" : "click",
-	"function" : "pop_code_modal(this.id)"
-})
-
-add_layout('sections', 3, {
-    "this_class": "dual_viz_layout",
-    "cell_class": "dual_viz_layout_cells",
-    "row_class": "dual_viz_layout_rows",
-    "number_of_rows": 1,
-    "number_of_columns": 2
-})
-
-style_layout('dual_viz_layout', 1, {
-    "table-layout" : "fixed",
-    "border" : 0
-})
-
-// ******* BAR CHART 2
-barchart_2_wrapper_args = {
-    "data_path" : "../data/bar_data_b.tsv",
-    "y_title" : "AVG RETURN",
-    "top_choice" : 30,
-    "right_choice" : 230,
-    "bottom_choice" : 30,
-    "left_choice" : 60,
-    "bar_color" : "rgb(254, 225, 180)",
-    "title_color" : "white",
-    "chart_width" : 800
-}
-
-barchart_2_extras = {
-    "pointer_cursor" : "all_style_d3('rect', {'cursor' : 'pointer'})",
-    "text_color" : "all_style_d3('text', {'fill' : 'white'})",
-    "text_size" : "all_style_d3('text', {'font-size' : '17px'})",
-    "call_line_chart" : "all_apply_id('bar'); all_add_event('bar', {'type' : 'hover', 'function' : 'parent.change_line_chart(get_target_instance(this.id))'})"
+    add_radiobutton('options_layout_cells', 14, {
+        "this_class": "choose_data_check",
+        "text_class": "choose_data_label",
+        "name": "choose_data_section_6",
+        "text": "DATASET 1"
+    })
+    add_event('choose_data_check', 1, {
+        "type": "click",
+        "function": "dataset1()"
+    })
+    add_radiobutton('options_layout_cells', 15, {
+        "this_class": "choose_data_check",
+        "text_class": "choose_data_label",
+        "name": "choose_data_section_6",
+        "text": "DATASET 2"
+    })
+    add_event('choose_data_check', 2, {
+        "type": "click",
+        "function": "dataset2()"
+    })
+    add_radiobutton('options_layout_cells', 16, {
+        "this_class": "choose_data_check",
+        "text_class": "choose_data_label",
+        "name": "choose_data_section_6",
+        "text": "DATASET 3"
+    })
+    add_event('choose_data_check', 3, {
+        "type": "click",
+        "function": "dataset3()"
+    })
+    all_style_text('choose_data_label', {
+        "color": "white"
+    })
+    add_dropdown("options_layout_cells", 17, {
+        "this_class": "data_dropdown",
+        "options": ["Setosa", "Versicolor", "Virginica"],
+        "title": "choose class..."
+    })
+    style_dropdown('data_dropdown', 1, {
+        "width": "200px"
+    })
+    add_event('data_dropdown', 1, {
+        "type": "change",
+        "function": "choose_class(this.value)"
+    })
+    // *************************Kedion D3***********************************
+    barchart_wrapper_args = {
+        "data_path": "../data/bar_data.tsv",
+        "y_title": "AVG RETURN",
+        "top_choice": 30,
+        "right_choice": 30,
+        "bottom_choice": 30,
+        "left_choice": 60,
+        "bar_color": "rgb(48, 229, 255)",
+        "title_color": "white",
+        "chart_width": 950
     }
-
-add_d3_visual('dual_viz_layout_cells', 1, {
-    "this_class" : "dual_1",
-    "html_path" : "visuals/barchart.html",
-    "wrapper_arguments" : barchart_2_wrapper_args,
-    "extra_functions" : barchart_2_extras
-})
-
-// ******* LINE CHART
-linechart_wrapper_args = {
-    "data_path" : "../data/linechart_data_a.tsv",
-    "chart_width" : 400,
-    "line_color" : "hotpink",
-    "text_color" : "white"
-}
-
-linechart_extras = {
-    "text_color" : "all_style_d3('text', {'fill' : 'white'})",
-    "text_size" : "all_style_d3('text', {'font-size' : '17px'})"
+    barchart_extras = {
+        "text_color": "all_style_d3('text', {'fill' : 'white'})",
+        "text_size": "all_style_d3('text', {'font-size' : '17px'})"
     }
-
-add_d3_visual('dual_viz_layout_cells', 2, {
-    "this_class" : "dual_2",
-    "html_path" : "visuals/linechart.html",
-    "wrapper_arguments" : linechart_wrapper_args,
-    "extra_functions" : linechart_extras
-})
-
-
-// **********************SECTION 4 **************************************
-
-remove_element('options_layout', 3)
-remove_element('examples_title', 3)
-
-style_layout('sectional_layout', 4, {
-    "column_widths" : ['30%', '70%'],
-    "border" : 0
-})
-
-style_layout('sectional_layout_cells', 7, {
-    "halign" : "center",
-    "padding-left" : "100px",
-    "padding-top" : "30px"
-})
-
-add_text('sectional_layout_cells', 7, {
-    "this_class" : "section_explain",
-    "text" : "Run timeline or click on date to see corresponding data."
-})
-
-add_layout('sectional_layout_cells', 7, {
-    "this_class": "cal_but_layout",
-    "cell_class": "cal_but_layout_cells",
-    "row_class": "cal_but_layout_rows",
-    "number_of_rows": 1,
-    "number_of_columns": 2
-})
-
-style_layout('cal_but_layout', 1, {
-    "column_widths" : ['80%', '20%'],
-    "height" : "auto",
-    "width" : "auto",
-    "border" : 0
-})
-
-all_style_layout('cal_but_layout_cells', {
-    "halign" : "center"
-})
-
-add_button('cal_but_layout_cells', 1, {
-	"this_class"  : 'run_timeline_button',
-	"text" : "PLAY"
-})
-
-style_button('run_timeline_button', 1, {
-	 "width" : "190px",
-     "background" : "rgb(16, 168, 180)",
-     "margin-top" : "10px",
-     "margin-bottom" : "10px"
-})
-
-add_event('run_timeline_button', 1, {
-    "type" : "click",
-    "function" : "play_timeline()"
-})
-
-add_button('cal_but_layout_cells', 2, {
-	"this_class"  : 'stop_timeline_button',
-	"text" : "STOP"
-})
-
-style_button('stop_timeline_button', 1, {
-    "background" : "rgba(179, 180, 153, 0.41)"
-})
-
-add_event('stop_timeline_button', 1, {
-    "type" : "click",
-    "function" : `
+    add_d3_visual('sectional_layout_cells', 2, {
+        "this_class": "my_d3",
+        "html_path": "visuals/barchart.html",
+        "wrapper_arguments": barchart_wrapper_args,
+        "extra_functions": barchart_extras
+    })
+    // **********************SECTION 2 **************************************
+    style_text('examples_title', 2, {
+        "margin-top": "60px"
+    })
+    scatter_wrapper_args = {
+        "data_path": "../data/scatter_data.tsv",
+        "top_choice": 30,
+        "right_choice": 30,
+        "bottom_choice": 30,
+        "left_choice": 60,
+        "chart_width": 930
+    }
+    scatter_extras = {
+        "text_color": "all_style_d3('text', {'fill' : 'white'})",
+        "text_size": "all_style_d3('text', {'font-size' : '17px'})",
+        "circle_size": "all_style_d3('dot', {'r' : '7px'})",
+        "circle_opacity": "all_style_d3('dot', {'opacity' : 1})"
+    }
+    add_d3_visual('sectional_layout_cells', 4, {
+        "this_class": "scatter_chart",
+        "html_path": "visuals/scatter.html",
+        "wrapper_arguments": scatter_wrapper_args,
+        "extra_functions": scatter_extras
+    })
+    // **********************SECTION 3 **************************************
+    remove_element('examples_title', 3)
+    remove_element('options_layout', 3)
+    add_layout('sections', 3, {
+        "this_class": "explain_layout",
+        "row_class": "explain_layout_row",
+        "cell_class": "explain_layout_cell",
+        "number_of_rows": 1,
+        "number_of_columns": 2
+    })
+    style_layout('explain_layout', 1, {
+        "column_widths": ['90%', '10%'],
+        "height": "auto",
+        "width": "auto",
+        "margin-bottom": "10px",
+        "border": 0
+    })
+    add_layout('sections', 3, {
+        "this_class": "dual_viz_layout",
+        "cell_class": "dual_viz_layout_cells",
+        "row_class": "dual_viz_layout_rows",
+        "number_of_rows": 1,
+        "number_of_columns": 2
+    })
+    style_layout('dual_viz_layout', 1, {
+        "table-layout": "fixed",
+        "border": 0
+    })
+    // ******* BAR CHART 2
+    barchart_2_wrapper_args = {
+        "data_path": "../data/bar_data_b.tsv",
+        "y_title": "AVG RETURN",
+        "top_choice": 30,
+        "right_choice": 230,
+        "bottom_choice": 30,
+        "left_choice": 60,
+        "bar_color": "rgb(254, 225, 180)",
+        "title_color": "white",
+        "chart_width": 800
+    }
+    barchart_2_extras = {
+        "pointer_cursor": "all_style_d3('rect', {'cursor' : 'pointer'})",
+        "text_color": "all_style_d3('text', {'fill' : 'white'})",
+        "text_size": "all_style_d3('text', {'font-size' : '17px'})",
+        "call_line_chart": "all_apply_id('bar'); all_add_event('bar', {'type' : 'hover', 'function' : 'parent.change_line_chart(get_target_instance(this.id))'})"
+    }
+    add_d3_visual('dual_viz_layout_cells', 1, {
+        "this_class": "dual_1",
+        "html_path": "visuals/barchart.html",
+        "wrapper_arguments": barchart_2_wrapper_args,
+        "extra_functions": barchart_2_extras
+    })
+    // ******* LINE CHART
+    linechart_wrapper_args = {
+        "data_path": "../data/linechart_data_a.tsv",
+        "chart_width": 400,
+        "line_color": "hotpink",
+        "text_color": "white"
+    }
+    linechart_extras = {
+        "text_color": "all_style_d3('text', {'fill' : 'white'})",
+        "text_size": "all_style_d3('text', {'font-size' : '17px'})"
+    }
+    add_d3_visual('dual_viz_layout_cells', 2, {
+        "this_class": "dual_2",
+        "html_path": "visuals/linechart.html",
+        "wrapper_arguments": linechart_wrapper_args,
+        "extra_functions": linechart_extras
+    })
+    // **********************SECTION 4 **************************************
+    remove_element('options_layout', 3)
+    remove_element('examples_title', 3)
+    style_layout('sectional_layout', 4, {
+        "column_widths": ['30%', '70%'],
+        "border": 0
+    })
+    style_layout('sectional_layout_cells', 7, {
+        "halign": "center",
+        "padding-left": "100px",
+        "padding-top": "30px"
+    })
+    add_text('sectional_layout_cells', 7, {
+        "this_class": "section_explain",
+        "text": "Run timeline or click on date to see corresponding data."
+    })
+    add_layout('sectional_layout_cells', 7, {
+        "this_class": "cal_but_layout",
+        "cell_class": "cal_but_layout_cells",
+        "row_class": "cal_but_layout_rows",
+        "number_of_rows": 1,
+        "number_of_columns": 2
+    })
+    style_layout('cal_but_layout', 1, {
+        "column_widths": ['80%', '20%'],
+        "height": "auto",
+        "width": "auto",
+        "border": 0
+    })
+    all_style_layout('cal_but_layout_cells', {
+        "halign": "center"
+    })
+    add_button('cal_but_layout_cells', 1, {
+        "this_class": 'run_timeline_button',
+        "text": "PLAY"
+    })
+    style_button('run_timeline_button', 1, {
+        "width": "190px",
+        "background": "rgb(16, 168, 180)",
+        "margin-top": "10px",
+        "margin-bottom": "10px"
+    })
+    add_event('run_timeline_button', 1, {
+        "type": "click",
+        "function": "play_timeline()"
+    })
+    add_button('cal_but_layout_cells', 2, {
+        "this_class": 'stop_timeline_button',
+        "text": "STOP"
+    })
+    style_button('stop_timeline_button', 1, {
+        "background": "rgba(179, 180, 153, 0.41)"
+    })
+    add_event('stop_timeline_button', 1, {
+        "type": "click",
+        "function": `
         stop_call_every()
         style_button('run_timeline_button', 1, {
             "pointer-events" : "auto"
@@ -636,422 +569,333 @@ add_event('stop_timeline_button', 1, {
         })
         stop_delay_event()
         `
-})
-
-add_layout('sectional_layout_cells', 7, {
-    "this_class": "calendar_layout",
-    "cell_class": "calendar_layout_cells",
-    "row_class": "calendar_layout_rows",
-    "number_of_rows": 6,
-    "number_of_columns": 7
-})
-
-style_layout('calendar_layout', 1, {
-    "table-layout" : "fixed",
-    "border" : 1
-})
-
-style_layout('calendar_layout_rows', 1, {
-    "background" : "rgba(255, 156, 62, 0.64)"
-})
-
-all_add_event('calendar_layout_cells', {
-    "type" : "hover",
-    "function" : "all_style_layout('calendar_layout_cells', {'background' : 'transparent', 'cursor' : 'pointer'}); style_layout('calendar_layout_cells', get_target_instance(this.id), {'background' : 'limegreen'})"
-})
-
-all_add_event('calendar_layout_cells', {
-    "type" : "click",
-    "function" : `
+    })
+    add_layout('sectional_layout_cells', 7, {
+        "this_class": "calendar_layout",
+        "cell_class": "calendar_layout_cells",
+        "row_class": "calendar_layout_rows",
+        "number_of_rows": 6,
+        "number_of_columns": 7
+    })
+    style_layout('calendar_layout', 1, {
+        "table-layout": "fixed",
+        "border": 1
+    })
+    style_layout('calendar_layout_rows', 1, {
+        "background": "rgba(255, 156, 62, 0.64)"
+    })
+    all_add_event('calendar_layout_cells', {
+        "type": "hover",
+        "function": "all_style_layout('calendar_layout_cells', {'background' : 'transparent', 'cursor' : 'pointer'}); style_layout('calendar_layout_cells', get_target_instance(this.id), {'background' : 'limegreen'})"
+    })
+    all_add_event('calendar_layout_cells', {
+        "type": "click",
+        "function": `
         call_d3_extra('piechart', 1, {
             "extra_functions" : piechart_extras,
             "click_button" : "click_element('randomize', 1)"
         })
     `
-})
-
-cal_adds = ['S','M','T','W','T','F','S','','','','','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31']
-call_multiple({
-    "iterations" : 42,
-    "function" : `
+    })
+    cal_adds = ['S', 'M', 'T', 'W', 'T', 'F', 'S', '', '', '', '', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+    call_multiple({
+        "iterations": 42,
+        "function": `
         add_text('calendar_layout_cells', index+1, {'this_class' : 'cal_text', 'text': cal_adds[index]})
         all_style_text('cal_text', {'color' : 'white', 'align' : 'center'})
         `
-})
-
-piechart_wrapper_args = {
-}
-
-piechart_extras = {
-    "text_color" : "all_style_d3('text', {'fill' : 'white'})",
-    "line_color" : "all_style_d3('polyline', {'stroke' : 'rgb(39, 228, 255)'})",
-    "line_opacity" : "all_style_d3('polyline', {'opacity' : 0.9})",
-    "hide_button" : "all_style_d3('button', {'visibility' : 'hidden'})"
-}
-
-add_d3_visual('sectional_layout_cells', 8, {
-    "this_class" : "piechart",
-    "html_path" : "visuals/pie_chart.html",
-    "wrapper_arguments" : piechart_wrapper_args,
-    "extra_functions" : piechart_extras
-})
-
-
-// _all styles
-all_style_layout('sectional_layout_cells', {
-    "valign" : "top"
-})
-all_style_layout('options_layout_cells', {
-    "halign" : "center"
-})
-all_style_layout('options_layout', {
-    "border" : 0
-})
-all_style_text('examples_title', {
-    "color" : "whitesmoke",
-    "align" : "center",
-    "padding" : "10px",
-    "font-size" : "17px",
-    "float" : "left",
-    "margin-left" : "4px",
-    "margin-bottom" : "-8px"
-})
-all_style_icon('code_icon', {
-	 "font-size" : "30px",
-     "color" : "rgba(221, 173, 81, 0.92)",
-     "padding" : "2px",
-     "cursor" : "pointer"
-})
-
-// **********************SECTION 5 **************************************
-
-remove_element('examples_title', 3)
-
-style_layout('sectional_layout_cells', 10, {
-    "halign" : "center"
-})
-
-//*********** circle pack
-
-circlepack_wrapper_args = {
-    "data_path" : "../data/flare.json",
-    "chart_width" : 1000,
-    "chart_height" : 600,
-    "chart_radius" : 450
-}
-
-circlepack_extras = {
-    "top" : "style_d3('svg', 1, {'margin-top' : '-60px'})"
-}
-
-add_d3_visual('sectional_layout_cells', 10, {
-    "this_class" : "circlepack",
-    "html_path" : "visuals/circlepack.html",
-    "wrapper_arguments" : circlepack_wrapper_args,
-    "extra_functions" : circlepack_extras
-})
-
-add_dropdown('options_layout_cells', 21, {
-    "this_class" : "option_drop",
-    "options" : ['analytics', 'cluster', 'graph', 'scale', 'controls', 'label', 'display'],
-    "title" : "choose..."
-})
-
-style_dropdown('option_drop', 1, {
-    "margin-top" : "80px",
-    "margin-left" : "7px"
-})
-
-add_event('option_drop', 1, {
-    "type" : "change",
-    "function" : "click_circle_pack(this.value)"
-})
-
-add_button('options_layout_cells', 21, {
-    "this_class" : "zoom_option_buttons",
-    "text" : "ZOOM OUT"
-})
-
-add_event('zoom_option_buttons', 1, {
-    "type" : "click",
-    "function" : "click_circle_pack(1)"
-})
-
-//*********** map
-
-map_wrapper_args = {
-
-}
-
-map_extras = {
-
-}
-
-add_d3_visual('sectional_layout_cells', 10, {
-    "this_class" : "map",
-    "html_path" : "visuals/map.html",
-    "wrapper_arguments" : map_wrapper_args,
-    "extra_functions" : map_extras
-})
-
-add_dropdown('options_layout_cells', 24, {
-    "this_class" : "option_drop",
-    "options" : Object.keys(states_and_positions),
-    "title" : "choose..."
-})
-
-style_dropdown('option_drop', 2, {
-    "margin-top" : "200px",
-    "margin-left" : "8px",
-})
-
-
-add_event('option_drop', 2, {
-    "type" : "change",
-    "function" : "click_circle_map(this.value)"
-})
-
-add_button('options_layout_cells', 24, {
-    "this_class" : "zoom_option_buttons",
-    "text" : "ZOOM OUT"
-})
-
-add_event('zoom_option_buttons', 2, {
-    "type" : "click",
-    "function" : "click_circle_map(1)"
-})
-
-//*********** tree
-
-tree_wrapper_args = {
-    "data_path" : "../data/dataScience.json"
-}
-
-tree_extras = {
-
-}
-
-add_d3_visual('sectional_layout_cells', 10, {
-    "this_class" : "tree_layout",
-    "html_path" : "visuals/tree.html",
-    "wrapper_arguments" : tree_wrapper_args,
-    "extra_functions" : tree_extras
-})
-
-add_button('options_layout_cells', 29, {
-    "this_class" : "tree_option_buttons",
-    "text" : "DATA PREPARATION"
-})
-delay_event({
-"function" : `
+    })
+    piechart_wrapper_args = {}
+    piechart_extras = {
+        "text_color": "all_style_d3('text', {'fill' : 'white'})",
+        "line_color": "all_style_d3('polyline', {'stroke' : 'rgb(39, 228, 255)'})",
+        "line_opacity": "all_style_d3('polyline', {'opacity' : 0.9})",
+        "hide_button": "all_style_d3('button', {'visibility' : 'hidden'})"
+    }
+    add_d3_visual('sectional_layout_cells', 8, {
+        "this_class": "piechart",
+        "html_path": "visuals/pie_chart.html",
+        "wrapper_arguments": piechart_wrapper_args,
+        "extra_functions": piechart_extras
+    })
+    // _all styles
+    all_style_layout('sectional_layout_cells', {
+        "valign": "top"
+    })
+    all_style_layout('options_layout_cells', {
+        "halign": "center"
+    })
+    all_style_layout('options_layout', {
+        "border": 0
+    })
+    all_style_text('examples_title', {
+        "color": "whitesmoke",
+        "align": "center",
+        "padding": "10px",
+        "font-size": "17px",
+        "float": "left",
+        "margin-left": "4px",
+        "margin-bottom": "-8px"
+    })
+    all_style_icon('code_icon', {
+        "font-size": "30px",
+        "color": "rgba(221, 173, 81, 0.92)",
+        "padding": "2px",
+        "cursor": "pointer"
+    })
+    // **********************SECTION 5 **************************************
+    remove_element('examples_title', 3)
+    style_layout('sectional_layout_cells', 10, {
+        "halign": "center"
+    })
+    //*********** circle pack
+    circlepack_wrapper_args = {
+        "data_path": "../data/flare.json",
+        "chart_width": 1000,
+        "chart_height": 600,
+        "chart_radius": 450
+    }
+    circlepack_extras = {
+        "top": "style_d3('svg', 1, {'margin-top' : '-60px'})"
+    }
+    add_d3_visual('sectional_layout_cells', 10, {
+        "this_class": "circlepack",
+        "html_path": "visuals/circlepack.html",
+        "wrapper_arguments": circlepack_wrapper_args,
+        "extra_functions": circlepack_extras
+    })
+    add_dropdown('options_layout_cells', 21, {
+        "this_class": "option_drop",
+        "options": ['analytics', 'cluster', 'graph', 'scale', 'controls', 'label', 'display'],
+        "title": "choose..."
+    })
+    style_dropdown('option_drop', 1, {
+        "margin-top": "80px",
+        "margin-left": "7px"
+    })
+    add_event('option_drop', 1, {
+        "type": "change",
+        "function": "click_circle_pack(this.value)"
+    })
+    add_button('options_layout_cells', 21, {
+        "this_class": "zoom_option_buttons",
+        "text": "ZOOM OUT"
+    })
+    add_event('zoom_option_buttons', 1, {
+        "type": "click",
+        "function": "click_circle_pack(1)"
+    })
+    //*********** map
+    map_wrapper_args = {}
+    map_extras = {}
+    add_d3_visual('sectional_layout_cells', 10, {
+        "this_class": "map",
+        "html_path": "visuals/map.html",
+        "wrapper_arguments": map_wrapper_args,
+        "extra_functions": map_extras
+    })
+    add_dropdown('options_layout_cells', 24, {
+        "this_class": "option_drop",
+        "options": Object.keys(states_and_positions),
+        "title": "choose..."
+    })
+    style_dropdown('option_drop', 2, {
+        "margin-top": "200px",
+        "margin-left": "8px",
+    })
+    add_event('option_drop', 2, {
+        "type": "change",
+        "function": "click_circle_map(this.value)"
+    })
+    add_button('options_layout_cells', 24, {
+        "this_class": "zoom_option_buttons",
+        "text": "ZOOM OUT"
+    })
+    add_event('zoom_option_buttons', 2, {
+        "type": "click",
+        "function": "click_circle_map(1)"
+    })
+    //*********** tree
+    tree_wrapper_args = {
+        "data_path": "../data/dataScience.json"
+    }
+    tree_extras = {}
+    add_d3_visual('sectional_layout_cells', 10, {
+        "this_class": "tree_layout",
+        "html_path": "visuals/tree.html",
+        "wrapper_arguments": tree_wrapper_args,
+        "extra_functions": tree_extras
+    })
+    add_button('options_layout_cells', 29, {
+        "this_class": "tree_option_buttons",
+        "text": "DATA PREPARATION"
+    })
+    delay_event({
+        "function": `
 style_button('tree_option_buttons', 1, {
     "margin-top" : "300px"
 })
 `
-})
-
-add_button('options_layout_cells', 29, {
-    "this_class" : "tree_option_buttons",
-    "text" : "MODEL BUILDING"
-})
-
-add_button('options_layout_cells', 29, {
-    "this_class" : "tree_option_buttons",
-    "text" : "MODEL PERFORMANCE"
-})
-
-add_event('tree_option_buttons', 1, {
-    "type" : "click",
-    "function" : "click_circle_tree('data_cleaning')"
-})
-
-add_event('tree_option_buttons', 2, {
-    "type" : "click",
-    "function" : "click_circle_tree('centroid_models')"
-})
-
-add_event('tree_option_buttons', 3, {
-    "type" : "click",
-    "function" : "click_circle_tree('model_performance')"
-})
-
-style_layout('options_layout', 3, {
-    "height" : "1400px"
-})
-
-setTimeout(function() {
-style_d3_visual('tree_layout', 1, {
-    "height" : "500px"
-})
-}, 1000)
-
-
-// **********************SECTION 6 **************************************
-
-remove_element('examples_title', 3)
-
-move_up_down('section_explain', 3, 'up')
-
-style_text('examples_title', 4, {
-    "margin-top" : "60px"
-})
-
-add_radiobutton('options_layout_cells', 31, {
-    "this_class" : "choose_data_check",
-    "text_class" : "choose_data_label",
-    "name" : "choose_data_section_2",
-    "text" : "DATASET 1"
-})
-style_layout('options_layout', 4, {
-    "margin-top" : "80px"
-})
-add_event('choose_data_check', 4, {
-    "type" : "click",
-    "function" : "switch_client_side('data_choice_1')"
-})
-add_radiobutton('options_layout_cells', 32, {
-    "this_class" : "choose_data_check",
-    "text_class" : "choose_data_label",
-    "name" : "choose_data_section_2",
-    "text" : "DATASET 2"
-})
-add_event('choose_data_check', 5, {
-    "type" : "click",
-    "function" : "switch_client_side('data_choice_2')"
-})
-add_radiobutton('options_layout_cells', 33, {
-    "this_class" : "choose_data_check",
-    "text_class" : "choose_data_label",
-    "name" : "choose_data_section_2",
-    "text" : "DATASET 3"
-})
-add_event('choose_data_check', 6, {
-    "type" : "click",
-    "function" : "switch_client_side('data_choice_3')"
-})
-all_style_text('choose_data_label', {
-    "color" : "white"
-})
-
-add_button('options_layout_cells', 34, {
-    "this_class" : "call_api_button",
-    "text" : "FETCH DATA"
-})
-style_button('call_api_button', 1, {
-    "background" : "rgb(254, 225, 180)",
-    "color" : "black"
-})
-add_event('call_api_button', 1, {
-    "type" : "click",
-    "function" : "pop_api_modal()"
-})
-
-add_button('options_layout_cells', 36, {
-    "this_class" : "upload_button",
-    "text" : "UPLOAD DATA"
-})
-style_button('upload_button', 1, {
-    "background" : "rgb(254, 225, 180)",
-    "color" : "black"
-})
-add_event('upload_button', 1, {
-    "type" : "click",
-    "function" : "pop_upload()"
-})
-
-check_checkbox('choose_data_check', 1)
-
-
-chord_wrapper_args = {
-    "data_choice" : [
-                    [11975,  5871, 8916, 2868],
-                    [ 1951, 10048, 2060, 6171],
-                    [ 8010, 16145, 8090, 8045],
-                    [ 1013,   990,  940, 6907]
-                    ]
-}
-
-chord_extras = {
-
-}
-
-add_d3_visual('sectional_layout_cells', 12, {
-    "this_class" : "chord_chart",
-    "html_path" : "visuals/chord.html",
-    "wrapper_arguments" : chord_wrapper_args,
-    "extra_functions" : chord_extras
-})
-
-check_checkbox('choose_data_check', 4)
-
-
-
-// ***** all_styles
-all_style_text('section_explain', {
-    "color" : "white",
-    "font-size" : "18px"
-})
-
-all_style_text('section_explain_title', {
-    "color" : "rgb(245, 255, 169)",
-    "font-size" : "22px"
-})
-
-all_style_text('choose_flare', {
-    "color" : "white",
-    "font-size" : "18px",
-    "margin-left" : "60px",
-    "cursor" : "pointer"
-})
-
-style_text('choose_flare', 1, {
-    "color" : "hotpink"
-})
-
-all_style_button('call_api_button', {
-    "border" : "1px solid black"
-})
-all_style_button('upload_button', {
-    "border" : "1px solid black"
-})
-all_style_button('run_timeline_button', {
-    "border" : "1px solid darkgrey"
-})
-all_style_button('stop_timeline_button', {
-    "border" : "1px solid darkgrey"
-})
-all_style_button('option_button', {
-    "border" : "0px solid darkgrey"
-})
-
-all_style_button('tree_option_buttons', {
-    "width" : "60%",
-    "background" : "rgb(254, 225, 180)",
-    "border" : "1px solid black",
-    "color" : "black",
-    "height" : "50px",
-    "margin-top" : "10px"
-})
-
-
-all_style_button('zoom_option_buttons', {
-    "width" : "150px",
-    "background" : "rgb(254, 225, 180)",
-    "border" : "1px solid black",
-    "color" : "black",
-    "height" : "40px",
-    "margin-top" : "10px",
-    "margin-left" : "2px"
-})
-
-
-
-
-
-
-
-
+    })
+    add_button('options_layout_cells', 29, {
+        "this_class": "tree_option_buttons",
+        "text": "MODEL BUILDING"
+    })
+    add_button('options_layout_cells', 29, {
+        "this_class": "tree_option_buttons",
+        "text": "MODEL PERFORMANCE"
+    })
+    add_event('tree_option_buttons', 1, {
+        "type": "click",
+        "function": "click_circle_tree('data_cleaning')"
+    })
+    add_event('tree_option_buttons', 2, {
+        "type": "click",
+        "function": "click_circle_tree('centroid_models')"
+    })
+    add_event('tree_option_buttons', 3, {
+        "type": "click",
+        "function": "click_circle_tree('model_performance')"
+    })
+    style_layout('options_layout', 3, {
+        "height": "1400px"
+    })
+    setTimeout(function() {
+        style_d3_visual('tree_layout', 1, {
+            "height": "500px"
+        })
+    }, 1000)
+    // **********************SECTION 6 **************************************
+    remove_element('examples_title', 3)
+    move_up_down('section_explain', 3, 'up')
+    style_text('examples_title', 4, {
+        "margin-top": "60px"
+    })
+    add_radiobutton('options_layout_cells', 31, {
+        "this_class": "choose_data_check",
+        "text_class": "choose_data_label",
+        "name": "choose_data_section_2",
+        "text": "DATASET 1"
+    })
+    style_layout('options_layout', 4, {
+        "margin-top": "80px"
+    })
+    add_event('choose_data_check', 4, {
+        "type": "click",
+        "function": "switch_client_side('data_choice_1')"
+    })
+    add_radiobutton('options_layout_cells', 32, {
+        "this_class": "choose_data_check",
+        "text_class": "choose_data_label",
+        "name": "choose_data_section_2",
+        "text": "DATASET 2"
+    })
+    add_event('choose_data_check', 5, {
+        "type": "click",
+        "function": "switch_client_side('data_choice_2')"
+    })
+    add_radiobutton('options_layout_cells', 33, {
+        "this_class": "choose_data_check",
+        "text_class": "choose_data_label",
+        "name": "choose_data_section_2",
+        "text": "DATASET 3"
+    })
+    add_event('choose_data_check', 6, {
+        "type": "click",
+        "function": "switch_client_side('data_choice_3')"
+    })
+    all_style_text('choose_data_label', {
+        "color": "white"
+    })
+    add_button('options_layout_cells', 34, {
+        "this_class": "call_api_button",
+        "text": "FETCH DATA"
+    })
+    style_button('call_api_button', 1, {
+        "background": "rgb(254, 225, 180)",
+        "color": "black"
+    })
+    add_event('call_api_button', 1, {
+        "type": "click",
+        "function": "pop_api_modal()"
+    })
+    add_button('options_layout_cells', 36, {
+        "this_class": "upload_button",
+        "text": "UPLOAD DATA"
+    })
+    style_button('upload_button', 1, {
+        "background": "rgb(254, 225, 180)",
+        "color": "black"
+    })
+    add_event('upload_button', 1, {
+        "type": "click",
+        "function": "pop_upload()"
+    })
+    check_checkbox('choose_data_check', 1)
+    chord_wrapper_args = {
+        "data_choice": [
+            [11975, 5871, 8916, 2868],
+            [1951, 10048, 2060, 6171],
+            [8010, 16145, 8090, 8045],
+            [1013, 990, 940, 6907]
+        ]
+    }
+    chord_extras = {}
+    add_d3_visual('sectional_layout_cells', 12, {
+        "this_class": "chord_chart",
+        "html_path": "visuals/chord.html",
+        "wrapper_arguments": chord_wrapper_args,
+        "extra_functions": chord_extras
+    })
+    check_checkbox('choose_data_check', 4)
+    // ***** all_styles
+    all_style_text('section_explain', {
+        "color": "white",
+        "font-size": "18px"
+    })
+    all_style_text('section_explain_title', {
+        "color": "rgb(245, 255, 169)",
+        "font-size": "22px"
+    })
+    all_style_text('choose_flare', {
+        "color": "white",
+        "font-size": "18px",
+        "margin-left": "60px",
+        "cursor": "pointer"
+    })
+    style_text('choose_flare', 1, {
+        "color": "hotpink"
+    })
+    all_style_button('call_api_button', {
+        "border": "1px solid black"
+    })
+    all_style_button('upload_button', {
+        "border": "1px solid black"
+    })
+    all_style_button('run_timeline_button', {
+        "border": "1px solid darkgrey"
+    })
+    all_style_button('stop_timeline_button', {
+        "border": "1px solid darkgrey"
+    })
+    all_style_button('option_button', {
+        "border": "0px solid darkgrey"
+    })
+    all_style_button('tree_option_buttons', {
+        "width": "60%",
+        "background": "rgb(254, 225, 180)",
+        "border": "1px solid black",
+        "color": "black",
+        "height": "50px",
+        "margin-top": "10px"
+    })
+    all_style_button('zoom_option_buttons', {
+        "width": "150px",
+        "background": "rgb(254, 225, 180)",
+        "border": "1px solid black",
+        "color": "black",
+        "height": "40px",
+        "margin-top": "10px",
+        "margin-left": "2px"
+    })
 </script>
-
-
-

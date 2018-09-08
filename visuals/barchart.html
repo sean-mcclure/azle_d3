@@ -16,11 +16,10 @@
 <svg width="960" height="500"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
-<!--<script src='http://worldofdatascience.com/kedion.min.js'></script>-->
-<script src="../../Kedion/main.js"></script>
+<script src='http://worldofdatascience.com/kedion.min.js'></script>
 <script>
-    function draw_visual() {                // add wrapper function
-        kedion_args = arguments[0]          // add kedion_args
+    function draw_visual() { // add wrapper function
+        kedion_args = arguments[0] // add kedion_args
         var svg = d3.select("svg"),
             margin = {
                 top: kedion_args['top_choice'],
@@ -45,20 +44,14 @@
                 return d.frequency;
             })]);
             g.append("g").attr("class", "axis axis--x").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));
-            g.append("g").attr("class", "axis axis--y").call(d3.axisLeft(y).ticks(10, "%")).append("text").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", "1.71em").attr("text-anchor", "end").text(kedion_args['y_title'])
-                .style('fill', kedion_args['title_color'])
-            g.selectAll(".bar").data(data).enter().append("rect").attr("class", "bar").style('fill', kedion_args['bar_color'])
-
-
-
-                .attr("x", function(d) {
-                    return x(d.letter);
-                }).attr("y", function(d) {
-                    return y(d.frequency);
-                }).attr("width", x.bandwidth()).attr("height", function(d) {
-                    return height - y(d.frequency);
-                })
+            g.append("g").attr("class", "axis axis--y").call(d3.axisLeft(y).ticks(10, "%")).append("text").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", "1.71em").attr("text-anchor", "end").text(kedion_args['y_title']).style('fill', kedion_args['title_color'])
+            g.selectAll(".bar").data(data).enter().append("rect").attr("class", "bar").style('fill', kedion_args['bar_color']).attr("x", function(d) {
+                return x(d.letter);
+            }).attr("y", function(d) {
+                return y(d.frequency);
+            }).attr("width", x.bandwidth()).attr("height", function(d) {
+                return height - y(d.frequency);
+            })
         });
-
     }
 </script>
