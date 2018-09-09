@@ -158,21 +158,35 @@ add_slider('my_layout_cell', 1, {
     })
     add_text('bind_modal_content', 1, {
         "this_class": "explain_wraps",
-        "text": "...then add_event with call_d3_wrapper inside function property:"
+        "text": "...place call_d3_wrapper (or call_d3_extra) inside a regular JS function:"
     })
     add_code("bind_modal_content", 1, {
         "this_class": "kedion_d3_code",
         "code": `
-add_event('my_slider', 1, {
-"type" : "as_change",
-"function" :
+function change_bottom(passed_value) {
     call_d3_wrapper('my_barchart', 1, {
         "wrapper_arguments" : barchart_wrapper_args,
         "extra_functions" : barchart_extras,
-        "bottom_choice" : this.value
+        "bottom_choice" : passed_value
         })
-})
+}
 `
+    })
+    style_word('kedion_d3_code', 2, {
+        "this_class": "highlighted_code",
+        "word": "call_d3_wrapper",
+        "color": "yellow",
+        "font-weight": "bold"
+    })
+    style_word('bind_modal_content', 1, {
+        "this_class": "highlighted_code",
+        "word": "call_d3_wrapper",
+        "font-weight": "bold"
+    })
+    style_word('bind_modal_content', 1, {
+        "this_class": "highlighted_code",
+        "word": "call_d3_extra",
+        "font-weight": "bold"
     })
     style_code('kedion_d3_code', 1, {
         "text-align": "left",
@@ -185,7 +199,20 @@ add_event('my_slider', 1, {
         "color": "yellow",
         "font-weight": "bold"
     })
-    style_word('kedion_d3_code', 2, {
+     add_text('bind_modal_content', 1, {
+        "this_class": "explain_wraps",
+        "text": "...add an event to UI element and pass value to above function:"
+    })
+    add_code("bind_modal_content", 1, {
+        "this_class": "kedion_d3_code",
+        "code": `
+add_event('my_slider', 1, {
+    "type" : "as_change",
+    "function" : change_bottom(this.value)
+})
+`
+})
+style_word('kedion_d3_code', 3, {
         "this_class": "highlighted_code",
         "word": "add_event",
         "color": "yellow",
