@@ -1,7 +1,7 @@
 
 # Kedion_D3
 
-Kedion_D3 is an example application showing how to combine Kedion.js with D3.js to bind visualizations to UI elements. This enables developers and data scientists to prototype *real* applications rather than isolated toy visuals disconnected from a true user experience.
+Kedion_D3 is a demo application showing how to combine Kedion.js with D3.js to bind visualizations to UI elements. This enables developers and data scientists to prototype *real* applications rather than isolated toy visuals disconnected from a true user experience.
 
 You can see a preview of the application [here](https://vimeo.com/288840384):
 
