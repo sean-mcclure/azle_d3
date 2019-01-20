@@ -44,13 +44,13 @@ az.call_d3_wrapper('my_barchart', 1, {
     "text_color": `
 az.call_d3_extra('my_barchart', 1, {
     "extra_functions" : barchart_extras,
-    "text_color" : "all_az.style_d3('text', {'fill' : 'white'})"
+    "text_color" : "az.all_style_d3('text', {'fill' : 'white'})"
 })
 `,
     "text_size": `
 az.call_d3_extra('my_barchart', 1, {
     "extra_functions" : barchart_extras,
-    "text_size" : "all_az.style_d3('text', {'font-size' : '17px'})"
+    "text_size" : "az.all_style_d3('text', {'font-size' : '17px'})"
 })
 `,
     "bottom": `
@@ -88,7 +88,7 @@ az.call_d3_extra('my_barchart', 1, {
          all_apply_id('bar')
          all_az.add_event('bar', {
              "type" : "hover",
-             "function" : "animate_element('bar', get_target_instance(this.id), {'type' : 'rubberBand'})"
+             "function" : "az.animate_element('bar', az.get_target_instance(this.id), {'type' : 'rubberBand'})"
      })
 })
 `,
@@ -102,13 +102,13 @@ az.call_d3_wrapper('my_barchart', 1, {
     "circle_size": `
 az.call_d3_extra('scatter_chart', 1, {
     "extra_functions" : scatter_extras,
-    "circle_size" : "all_az.style_d3('dot', {'r' : 20})"
+    "circle_size" : "az.all_style_d3('dot', {'r' : 20})"
 })
 `,
     "circle_opacity": `
 az.call_d3_extra('scatter_chart', 1, {
     "extra_functions" : scatter_extras,
-    "circle_opacity" : "all_az.style_d3('dot', {'opacity' : 0.7})"
+    "circle_opacity" : "az.all_style_d3('dot', {'opacity' : 0.7})"
 })
 `,
     "chart_width": `

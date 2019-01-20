@@ -59,10 +59,6 @@ create_azle(function() {
     az.style_layout('nav_layout_cells', 2, {
         "halign": "center"
     })
-    az.add_event('logo', 1, {
-        "type": "click",
-        "function": "navigate_to('http://www.worldofdatascience.com', 'same_tab')"
-    })
     az.add_image('nav_layout_cells', 2, {
         "this_class": "k_logo",
         "image_path": "img/azle_d3.png"
@@ -80,11 +76,12 @@ create_azle(function() {
         "float": "right",
         "margin-right": "10px",
         "margin-left": "10px",
-        "color": "black"
+        "color": "black",
+        "outline" : 0
     })
     az.add_event('to_article_button', 1, {
         "type" : "click",
-        "function" : "navigate_to('https://towardsdatascience.com/combining-d3-with-kedion-graduating-from-toy-visuals-to-real-applications-92bf7c3cc713', 'new_tab')"
+        "function" : "az.navigate_to('https://towardsdatascience.com/combining-d3-with-kedion-graduating-from-toy-visuals-to-real-applications-92bf7c3cc713', 'new_tab')"
     })
     az.add_image('nav_layout_cells', 3, {
         "this_class": "octocat",
@@ -97,7 +94,7 @@ create_azle(function() {
     })
     az.add_event('octocat', 1, {
         "type" : "click",
-        "function" : "navigate_to('https://github.com/WorldofDataScience/kedion_d3', 'new_tab')"
+        "function" : "az.navigate_to('https://github.com/WorldofDataScience/azle_d3', 'new_tab')"
     })
     az.add_navigation_bar({
         "this_class": "explain_nav"
@@ -135,7 +132,10 @@ create_azle(function() {
         "text" : explain_buttons[index]
     })
     az.all_style_button('explain_button', {
-        "background" : "grey"
+        "background" : "grey",
+        "margin-left" : "4px",
+        "margin-right" : "4px",
+        "outline" : 0
     })
     az.add_event('explain_button', index + 1, {
         "type" : "click",
@@ -188,7 +188,7 @@ create_azle(function() {
     })
     az.add_event('azle_text', 1, {
         "type" : "click",
-        "function" : "navigate_to('https://azlejs.com', 'new_tab')"
+        "function" : "az.navigate_to('https://azlejs.com', 'new_tab')"
     })
     az.add_image('footer_layout_cells', 2, {
         "this_class": "footer_logo",
@@ -201,7 +201,7 @@ create_azle(function() {
     })
     // ******* setting up layouts and styling that apply to all sections ********
     section_titles = ['STYLING & ANIMATION', 'CHANGING DATA', '2 CHARTS COMMUNICATING', 'PLAYING A TIMELINE', 'DELEGATING CLICK EVENTS', 'CLIENT-SIDE DATA']
-    section_explains = ['Styling charts and animating elements.', 'Dynamically passing new datasets to existing visuals.', '2 charts communicating with each other. Hover over bars on the left chart to change data on the right.', 'Creating a series of visuals that play in succession.', 'Delegating click events to programmatically click elements inside a D3 visual.', 'Examples showing client-side data. In this case data are not saved as local files, but instead exist as JavaScript objects. There are 3 scenarios where it makes sense to use client-side data with D3; storing data as a JS object, fetching data from an API, and uploading data from the browser.']
+    section_explains = ['Styling charts and animating elements.', 'Dynamically passing new datasets to existing visuals.', '2 charts communicating with each other. Hover over bars on the left chart to change data on the right. See tutorial for code example.', 'Creating a series of visuals that play in succession.', 'Delegating click events to programmatically click elements inside a D3 visual.', 'Examples showing client-side data. In this case data are not saved as local files, but instead exist as JavaScript objects. There are 3 scenarios where it makes sense to use client-side data with D3; storing data as a JS object, fetching data from an API, and uploading data from the browser.']
     az.call_multiple({
         "iterations": $('.sections').length,
         "function": `
@@ -213,6 +213,17 @@ create_azle(function() {
     az.add_text('sections', index + 1, {
         "this_class" : "section_explain",
         "text" : section_explains[index]
+    })
+    } else {
+    az.style_word('section_explain', 3, {
+        "this_class" : "link_to_tut",
+        "word" : "tutorial",
+        "color" : "yellow",
+        "cursor" : "pointer"
+    })
+    az.add_event('link_to_tut', 1, {
+        "type" : "click",
+        "function" : "az.navigate_to('https://towardsdatascience.com/combining-d3-with-kedion-graduating-from-toy-visuals-to-real-applications-92bf7c3cc713#4875', 'new_tab')"
     })
     }
 	az.add_layout('sections', index + 1, {
@@ -618,7 +629,7 @@ create_azle(function() {
         "function": `
         az.call_d3_extra('piechart', 1, {
             "extra_functions" : piechart_extras,
-            "click_button" : "click_element('randomize', 1)"
+            "click_button" : "az.click_element('randomize', 1)"
         })
     `
     })
@@ -719,29 +730,45 @@ create_azle(function() {
         "wrapper_arguments": map_wrapper_args,
         "extra_functions": map_extras
     })
-    setTimeout(function() {
-    az.add_dropdown('options_layout_cells', 24, {
-        "this_class": "option_drop",
-        "options": Object.keys(states_and_positions),
-        "title": "choose..."
+
+    az.call_once_satisfied({
+        "condition": "typeof(states_and_positions) !== 'undefined'",
+        "function": `
+        az.add_dropdown('options_layout_cells', 24, {
+            "this_class": "option_drop",
+            "options": Object.keys(states_and_positions),
+            "title": "choose..."
+        })
+        az.style_dropdown('option_drop', 2, {
+            "margin-top": "200px",
+            "margin-left": "8px",
+        })
+        az.add_event('option_drop', 2, {
+            "type": "change",
+            "function": "click_circle_map(this.value)"
+        })
+
+        az.add_button('options_layout_cells', 24, {
+            "this_class": "zoom_option_buttons",
+            "text": "ZOOM OUT"
+        })
+        az.add_event('zoom_option_buttons', 2, {
+            "type": "click",
+            "function": "click_circle_map(1)"
+        })
+        az.all_style_button('zoom_option_buttons', {
+            "width": "150px",
+            "background": "rgb(254, 225, 180)",
+            "border": "1px solid black",
+            "color": "black",
+            "height": "40px",
+            "margin-top": "10px",
+            "margin-left": "2px"
+        })
+        `
     })
-    },1000)
-    az.style_dropdown('option_drop', 2, {
-        "margin-top": "200px",
-        "margin-left": "8px",
-    })
-    az.add_event('option_drop', 2, {
-        "type": "change",
-        "function": "click_circle_map(this.value)"
-    })
-    az.add_button('options_layout_cells', 24, {
-        "this_class": "zoom_option_buttons",
-        "text": "ZOOM OUT"
-    })
-    az.add_event('zoom_option_buttons', 2, {
-        "type": "click",
-        "function": "click_circle_map(1)"
-    })
+
+
     //*********** tree
     tree_wrapper_args = {
         "data_path": "../data/dataScience.json"
@@ -840,7 +867,8 @@ az.style_button('tree_option_buttons', 1, {
     })
     az.style_button('call_api_button', 1, {
         "background": "rgb(254, 225, 180)",
-        "color": "black"
+        "color": "black",
+        "outline" : 0
     })
     az.add_event('call_api_button', 1, {
         "type": "click",
@@ -852,7 +880,8 @@ az.style_button('tree_option_buttons', 1, {
     })
     az.style_button('upload_button', 1, {
         "background": "rgb(254, 225, 180)",
-        "color": "black"
+        "color": "black",
+        "outline" : 0
     })
     az.add_event('upload_button', 1, {
         "type": "click",
@@ -916,15 +945,7 @@ az.style_button('tree_option_buttons', 1, {
         "height": "50px",
         "margin-top": "10px"
     })
-    az.all_style_button('zoom_option_buttons', {
-        "width": "150px",
-        "background": "rgb(254, 225, 180)",
-        "border": "1px solid black",
-        "color": "black",
-        "height": "40px",
-        "margin-top": "10px",
-        "margin-left": "2px"
-    })
+
 
     })
 

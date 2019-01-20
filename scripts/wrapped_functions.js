@@ -229,7 +229,7 @@ function bar_color() {
     az.call_d3_wrapper('my_d3', 1, {
     "wrapper_arguments" : barchart_wrapper_args,
     "extra_functions" : barchart_extras,
-    "bar_color" : global_current_color
+    "bar_color" : az.global_current_color
     })
     `
     })
@@ -241,7 +241,7 @@ function text_color() {
         "function": `
     az.call_d3_extra('my_d3', 1, {
        "extra_functions" : barchart_extras,
-       "text_color" : "az.all_style_d3('text', {'fill' : '" + global_current_color + "'})"
+       "text_color" : "az.all_style_d3('text', {'fill' : '" + az.global_current_color + "'})"
     })
     `
     })
@@ -405,10 +405,10 @@ function animate_rubberBand() {
     az.call_d3_extra('my_d3', 1, {
         "extra_functions": barchart_extras,
         "animate_rubber": `
-            all_apply_id('bar')
+            az.all_apply_id('bar')
             az.all_add_event('bar', {
                 "type" : "hover",
-                "function" : "animate_element('bar', az.az.az.az.get_target_instance(this.id), {'type' : 'rubberBand'})"
+                "function" : "az.animate_element('bar', az.get_target_instance(this.id), {'type' : 'rubberBand'})"
             })
             `
     })
@@ -418,10 +418,10 @@ function animate_zoomOutUp() {
     az.call_d3_extra('my_d3', 1, {
         "extra_functions": barchart_extras,
         "animate_rubber": `
-            all_apply_id('bar')
+            az.all_apply_id('bar')
             az.all_add_event('bar', {
                 "type" : "hover",
-                "function" : "animate_element('bar', az.az.az.az.get_target_instance(this.id), {'type' : 'zoomOutUp'})"
+                "function" : "az.animate_element('bar', az.get_target_instance(this.id), {'type' : 'zoomOutUp'})"
             })
             `
     })
@@ -431,7 +431,7 @@ function click_and_get_data() {
     az.call_d3_extra('my_d3', 1, {
         "extra_functions": barchart_extras,
         "click_data": `
-            all_apply_id('bar')
+            az.all_apply_id('bar')
             az.all_add_event('bar', {
                 "type" : "click",
                 "function" : "alert($('#' + this.id).attr('height'))"
@@ -457,7 +457,7 @@ function update_data_b() {
 }
 
 function update_data_full() {
-    toggle_functions('update_data_b()', 'update_data_a()')
+    az.toggle_functions('update_data_b()', 'update_data_a()')
 }
 
 function start_over() {
@@ -721,25 +721,25 @@ function play_timeline() {
     az.style_layout('calendar_layout', 1, {
         "pointer-events": "none"
     })
-    animate_element('run_timeline_button', 1, {
+    az.animate_element('run_timeline_button', 1, {
         'type': 'spin',
         'speed': 2000
     })
-    call_every({
+    az.call_every({
         "every": 2000,
         "function": `
                 az.call_d3_extra('piechart', 1, {
                     "extra_functions" : piechart_extras,
-                    "click_button" : "click_element('randomize', 1)"
+                    "click_button" : "az.click_element('randomize', 1)"
                 })
                 az.all_style_layout('calendar_layout_cells', {'background' : 'transparent'})
                 az.style_layout('calendar_layout_cells', 13 + index, {'background' : 'hotpink'})
         `
     })
-    delay_event({
+    az.delay_event({
         "delay": 63000,
         "function": `
-             stop_call_every();
+             az.stop_call_every();
              az.style_button('run_timeline_button', 1, {
                 "pointer-events" : "auto"
              })
@@ -762,7 +762,7 @@ go_to_circle = {
 function click_circle_pack(use_val) {
     az.call_d3_extra('circlepack', 1, {
         "extra_functions": circlepack_extras,
-        "click_circle": "click_d3('parent', " + go_to_circle[use_val] + ")"
+        "click_circle": "az.click_d3('parent', " + go_to_circle[use_val] + ")"
     })
 }
 
@@ -770,19 +770,19 @@ function click_circle_tree(choice) {
     if (choice == 'data_cleaning') {
         az.call_d3_extra('tree_layout', 1, {
             "extra_functions": tree_extras,
-            "click_circle": "click_d3('node', 6)"
+            "click_circle": "az.click_d3('node', 6)"
         })
     }
     if (choice == 'centroid_models') {
         az.call_d3_extra('tree_layout', 1, {
             "extra_functions": tree_extras,
-            "click_circle": "click_d3('node', 5)"
+            "click_circle": "az.click_d3('node', 5)"
         })
     }
     if (choice == 'model_performance') {
         az.call_d3_extra('tree_layout', 1, {
             "extra_functions": tree_extras,
-            "click_circle": "click_d3('node', 1)"
+            "click_circle": "az.click_d3('node', 1)"
         })
     }
 }
@@ -790,7 +790,7 @@ function click_circle_tree(choice) {
 function click_circle_map(use_val) {
     az.call_d3_extra('map', 1, {
         "extra_functions": map_extras,
-        "click_circle": "click_d3('click_state', " + states_and_positions[use_val] + ")"
+        "click_circle": "az.click_d3('click_state', " + states_and_positions[use_val] + ")"
     })
 }
 
@@ -801,11 +801,28 @@ function pop_upload() {
     })
     az.style_modal('upload_data_modal', 1, {
         "width": "auto",
-        "height": "auto"
+        "height": "auto",
+        "background" : "rgb(85,85,85)",
+        "color" : "white"
     })
     az.add_text('upload_data_modal_content', 1, {
         "this_class": "upload_text",
-        "text": "UPLOAD DATA<br><br>"
+        "text": "UPLOAD DATA<br>Use my_data.json from Tutorial<br><br>"
+    })
+    az.style_word("upload_text", 1, {
+        "this_class" : "yellow_word",
+        "word" : "my_data.json",
+        "color" : "yellow"
+    })
+    az.style_word("upload_text", 1, {
+        "this_class" : "link_tut_word",
+        "word" : "Tutorial",
+        "color" : "skyblue",
+        "cursor" : "pointer"
+    })
+    az.add_event('link_tut_word', 1, {
+        "type" : "click",
+         "function" : "az.navigate_to('https://towardsdatascience.com/combining-d3-with-kedion-graduating-from-toy-visuals-to-real-applications-92bf7c3cc713#c942', 'new_tab')"
     })
     az.style_text('upload_text', 1, {
         "font-weight": "bold"
@@ -824,7 +841,7 @@ function pop_upload() {
         "extra_functions" : chord_extras,
         "data_choice" : data['data']
     })
-    close_modal()
+    az.close_modal()
     `
     })
 }
@@ -875,7 +892,7 @@ function pop_api_modal() {
     })
     az.add_code("api_modal_content", 1, {
         "this_class": "azle_d3_code",
-        "code": "http://104.236.231.30:3333/api"
+        "code": "https://104.236.231.30:3333/api"
     })
     az.style_code('azle_d3_code', 1, {
         "text-align": "left",
@@ -889,7 +906,8 @@ function pop_api_modal() {
     az.style_button('fetch_data_button', 1, {
         "background": "rgb(254, 225, 180)",
         "color": "black",
-        "border": "1px solid black"
+        "border": "1px solid black",
+        "outline" : 0
     })
     az.add_event('fetch_data_button', 1, {
         "type": "click",
@@ -898,11 +916,11 @@ function pop_api_modal() {
 }
 
 function fetch_chord_data() {
-    animate_element('fetch_data_button', 1, {
+    az.animate_element('fetch_data_button', 1, {
         'type': 'spin'
     })
-    call_api({
-        "url": listen_for_value('azle_d3_code', 1),
+    az.call_api({
+        "url": az.listen_for_value('azle_d3_code', 1),
         "parameters": '{"choice" : "fetch_data"}',
         "done": `
 
@@ -912,7 +930,7 @@ function fetch_chord_data() {
         "data_choice" : data['response']['data']
         })
 
-        close_modal()
+        az.close_modal()
 
         `
     })
