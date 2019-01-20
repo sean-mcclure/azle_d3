@@ -3,28 +3,32 @@
 
 Azle_D3 is a demo application showing how to combine Azle with D3.js to bind visualizations to UI elements. This enables developers and data scientists to prototype *real* applications rather than isolated toy visuals disconnected from a true user experience.
 
-You can see a preview of the application [here](https://vimeo.com/288840384):
+You can see a preview of the application [here](https://vimeo.com/312397521):
 
 ## Getting Started
 
 For a full tutorial, please see the following article published on Medium:
-### [Graduating from Toy Visuals to Real Applications](https://medium.com/p/92bf7c3cc713/)
- ![enter image description here](http://collaboratescience.com/Azle_d3/img/medium_banner.png)
+### [Graduating from Toy Visuals to Real Applications](https://towardsdatascience.com/combining-d3-with-kedion-graduating-from-toy-visuals-to-real-applications-92bf7c3cc713)
 
   ### Adding Libraries
   Add **Azle** to your **D3**  **HTML file**:
 
-  ![enter image description here](http://collaboratescience.com/Azle_d3/GIFs/adding_libs.gif)
+```
+<head>
+    <script src='https://azlejs.com/v2/azle.min.js'></script>
+</head>
+
+```
 
   ### Wrap D3 Visual
   **Wrap all D3 code** in the **draw_visual** function, and **set all arguments** to **Azle_args**:
 
-![](http://collaboratescience.com/Azle_d3/GIFs/wrapping_d3.gif)
+![](https://cdn-images-1.medium.com/max/1600/1*0ycAl-B6uZbyWKL9N2o6Qw.gif)
 
 ### Find Hooks
 Find places in the D3 code you want to control from your application, and add Azle_args["key"]:
 
-![](http://collaboratescience.com/Azle_d3/GIFs/hooks.gif)
+![](https://cdn-images-1.medium.com/max/1600/1*IHRsssAIT7jx-utt2IzRSA.gif)
 
   ### Spin Up a Local Web Server
 
@@ -57,8 +61,8 @@ Find places in the D3 code you want to control from your application, and add Az
 ### Set Extra Functions
 
     az.barchart_extras = {
-        "text_color": "all_style_d3('text', {'fill' : 'white'})",
-        "text_size": "all_style_d3('text', {'font-size' : '17px'})"
+        "text_color": "az.all_style_d3('text', {'fill' : 'white'})",
+        "text_size": "az.all_style_d3('text', {'font-size' : '17px'})"
     }
 
 ### Binding D3 to UI Elements

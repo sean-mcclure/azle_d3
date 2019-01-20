@@ -892,7 +892,7 @@ function pop_api_modal() {
     })
     az.add_code("api_modal_content", 1, {
         "this_class": "azle_d3_code",
-        "code": "https://104.236.231.30:3333/api"
+        "code": "https://my-json-server.typicode.com/WorldofDataScience/azle_d3/db"
     })
     az.style_code('azle_d3_code', 1, {
         "text-align": "left",
@@ -927,7 +927,7 @@ function fetch_chord_data() {
         az.call_d3_wrapper('chord_chart', 1, {
         "wrapper_arguments" : chord_wrapper_args,
         "extra_functions" : chord_extras,
-        "data_choice" : data['response']['data']
+        "data_choice" : data['data']
         })
 
         az.close_modal()
