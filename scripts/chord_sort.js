@@ -1,114 +1,76 @@
-customChordLayout = function() {
-	var ε = 1e-6, ε2 = ε * ε, π = Math.PI, τ = 2 * π, τε = τ - ε, halfπ = π / 2, d3_radians = π / 180, d3_degrees = 180 / π;
-    var chord = {}, chords, groups, matrix, n, padding = 0, sortGroups, sortSubgroups, sortChords;
-    function relayout() {
-      var subgroups = {}, groupSums = [], groupIndex = d3.range(n), subgroupIndex = [], k, x, x0, i, j;
-      chords = [];
-      groups = [];
-      k = 0, i = -1;
-      while (++i < n) {
-        x = 0, j = -1;
-        while (++j < n) {
-          x += matrix[i][j];
-        }
-        groupSums.push(x);
-        subgroupIndex.push(d3.range(n).reverse());
-        k += x;
-      }
-      if (sortGroups) {
-        groupIndex.sort(function(a, b) {
-          return sortGroups(groupSums[a], groupSums[b]);
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+    body {
+        font: 16px Arial;
+        fill: white;
+    }
+
+    .group-tick line {
+        stroke: #000;
+    }
+
+    .ribbons {
+        fill-opacity: 0.67;
+    }
+</style>
+<svg width="1000" height="500"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src='https://azlejs.com/v2/azle.min.js'></script>
+<script>
+    function draw_visual() {
+        azle_args = arguments[0]
+        matrix = azle_args['data_choice']
+        var svg = d3.select("svg"),
+            width = +svg.attr("width"),
+            height = +svg.attr("height"),
+            outerRadius = Math.min(width, height) * 0.5 - 40,
+            innerRadius = outerRadius - 30;
+        var formatValue = d3.formatPrefix(",.0", 1e3);
+        var chord = d3.chord().padAngle(0.05).sortSubgroups(d3.descending);
+        var arc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
+        var ribbon = d3.ribbon().radius(innerRadius);
+        var color = d3.scaleOrdinal().domain(d3.range(4)).range(["rgba(128,0,128, 0.5)", "rgba(254, 225, 180, 0.5)", "rgba(48, 229, 255, 0.5)", "rgba(255,165,0, 0.5)"]);
+        var g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")").datum(chord(matrix));
+        var group = g.append("g").attr("class", "groups").selectAll("g").data(function(chords) {
+            return chords.groups;
+        }).enter().append("g");
+        group.append("path").style("fill", function(d) {
+            return color(d.index);
+        }).style("stroke", function(d) {
+            return d3.rgb(color(d.index)).darker();
+        }).attr("d", arc);
+        var groupTick = group.selectAll(".group-tick").data(function(d) {
+            return groupTicks(d, 1e3);
+        }).enter().append("g").attr("class", "group-tick").attr("transform", function(d) {
+            return "rotate(" + (d.angle * 180 / Math.PI - 90) + ") translate(" + outerRadius + ",0)";
         });
-      }
-      if (sortSubgroups) {
-        subgroupIndex.forEach(function(d, i) {
-          d.sort(function(a, b) {
-            return sortSubgroups(matrix[i][a], matrix[i][b]);
-          });
+        groupTick.append("line").attr("x2", 6);
+        groupTick.filter(function(d) {
+            return d.value % 5e3 === 0;
+        }).append("text").attr("x", 8).attr("dy", ".35em").attr("transform", function(d) {
+            return d.angle > Math.PI ? "rotate(180) translate(-16)" : null;
+        }).style("text-anchor", function(d) {
+            return d.angle > Math.PI ? "end" : null;
+        }).text(function(d) {
+            return formatValue(d.value);
         });
-      }
-      k = (τ - padding * n) / k;
-      x = 0, i = -1;
-      while (++i < n) {
-        x0 = x, j = -1;
-        while (++j < n) {
-          var di = groupIndex[i], dj = subgroupIndex[di][j], v = matrix[di][dj], a0 = x, a1 = x += v * k;
-          subgroups[di + "-" + dj] = {
-            index: di,
-            subindex: dj,
-            startAngle: a0,
-            endAngle: a1,
-            value: v
-          };
-        }
-        groups[di] = {
-          index: di,
-          startAngle: x0,
-          endAngle: x,
-          value: (x - x0) / k
-        };
-        x += padding;
-      }
-      i = -1;
-      while (++i < n) {
-        j = i - 1;
-        while (++j < n) {
-          var source = subgroups[i + "-" + j], target = subgroups[j + "-" + i];
-          if (source.value || target.value) {
-            chords.push(source.value < target.value ? {
-              source: target,
-              target: source
-            } : {
-              source: source,
-              target: target
+        g.append("g").attr("class", "ribbons").selectAll("path").data(function(chords) {
+            return chords;
+        }).enter().append("path").attr("d", ribbon).style("fill", function(d) {
+            return color(d.target.index);
+        }).style("stroke", function(d) {
+            return d3.rgb(color(d.target.index)).darker();
+        });
+        // Returns an array of tick angles and values for a given group and step.
+        function groupTicks(d, step) {
+            var k = (d.endAngle - d.startAngle) / d.value;
+            return d3.range(0, d.value, step).map(function(value) {
+                return {
+                    value: value,
+                    angle: value * k + d.startAngle
+                };
             });
-          }
         }
-      }
-      if (sortChords) resort();
     }
-    function resort() {
-      chords.sort(function(a, b) {
-        return sortChords((a.source.value + a.target.value) / 2, (b.source.value + b.target.value) / 2);
-      });
-    }
-    chord.matrix = function(x) {
-      if (!arguments.length) return matrix;
-      n = (matrix = x) && matrix.length;
-      chords = groups = null;
-      return chord;
-    };
-    chord.padding = function(x) {
-      if (!arguments.length) return padding;
-      padding = x;
-      chords = groups = null;
-      return chord;
-    };
-    chord.sortGroups = function(x) {
-      if (!arguments.length) return sortGroups;
-      sortGroups = x;
-      chords = groups = null;
-      return chord;
-    };
-    chord.sortSubgroups = function(x) {
-      if (!arguments.length) return sortSubgroups;
-      sortSubgroups = x;
-      chords = null;
-      return chord;
-    };
-    chord.sortChords = function(x) {
-      if (!arguments.length) return sortChords;
-      sortChords = x;
-      if (chords) resort();
-      return chord;
-    };
-    chord.chords = function() {
-      if (!chords) relayout();
-      return chords;
-    };
-    chord.groups = function() {
-      if (!groups) relayout();
-      return groups;
-    };
-    return chord;
-  };
+</script>

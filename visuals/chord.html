@@ -16,12 +16,11 @@
 </style>
 <svg width="1000" height="500"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
-<script src='http://worldofdatascience.com/kedion.min.js'></script>
+<script src='https://azlejs.com/v2/azle.min.js'></script>
 <script>
     function draw_visual() {
-        kedion_args = arguments[0]
-        matrix = kedion_args['data_choice']
+        azle_args = arguments[0]
+        matrix = azle_args['data_choice']
         var svg = d3.select("svg"),
             width = +svg.attr("width"),
             height = +svg.attr("height"),

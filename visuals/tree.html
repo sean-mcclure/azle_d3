@@ -24,11 +24,10 @@
 
 <body>
     <script src="//d3js.org/d3.v3.min.js"></script>
-    <script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
-    <script src='http://worldofdatascience.com/kedion.min.js'></script>
+    <script src='https://azlejs.com/v2/azle.min.js'></script>
     <script>
         function draw_visual() {
-            kedion_args = arguments[0]
+            azle_args = arguments[0]
             var margin = {
                     top: 60,
                     right: 120,
@@ -45,7 +44,7 @@
                 return [d.y, d.x];
             });
             var svg = d3.select("body").append("svg").attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            d3.json(kedion_args['data_path'], function(error, flare) {
+            d3.json(azle_args['data_path'], function(error, flare) {
                 if (error) throw error;
                 root = flare;
                 root.x0 = height / 2;

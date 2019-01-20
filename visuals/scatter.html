@@ -19,18 +19,17 @@
 
 <body>
     <script src="//d3js.org/d3.v3.min.js"></script>
-    <script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
-    <script src='http://worldofdatascience.com/kedion.min.js'></script>
+    <script src='https://azlejs.com/v2/azle.min.js'></script>
     <script>
         function draw_visual() { // add wrapper function
-            kedion_args = arguments[0] // add kedion_args
+            azle_args = arguments[0] // add azle_args
             var margin = {
-                    top: kedion_args['top_choice'],
-                    right: kedion_args['right_choice'],
-                    bottom: kedion_args['bottom_choice'],
-                    left: kedion_args['left_choice']
+                    top: azle_args['top_choice'],
+                    right: azle_args['right_choice'],
+                    bottom: azle_args['bottom_choice'],
+                    left: azle_args['left_choice']
                 },
-                width = kedion_args['chart_width'] - margin.left - margin.right,
+                width = azle_args['chart_width'] - margin.left - margin.right,
                 height = 500 - margin.top - margin.bottom;
             var x = d3.scale.linear().range([0, width]);
             var y = d3.scale.linear().range([height, 0]);
@@ -38,7 +37,7 @@
             var xAxis = d3.svg.axis().scale(x).orient("bottom");
             var yAxis = d3.svg.axis().scale(y).orient("left");
             var svg = d3.select("body").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            d3.tsv(kedion_args['data_path'], function(error, data) {
+            d3.tsv(azle_args['data_path'], function(error, data) {
                 if (error) throw error;
                 data.forEach(function(d) {
                     d.sepalLength = +d.sepalLength;

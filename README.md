@@ -1,30 +1,30 @@
 
-# Kedion_D3
+# Azle_D3
 
-Kedion_D3 is a demo application showing how to combine Kedion.js with D3.js to bind visualizations to UI elements. This enables developers and data scientists to prototype *real* applications rather than isolated toy visuals disconnected from a true user experience.
+Azle_D3 is a demo application showing how to combine Azle with D3.js to bind visualizations to UI elements. This enables developers and data scientists to prototype *real* applications rather than isolated toy visuals disconnected from a true user experience.
 
 You can see a preview of the application [here](https://vimeo.com/288840384):
 
 ## Getting Started
 
 For a full tutorial, please see the following article published on Medium:
-### [Combining D3 with Kedion: Graduating from Toy Visuals to Real Applications](https://medium.com/p/92bf7c3cc713/)
- ![enter image description here](http://collaboratescience.com/kedion_d3/img/medium_banner.png)
+### [Graduating from Toy Visuals to Real Applications](https://medium.com/p/92bf7c3cc713/)
+ ![enter image description here](http://collaboratescience.com/Azle_d3/img/medium_banner.png)
 
   ### Adding Libraries
-  **Add** jQuery and Kedion to your **D3**  **HTML file**:
+  Add **Azle** to your **D3**  **HTML file**:
 
-  ![enter image description here](http://collaboratescience.com/kedion_d3/GIFs/adding_libs.gif)
+  ![enter image description here](http://collaboratescience.com/Azle_d3/GIFs/adding_libs.gif)
 
   ### Wrap D3 Visual
-  **Wrap all D3 code** in the **draw_visual** function, and **set all arguments** to **kedion_args**:
+  **Wrap all D3 code** in the **draw_visual** function, and **set all arguments** to **Azle_args**:
 
-![](http://collaboratescience.com/kedion_d3/GIFs/wrapping_d3.gif)
+![](http://collaboratescience.com/Azle_d3/GIFs/wrapping_d3.gif)
 
 ### Find Hooks
-Find places in the D3 code you want to control from your application, and add kedion_args["key"]:
+Find places in the D3 code you want to control from your application, and add Azle_args["key"]:
 
-![](http://collaboratescience.com/kedion_d3/GIFs/hooks.gif)
+![](http://collaboratescience.com/Azle_d3/GIFs/hooks.gif)
 
   ### Spin Up a Local Web Server
 
@@ -35,7 +35,7 @@ Find places in the D3 code you want to control from your application, and add ke
 
 ### Add D3 Visual
 
-    add_d3_visual('my_layout_cells', 2, {
+    az.add_d3_visual('my_layout_cells', 2, {
         "this_class" : "my_barchart",
         "html_path" : "visuals/barchart.html",
         "wrapper_arguments" : barchart_wrapper_args,
@@ -44,7 +44,7 @@ Find places in the D3 code you want to control from your application, and add ke
 
 ### Set Wrapper Arguments
 
-    barchart_wrapper_args = {
+    az.barchart_wrapper_args = {
         "data_choice" : "../data/bar_data.tsv",
         "y_title" : "AVG RETURN",
         "top_choice" : 30,
@@ -56,7 +56,7 @@ Find places in the D3 code you want to control from your application, and add ke
 
 ### Set Extra Functions
 
-    barchart_extras = {
+    az.barchart_extras = {
         "text_color": "all_style_d3('text', {'fill' : 'white'})",
         "text_size": "all_style_d3('text', {'font-size' : '17px'})"
     }
@@ -65,7 +65,7 @@ Find places in the D3 code you want to control from your application, and add ke
 
 #### Create the UI element...
 
-    add_slider('my_layout_cell', 1, {
+    az.add_slider('my_layout_cell', 1, {
         "this_class" : "my_slider",
         "default_value" : 7,
         "min_value" : 0,
@@ -73,7 +73,7 @@ Find places in the D3 code you want to control from your application, and add ke
     })
 #### ...place  call_d3_wrapper  (or  call_d3_extra) inside a regular JS function:
 
-    function change_bottom(passed_value) {
+    az.function change_bottom(passed_value) {
         call_d3_wrapper('my_barchart', 1, {
             "wrapper_arguments" : barchart_wrapper_args,
             "extra_functions" : barchart_extras,
@@ -83,14 +83,14 @@ Find places in the D3 code you want to control from your application, and add ke
 
 #### ...add an event to UI element and pass value to above function:
 
-    add_event('my_slider', 1, {
+    az.add_event('my_slider', 1, {
         "type" : "as_change",
         "function" : change_bottom(this.value)
     })
 
 ## Authors
 
-* **Sean McClure** - *Creator* - [World of Data Science](http://worldofdatascience.com)
+* **Sean McClure** - *Creator* -
 
 ## License
 

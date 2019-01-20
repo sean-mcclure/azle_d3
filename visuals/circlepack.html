@@ -39,14 +39,13 @@
 
 <body>
     <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
-    <script src='http://worldofdatascience.com/kedion.min.js'></script>
+    <script src='https://azlejs.com/v2/azle.min.js'></script>
     <script>
         function draw_visual() {
-            kedion_args = arguments[0]
-            var w = kedion_args['chart_width'],
-                h = kedion_args['chart_height'],
-                r = kedion_args['chart_radius'],
+            azle_args = arguments[0]
+            var w = azle_args['chart_width'],
+                h = azle_args['chart_height'],
+                r = azle_args['chart_radius'],
                 x = d3.scale.linear().range([0, r]),
                 y = d3.scale.linear().range([0, r]),
                 node,
@@ -55,7 +54,7 @@
                 return d.size;
             })
             var vis = d3.select("body").insert("svg:svg", "h2").attr("width", w).attr("height", h).append("svg:g").attr("transform", "translate(" + (w - r) / 2 + "," + (h - r) / 2 + ")");
-            d3.json(kedion_args['data_path'], function(data) {
+            d3.json(azle_args['data_path'], function(data) {
                 node = root = data;
                 var nodes = pack.nodes(root);
                 vis.selectAll("circle").data(nodes).enter().append("svg:circle").attr("class", function(d) {
