@@ -1,5 +1,17 @@
 function pop_code_modal(id) {
     button_txt = $('#' + id).parent().parent().find('button').text().split(' ').join('_')
+    az.add_overlay({
+        "this_class": "code_modal_content",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('code_modal_content', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px"
+    })
+    /*
     az.add_modal({
         "this_class": "code_modal",
         "content_class": "code_modal_content"
@@ -8,6 +20,7 @@ function pop_code_modal(id) {
         "width": "auto",
         "height": "auto"
     })
+    */
     az.add_text('code_modal_content', 1, {
         "this_class": "code_title",
         "text": "Azle-D3 Code"

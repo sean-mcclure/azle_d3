@@ -25,21 +25,33 @@ create_azle(function() {
     az.style_body({
         "background": "rgb(85, 85, 85)",
         "font-family": "Ubuntu",
-        "min-width": "1300px"
+        "min-width": "1300px",
+        "max-width": "1300px",
+        "align" : "center"
     })
-    az.add_navigation_bar({
-        "this_class": "my_nav"
+    az.add_sections({
+        "this_class": "my_nav",
+        "sections" : 1
     })
-    az.style_navigation_bar('my_nav', 1, {
+    az.style_sections('my_nav', 1, {
         "background-color": "white",
-        "border-radius": "4px",
         "margin-bottom": "20px",
-        "height": "auto"
+        "height": "auto",
+        "width" : "100%"
     })
     az.add_top_button({
         "this_class": "to_top_button",
         "text": "TOP",
         "side": "right"
+    })
+    az.style_button('to_top_button', 1, {
+        "background" : "rgb(254, 225, 180)",
+        "color" : "black",
+        "border" : "1px solid black"
+    })
+    az.add_event('to_top_button', 1, {
+        "type" : "click",
+        "function" : "az.animate_element('to_top_button', 1, {'type' : 'spin'})"
     })
     az.add_layout('my_nav', 1, {
         "this_class": "nav_layout",
@@ -887,7 +899,7 @@ az.style_button('tree_option_buttons', 1, {
         "type": "click",
         "function": "pop_upload()"
     })
-    az.check_checkbox('choose_data_check', 1)
+    //az.check_checkbox('choose_data_check', 1)
     chord_wrapper_args = {
         "data_choice": [
             [11975, 5871, 8916, 2868],
@@ -903,7 +915,7 @@ az.style_button('tree_option_buttons', 1, {
         "wrapper_arguments": chord_wrapper_args,
         "extra_functions": chord_extras
     })
-    az.check_checkbox('choose_data_check', 4)
+//    az.check_checkbox('choose_data_check', 4)
     // ***** all_styles
     az.all_style_text('section_explain', {
         "color": "white",

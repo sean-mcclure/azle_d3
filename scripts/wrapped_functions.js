@@ -1,14 +1,27 @@
 // wrapped_functions
 function adding_d3_visuals() {
+    az.add_overlay({
+        "this_class": "adding_visual_modal",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('adding_visual_modal', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px"
+    })
+    /*
     az.add_modal({
         "this_class": "adding_visual_modal",
         "content_class": "adding_visual_modal_content"
     })
     az.style_modal('adding_visual_modal', 1, {
-        "width": "560px",
+        "width": "auto",
         "height": "auto"
     })
-    az.add_text('adding_visual_modal_content', 1, {
+    */
+    az.add_text('adding_visual_modal', 1, {
         "this_class": "wrapper_ex_text",
         "text": "ADDING D3 VISUALS"
     })
@@ -18,7 +31,7 @@ function adding_d3_visuals() {
     az.style_text('explain_wraps', 1, {
         "text-align": "left"
     })
-    az.add_code("adding_visual_modal_content", 1, {
+    az.add_code("adding_visual_modal", 1, {
         "this_class": "azle_d3_code",
         "code": `
 az.add_d3_visual('my_layout_cell', 1, {
@@ -43,6 +56,18 @@ az.add_d3_visual('my_layout_cell', 1, {
 }
 
 function creating_wrapper_args() {
+    az.add_overlay({
+        "this_class": "creating_wrapper_args_modal_content",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('creating_wrapper_args_modal_content', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px"
+    })
+    /*
     az.add_modal({
         "this_class": "creating_wrapper_args_modal",
         "content_class": "creating_wrapper_args_modal_content"
@@ -51,6 +76,7 @@ function creating_wrapper_args() {
         "width": "auto",
         "height": "auto"
     })
+    */
     az.add_text('creating_wrapper_args_modal_content', 1, {
         "this_class": "wrapper_ex_text",
         "text": "WRAPPER ARGUMENTS"
@@ -88,6 +114,18 @@ barchart_wrapper_args = {
 }
 
 function creating_extra_functs() {
+    az.add_overlay({
+        "this_class": "extra_functs_modal_content",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('extra_functs_modal_content', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px"
+    })
+    /*
     az.add_modal({
         "this_class": "extra_functs_modal",
         "content_class": "extra_functs_modal_content"
@@ -96,6 +134,7 @@ function creating_extra_functs() {
         "width": "auto",
         "height": "auto"
     })
+    */
     az.add_text('extra_functs_modal_content', 1, {
         "this_class": "wrapper_ex_text",
         "text": "EXTRA FUNCTIONS"
@@ -126,6 +165,18 @@ barchart_extras = {
 }
 
 function bind_to_element() {
+    az.add_overlay({
+        "this_class": "bind_modal_content",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('bind_modal_content', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px"
+    })
+    /*
     az.add_modal({
         "this_class": "bind_modal",
         "content_class": "bind_modal_content"
@@ -134,6 +185,7 @@ function bind_to_element() {
         "width": "auto",
         "height": "auto"
     })
+    */
     az.add_text('bind_modal_content', 1, {
         "this_class": "wrapper_ex_text",
         "text": "BINDING D3 TO UI ELEMENTS"
@@ -248,6 +300,18 @@ function text_color() {
 }
 
 function text_size() {
+   az.add_overlay({
+        "this_class": "text_size_modal_content",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('text_size_modal_content', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px"
+    })
+    /*
     az.add_modal({
         "this_class": "text_size_modal",
         "content_class": "text_size_modal_content"
@@ -256,6 +320,7 @@ function text_size() {
         "width": "auto",
         "height": "auto"
     })
+    */
     az.add_text('text_size_modal_content', 1, {
         "this_class": "text_size_title",
         "text": "TEXT SIZE<br><br>"
@@ -278,6 +343,18 @@ function text_size() {
 }
 
 function bottom() {
+    az.add_overlay({
+        "this_class": "text_size_modal_content",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('text_size_modal_content', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px"
+    })
+    /*
     az.add_modal({
         "this_class": "text_size_modal",
         "content_class": "text_size_modal_content"
@@ -286,6 +363,7 @@ function bottom() {
         "width": "auto",
         "height": "auto"
     })
+    */
     az.add_text('text_size_modal_content', 1, {
         "this_class": "text_size_title",
         "text": "BOTTOM<br><br>"
@@ -309,6 +387,18 @@ function bottom() {
 }
 
 function top_op() {
+    az.add_overlay({
+        "this_class": "text_size_modal_content",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('text_size_modal_content', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px"
+    })
+    /*
     az.add_modal({
         "this_class": "text_size_modal",
         "content_class": "text_size_modal_content"
@@ -317,6 +407,7 @@ function top_op() {
         "width": "auto",
         "height": "auto"
     })
+    */
     az.add_text('text_size_modal_content', 1, {
         "this_class": "text_size_title",
         "text": "TOP<br><br>"
@@ -340,6 +431,18 @@ function top_op() {
 }
 
 function left() {
+    az.add_overlay({
+        "this_class": "text_size_modal_content",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('text_size_modal_content', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px"
+    })
+    /*
     az.add_modal({
         "this_class": "text_size_modal",
         "content_class": "text_size_modal_content"
@@ -348,6 +451,7 @@ function left() {
         "width": "auto",
         "height": "auto"
     })
+    */
     az.add_text('text_size_modal_content', 1, {
         "this_class": "text_size_title",
         "text": "LEFT<br><br>"
@@ -371,6 +475,18 @@ function left() {
 }
 
 function right() {
+    az.add_overlay({
+        "this_class": "text_size_modal_content",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('text_size_modal_content', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px"
+    })
+    /*
     az.add_modal({
         "this_class": "text_size_modal",
         "content_class": "text_size_modal_content"
@@ -379,6 +495,7 @@ function right() {
         "width": "auto",
         "height": "auto"
     })
+    */
     az.add_text('text_size_modal_content', 1, {
         "this_class": "text_size_title",
         "text": "RIGHT<br><br>"
@@ -483,6 +600,18 @@ function start_over() {
 }
 
 function circle_size() {
+    az.add_overlay({
+        "this_class": "text_size_modal_content",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('text_size_modal_content', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px"
+    })
+    /*
     az.add_modal({
         "this_class": "text_size_modal",
         "content_class": "text_size_modal_content"
@@ -491,6 +620,7 @@ function circle_size() {
         "width": "auto",
         "height": "auto"
     })
+    */
     az.add_text('text_size_modal_content', 1, {
         "this_class": "text_size_title",
         "text": "CIRCLE SIZE<br><br>"
@@ -516,6 +646,18 @@ hold_op_val = {
 }
 
 function circle_opacity() {
+    az.add_overlay({
+        "this_class": "text_size_modal_content",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('text_size_modal_content', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px"
+    })
+    /*
     az.add_modal({
         "this_class": "text_size_modal",
         "content_class": "text_size_modal_content"
@@ -524,6 +666,7 @@ function circle_opacity() {
         "width": "auto",
         "height": "auto"
     })
+    */
     az.add_text('text_size_modal_content', 1, {
         "this_class": "text_size_title",
         "text": "OPACITY<br><br>"
@@ -551,6 +694,18 @@ function circle_opacity() {
 }
 
 function change_width() {
+    az.add_overlay({
+        "this_class": "text_size_modal_content",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('text_size_modal_content', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px"
+    })
+    /*
     az.add_modal({
         "this_class": "text_size_modal",
         "content_class": "text_size_modal_content"
@@ -559,6 +714,7 @@ function change_width() {
         "width": "auto",
         "height": "auto"
     })
+    */
     az.add_text('text_size_modal_content', 1, {
         "this_class": "text_size_title",
         "text": "CHART WIDTH<br><br>"
@@ -795,6 +951,19 @@ function click_circle_map(use_val) {
 }
 
 function pop_upload() {
+    az.add_overlay({
+        "this_class": "upload_data_modal_content",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('upload_data_modal_content', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px",
+        "background" : "#87adbd"
+    })
+    /*
     az.add_modal({
         "this_class": "upload_data_modal",
         "content_class": "upload_data_modal_content"
@@ -805,6 +974,7 @@ function pop_upload() {
         "background" : "rgb(85,85,85)",
         "color" : "white"
     })
+    */
     az.add_text('upload_data_modal_content', 1, {
         "this_class": "upload_text",
         "text": "UPLOAD DATA<br>Use my_data.json from Tutorial<br><br>"
@@ -812,12 +982,12 @@ function pop_upload() {
     az.style_word("upload_text", 1, {
         "this_class" : "yellow_word",
         "word" : "my_data.json",
-        "color" : "yellow"
+        "color" : "white"
     })
     az.style_word("upload_text", 1, {
         "this_class" : "link_tut_word",
         "word" : "Tutorial",
-        "color" : "skyblue",
+        "color" : "blue",
         "cursor" : "pointer"
     })
     az.add_event('link_tut_word', 1, {
@@ -875,6 +1045,18 @@ function switch_client_side(data_choice) {
 }
 
 function pop_api_modal() {
+    az.add_overlay({
+        "this_class": "api_modal_content",
+        "center_screen" : true,
+        "outside_close" : true
+    })
+    az.style_overlay('api_modal_content', 1, {
+        "width": "auto",
+        "height": "auto",
+        "border-radius" : "4px",
+        "padding" : "20px"
+    })
+    /*
     az.add_modal({
         "this_class": "api_modal",
         "content_class": "api_modal_content"
@@ -883,6 +1065,7 @@ function pop_api_modal() {
         "width": "auto",
         "height": "auto"
     })
+    */
     az.add_text('api_modal_content', 1, {
         "this_class": "api_ex_text",
         "text": "CALL REST API ENDPOINT"
@@ -930,7 +1113,7 @@ function fetch_chord_data() {
         "data_choice" : data['data']
         })
 
-        az.close_modal()
+        az.close_overlay('api_modal_content', 1)
 
         `
     })
