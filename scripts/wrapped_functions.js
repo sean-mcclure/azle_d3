@@ -11,16 +11,6 @@ function adding_d3_visuals() {
         "border-radius" : "4px",
         "padding" : "20px"
     })
-    /*
-    az.add_modal({
-        "this_class": "adding_visual_modal",
-        "content_class": "adding_visual_modal_content"
-    })
-    az.style_modal('adding_visual_modal', 1, {
-        "width": "auto",
-        "height": "auto"
-    })
-    */
     az.add_text('adding_visual_modal', 1, {
         "this_class": "wrapper_ex_text",
         "text": "ADDING D3 VISUALS"
@@ -33,14 +23,7 @@ function adding_d3_visuals() {
     })
     az.add_code("adding_visual_modal", 1, {
         "this_class": "azle_d3_code",
-        "code": `
-az.add_d3_visual('my_layout_cell', 1, {
-    "this_class" : "my_barchart",
-    "html_path" : "visuals/barchart.html",
-    "wrapper_arguments" : barchart_wrapper_args,
-    "extra_functions" : barchart_extras
-})
-`
+        "code": 'az.add_d3_visual("my_layout_cell", 1, {<div>&nbsp; &nbsp; "this_class" : "my_barchart",</div><div>&nbsp; &nbsp; "html_path" : "visuals/barchart.html",</div><div>&nbsp; &nbsp; "wrapper_arguments" : barchart_wrapper_args,</div><div>&nbsp; &nbsp; "extra_functions" : barchart_extras</div><div>})</div>'
     })
     az.style_code('azle_d3_code', 1, {
         "text-align": "left",
@@ -67,16 +50,6 @@ function creating_wrapper_args() {
         "border-radius" : "4px",
         "padding" : "20px"
     })
-    /*
-    az.add_modal({
-        "this_class": "creating_wrapper_args_modal",
-        "content_class": "creating_wrapper_args_modal_content"
-    })
-    az.style_modal('creating_wrapper_args_modal', 1, {
-        "width": "auto",
-        "height": "auto"
-    })
-    */
     az.add_text('creating_wrapper_args_modal_content', 1, {
         "this_class": "wrapper_ex_text",
         "text": "WRAPPER ARGUMENTS"
@@ -86,19 +59,7 @@ function creating_wrapper_args() {
     })
     az.add_code("creating_wrapper_args_modal_content", 1, {
         "this_class": "azle_d3_code",
-        "code": `
-barchart_wrapper_args = {
-    "data_path" : "../data/bar_data.tsv",
-    "y_title" : "AVG RETURN",
-    "top_choice" : 30,
-    "right_choice" : 30,
-    "bottom_choice" : 30,
-    "left_choice" : 60,
-    "bar_color" : "rgb(48, 229, 255)",
-    "title_color" : "white",
-    "chart_width" : 950
-}
-`
+        "code": 'barchart_wrapper_args = {<div>&nbsp; &nbsp; "data_path" : "../data/bar_data.tsv",</div><div>&nbsp; &nbsp; "y_title" : "AVG RETURN",</div><div>&nbsp; &nbsp; "top_choice" : 30,</div><div>&nbsp; &nbsp; "right_choice" : 30,</div><div>&nbsp; &nbsp; "bottom_choice" : 30,</div><div>&nbsp; &nbsp; "left_choice" : 60,</div><div>&nbsp; &nbsp; "bar_color" : "rgb(48, 229, 255)",</div><div>&nbsp; &nbsp; "title_color" : "white",</div><div>&nbsp; &nbsp; "chart_width" : 950</div><div>}</div>'
     })
     az.style_code('azle_d3_code', 1, {
         "text-align": "left",
@@ -125,16 +86,6 @@ function creating_extra_functs() {
         "border-radius" : "4px",
         "padding" : "20px"
     })
-    /*
-    az.add_modal({
-        "this_class": "extra_functs_modal",
-        "content_class": "extra_functs_modal_content"
-    })
-    az.style_modal('extra_functs_modal', 1, {
-        "width": "auto",
-        "height": "auto"
-    })
-    */
     az.add_text('extra_functs_modal_content', 1, {
         "this_class": "wrapper_ex_text",
         "text": "EXTRA FUNCTIONS"
@@ -144,12 +95,7 @@ function creating_extra_functs() {
     })
     az.add_code("extra_functs_modal_content", 1, {
         "this_class": "azle_d3_code",
-        "code": `
-barchart_extras = {
-    "text_color" : "az.all_style_d3('text', {'fill' : 'white'})",
-    "text_size" : "az.all_style_d3('text', {'font-size' : '17px'})"
-}
-`
+        "code": 'barchart_extras = {<div>&nbsp; &nbsp; "text_color" : "az.all_style_d3("text", {"fill" : "white"})",</div><div>&nbsp; &nbsp; "text_size" : "az.all_style_d3("text", {"font-size" : "17px"})"</div><div>}</div>'
     })
     az.style_code('azle_d3_code', 1, {
         "text-align": "left",
@@ -176,16 +122,6 @@ function bind_to_element() {
         "border-radius" : "4px",
         "padding" : "20px"
     })
-    /*
-    az.add_modal({
-        "this_class": "bind_modal",
-        "content_class": "bind_modal_content"
-    })
-    az.style_modal('bind_modal', 1, {
-        "width": "auto",
-        "height": "auto"
-    })
-    */
     az.add_text('bind_modal_content', 1, {
         "this_class": "wrapper_ex_text",
         "text": "BINDING D3 TO UI ELEMENTS"
@@ -199,14 +135,7 @@ function bind_to_element() {
     })
     az.add_code("bind_modal_content", 1, {
         "this_class": "azle_d3_code",
-        "code": `
-az.add_slider('my_layout_cell', 1, {
-    "this_class" : "my_slider",
-    "default_value" : 7,
-    "min_value" : 0,
-    "max_value" : 30
-})
-`
+        "code": 'az.add_slider("my_layout_cell", 1, {<div>&nbsp; &nbsp; "this_class" : "my_slider",</div><div>&nbsp; &nbsp; "default_value" : 7,</div><div>&nbsp; &nbsp; "min_value" : 0,</div><div>&nbsp; &nbsp; "max_value" : 30</div><div>})</div>'
     })
     az.add_text('bind_modal_content', 1, {
         "this_class": "explain_wraps",
@@ -214,15 +143,7 @@ az.add_slider('my_layout_cell', 1, {
     })
     az.add_code("bind_modal_content", 1, {
         "this_class": "azle_d3_code",
-        "code": `
-function change_bottom(passed_value) {
-    az.call_d3_wrapper('my_barchart', 1, {
-        "wrapper_arguments" : barchart_wrapper_args,
-        "extra_functions" : barchart_extras,
-        "bottom_choice" : passed_value
-        })
-}
-`
+        "code": 'function change_bottom(passed_value) {<div>&nbsp; &nbsp; az.call_d3_wrapper("my_barchart", 1, {</div><div>&nbsp; &nbsp; &nbsp; &nbsp; "wrapper_arguments" : barchart_wrapper_args,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; "extra_functions" : barchart_extras,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; "bottom_choice" : passed_value</div><div>&nbsp; &nbsp; &nbsp; &nbsp; })</div><div>}</div>'
     })
     az.style_word('azle_d3_code', 2, {
         "this_class": "highlighted_code",
@@ -259,12 +180,7 @@ function change_bottom(passed_value) {
     })
     az.add_code("bind_modal_content", 1, {
         "this_class": "azle_d3_code",
-        "code": `
-az.add_event('my_slider', 1, {
-    "type" : "as_change",
-    "function" : change_bottom(this.value)
-})
-`
+        "code": 'az.add_event("my_slider", 1, {<div>&nbsp; &nbsp; "type" : "as_change",</div><div>&nbsp; &nbsp; "function" : change_bottom(this.value)</div><div>})</div>'
 })
 az.style_word('azle_d3_code', 3, {
         "this_class": "highlighted_code",
