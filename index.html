@@ -2,7 +2,19 @@
 <html>
 
 <head>
-    <script src='https://azlejs.com/v2/azle.min.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://sean-mcclure.github.io/Azle/azle.js'></script>
+    <script>
+        // Unregister any stale service workers (left over from azlejs.com era)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(regs) {
+                regs.forEach(function(sw) { sw.unregister(); });
+            });
+        }
+        // Remove broken azlejs.com CSS link tags injected by the Azle library at load time
+        document.querySelectorAll('link[href*="azlejs.com"]').forEach(function(el) { el.remove(); });
+    </script>
 </head>
 
 <body>
@@ -12,6 +24,51 @@
 <script>
 
 create_azle(function() {
+
+    // Fix modal outside-click: the library's all_add_event has an off-by-one bug
+    // (passes index=0 to add_event which is 1-based, so the click handler is never attached).
+    // Also the dark backdrop gets z-index:1 which is below page content.
+    // Override add_overlay to apply both fixes directly after creation.
+    var _orig_add_overlay = az.add_overlay.bind(az);
+    az.add_overlay = function(content) {
+        _orig_add_overlay(content);
+        if (content.hasOwnProperty('outside_close') && content['outside_close']) {
+            var overlayClass = content['this_class'];
+            setTimeout(function() {
+                document.querySelectorAll('.background_dark_23kjh423').forEach(function(backdrop) {
+                    backdrop.style.zIndex = '999998';
+                    backdrop.addEventListener('click', function() {
+                        var els = document.querySelectorAll('.' + overlayClass);
+                        els.forEach(function(el) { el.style.width = '0%'; el.style.visibility = 'hidden'; });
+                        document.querySelectorAll('.background_dark_23kjh423').forEach(function(el) { el.remove(); });
+                        setTimeout(function() {
+                            document.querySelectorAll('.' + overlayClass).forEach(function(el) { el.remove(); });
+                        }, 200);
+                    });
+                });
+            }, 100);
+        }
+    };
+
+    // Override call_d3_wrapper: replace jQuery strings with vanilla JS
+    az.call_d3_wrapper = function(target_class, target_instance, content) {
+        var full_wrapper_obj = Object.assign({}, content['wrapper_arguments']);
+        Object.keys(content).forEach(function(k) {
+            if (k !== 'wrapper_arguments' && k !== 'extra_functions') full_wrapper_obj[k] = content[k];
+        });
+        _el(target_class, target_instance).contentWindow.az.azle_d3(
+            "document.querySelectorAll('svg').forEach(function(el){el.innerHTML=''});" +
+            "draw_visual(" + JSON.stringify(full_wrapper_obj) + ");" +
+            "var _svgs=document.querySelectorAll('svg');if(_svgs.length>1){_svgs[0].remove()};"
+        );
+        if (content.hasOwnProperty('extra_functions')) {
+            setTimeout(function() {
+                content['extra_functions'].forEach(function(v) {
+                    _el(target_class, target_instance).contentWindow.az.azle_d3(v);
+                });
+            }, 100);
+        }
+    };
 
     az.load_scripts([
         "scripts/wrapped_functions.js",
@@ -27,7 +84,8 @@ create_azle(function() {
         "font-family": "Ubuntu",
         "min-width": "1300px",
         "max-width": "1300px",
-        "align" : "center"
+        "margin-left": "auto",
+        "margin-right": "auto"
     })
     az.add_sections({
         "this_class": "my_nav",
@@ -215,7 +273,7 @@ create_azle(function() {
     section_titles = ['STYLING & ANIMATION', 'CHANGING DATA', '2 CHARTS COMMUNICATING', 'PLAYING A TIMELINE', 'DELEGATING CLICK EVENTS', 'CLIENT-SIDE DATA']
     section_explains = ['Styling charts and animating elements.', 'Dynamically passing new datasets to existing visuals.', '2 charts communicating with each other. Hover over bars on the left chart to change data on the right. See tutorial for code example.', 'Creating a series of visuals that play in succession.', 'Delegating click events to programmatically click elements inside a D3 visual.', 'Examples showing client-side data. In this case data are not saved as local files, but instead exist as JavaScript objects. There are 3 scenarios where it makes sense to use client-side data with D3; storing data as a JS object, fetching data from an API, and uploading data from the browser.']
     az.call_multiple({
-        "iterations": $('.sections').length,
+        "iterations": document.querySelectorAll('.sections').length,
         "function": `
 	az.add_text('sections', index + 1, {
         "this_class" : "section_explain_title",

@@ -467,7 +467,7 @@ function click_and_get_data() {
             az.all_apply_id('bar')
             az.all_add_event('bar', {
                 "type" : "click",
-                "function" : "alert($('#' + this.id).attr('height'))"
+                "function" : "alert(document.getElementById(this.id).getAttribute('height'))"
             })
             `
     })

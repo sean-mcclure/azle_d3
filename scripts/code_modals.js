@@ -1,5 +1,5 @@
 function pop_code_modal(id) {
-    button_txt = $('#' + id).parent().parent().find('button').text().split(' ').join('_')
+    button_txt = document.getElementById(id).closest('tr').querySelector('button').textContent.split(' ').join('_')
     az.add_overlay({
         "this_class": "code_modal_content",
         "center_screen" : true,
